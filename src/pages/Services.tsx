@@ -6,11 +6,8 @@ import {
   FaTools, 
   FaShieldAlt, 
   FaClock, 
-  FaCheckCircle, 
-  FaArrowRight,
-  FaPhone
+  FaCheckCircle
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 const Services = () => {
   const [activeService, setActiveService] = useState("Reparación");
@@ -80,22 +77,22 @@ const Services = () => {
 
   const benefits = [
     {
-      icon: <FaShieldAlt className="text-red-600 text-3xl" />,
+      icon: <FaShieldAlt className="text-[#e3001b] text-3xl" />,
       title: "Garantía Extendida",
       description: "Todas nuestras reparaciones incluyen garantía de 12 meses"
     },
     {
-      icon: <FaClock className="text-red-600 text-3xl" />,
-      title: "Rápida Entrega",
-      description: "Tiempo promedio de reparación de 24-48 horas"
+      icon: <FaClock className="text-[#e3001b] text-3xl" />,
+      title: "Atención Personalizada",
+      description: "Cada caso es único. Diseñamos soluciones a medida según las necesidades específicas de tu equipo"
     },
     {
-      icon: <FaCheckCircle className="text-red-600 text-3xl" />,
+      icon: <FaCheckCircle className="text-[#e3001b] text-3xl" />,
       title: "Técnicos Certificados",
       description: "Equipo con más de 10 años de experiencia especializada"
     },
     {
-      icon: <FaWrench className="text-red-600 text-3xl" />,
+      icon: <FaWrench className="text-[#e3001b] text-3xl" />,
       title: "Repuestos Originales",
       description: "Usamos únicamente componentes de calidad premium"
     }
@@ -104,45 +101,34 @@ const Services = () => {
   const currentService = services.find(s => s.title === activeService) || services[0];
 
   return (
-    <div className="bg-black text-white min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[70vh] min-h-[500px] flex items-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{ backgroundImage: "url('/bg-services.jpg')" }}
-        ></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/90 to-transparent"></div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl">
-            <span className="text-red-600 font-bold uppercase tracking-wider">Nuestros Servicios</span>
-            <h1 className="text-4xl md:text-6xl font-bold mt-4 mb-6">
-              Soluciones Profesionales para <span className="text-red-600">Sistemas Diesel y Turbos</span>
-            </h1>
-            <p className="text-xl text-gray-300 mb-8">
-              Expertos certificados con tecnología de punta para maximizar el rendimiento y durabilidad de tus sistemas.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link 
-                to="/#contact" 
-                className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg text-lg transition-colors inline-flex items-center"
-              >
-                Solicitar Servicio
-                <FaArrowRight className="ml-2" />
-              </Link>
-              <a 
-                href="tel:+57123456789" 
-                className="border-2 border-white hover:border-red-600 text-white font-bold px-6 py-3 rounded-lg text-lg transition-colors inline-flex items-center"
-              >
-                Llamar Ahora: +57 123 456 789
-              </a>
-            </div>
-          </div>
+    <div className="bg-white text-gray-900 min-h-screen">
+      {/* Header */}
+      <header 
+        className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center rounded-2xl overflow-hidden"
+        style={{
+          backgroundImage: "url('/boch.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Overlay oscuro con gradiente */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+
+        {/* Contenido centrado */}
+        <div className="relative z-10 text-center text-white max-w-4xl px-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+            Nuestros <span className="text-[#e3001b]">Servicios</span>
+          </h1>
+          <p className="text-base md:text-lg text-gray-100 leading-relaxed max-w-2xl mx-auto">
+            Soluciones profesionales para sistemas diesel y turbos
+          </p>
+          <div className="h-1 bg-[#e3001b] mx-auto mt-6 rounded-full shadow-lg w-20" />
         </div>
-      </section>
+      </header>
 
       {/* Service Navigation */}
-      <section className="py-8 bg-gray-900 border-b border-gray-800">
+      <section className="py-8 bg-[#f8f8f8] border-b border-gray-200">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-2">
             {services.map((service) => (
@@ -151,8 +137,8 @@ const Services = () => {
                 onClick={() => setActiveService(service.title)}
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center ${
                   activeService === service.title
-                    ? "bg-red-600 text-white shadow-lg shadow-red-600/30"
-                    : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                    ? "bg-[#e3001b] text-white shadow-lg shadow-[#e3001b]/30"
+                    : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50"
                 }`}
               >
                 {service.icon}
@@ -168,56 +154,48 @@ const Services = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
-              <div className="bg-gray-800 border-2 border-red-600 rounded-2xl overflow-hidden shadow-2xl">
-                <div className="aspect-video bg-gray-700 flex items-center justify-center">
-                  <span className="text-5xl text-red-600">{currentService.icon}</span>
+              <div className="bg-white border-2 border-[#e3001b] rounded-2xl overflow-hidden shadow-md">
+                <div className="aspect-video bg-gray-100 flex items-center justify-center">
+                  <span className="text-5xl text-[#e3001b]">{currentService.icon}</span>
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-red-600 text-white px-6 py-3 rounded-xl font-bold shadow-lg hidden md:block">
+              <div className="absolute -bottom-6 -right-6 bg-[#e3001b] text-white px-6 py-3 rounded-xl font-bold shadow-lg hidden md:block">
                 {currentService.title}
               </div>
             </div>
             
             <div>
-              <h2 className="text-3xl font-bold mb-6">{currentService.title}</h2>
-              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+              <h2 className="text-3xl font-bold mb-6 text-[#e3001b]">{currentService.title}</h2>
+              <p className="text-gray-700 text-lg mb-8 leading-relaxed">
                 {currentService.description}
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                 {currentService.features.map((feature, index) => (
                   <div key={index} className="flex items-start">
-                    <FaCheckCircle className="text-red-600 mt-1 mr-3 flex-shrink-0" />
-                    <span>{feature}</span>
+                    <FaCheckCircle className="text-[#e3001b] mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700">{feature}</span>
                   </div>
                 ))}
               </div>
-              
-              <Link 
-                to="/#contact" 
-                className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg transition-colors"
-              >
-                Solicitar {currentService.title}
-                <FaArrowRight className="ml-2" />
-              </Link>
             </div>
           </div>
         </div>
       </section>
 
       {/* Process Timeline */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold mb-4">Nuestro Proceso de Trabajo</h2>
-            <p className="text-gray-400">
+            <h2 className="text-3xl font-bold mb-4 text-[#e3001b]">Nuestro Proceso de Trabajo</h2>
+            <p className="text-gray-600">
               Un enfoque estructurado para garantizar la máxima calidad en cada servicio
             </p>
           </div>
           
           <div className="relative max-w-4xl mx-auto">
             {/* Timeline line */}
-            <div className="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-red-600"></div>
+            <div className="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-[#e3001b]"></div>
             
             {currentService.process.map((step, index) => (
               <div 
@@ -227,19 +205,19 @@ const Services = () => {
                 }`}
               >
                 <div className="md:w-5/12 mb-4 md:mb-0">
-                  <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-red-600 transition-all">
+                  <div className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all">
                     <div className="flex items-center mb-3">
-                      <div className="bg-red-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3">
+                      <div className="bg-[#e3001b] text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3">
                         {step.step}
                       </div>
-                      <h3 className="text-xl font-bold">{step.title}</h3>
+                      <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
                     </div>
-                    <p className="text-gray-300">{step.description}</p>
+                    <p className="text-gray-600">{step.description}</p>
                   </div>
                 </div>
                 
                 <div className="md:w-2/12 flex justify-center">
-                  <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-xl border-4 border-black shadow-lg">
+                  <div className="w-12 h-12 rounded-full bg-[#e3001b] flex items-center justify-center text-white font-bold text-xl border-4 border-white shadow-md">
                     {index + 1}
                   </div>
                 </div>
@@ -257,8 +235,8 @@ const Services = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4">¿Por qué Elegirnos?</h2>
-            <p className="text-gray-400">
+            <h2 className="text-3xl font-bold mb-4 text-[#e3001b]">¿Por qué Elegirnos?</h2>
+            <p className="text-gray-600">
               Compromiso con la excelencia en cada servicio que ofrecemos
             </p>
           </div>
@@ -267,42 +245,13 @@ const Services = () => {
             {benefits.map((benefit, index) => (
               <div 
                 key={index}
-                className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-red-600 transition-all duration-300 transform hover:scale-[1.02]"
+                className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm"
               >
                 <div className="mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
-                <p className="text-gray-300">{benefit.description}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
+                <p className="text-gray-600">{benefit.description}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Final */}
-      <section className="py-16 bg-gradient-to-r from-black to-gray-900">
-        <div className="container mx-auto px-4 text-center">
-          <div className="max-w-3xl mx-auto bg-gray-800/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              ¿Necesitas un servicio <span className="text-red-600">profesional</span> para tus sistemas diesel?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Nuestro equipo de expertos está listo para ayudarte con la solución perfecta para tu vehículo o maquinaria.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link 
-                to="/#contact" 
-                className="bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-3 rounded-lg text-lg transition-colors inline-flex items-center"
-              >
-                Solicitar Servicio Ahora
-                <FaArrowRight className="ml-2" />
-              </Link>
-              <a 
-                href="tel:+57123456789" 
-                className="border-2 border-red-600 text-red-500 hover:bg-red-600/10 font-bold px-8 py-3 rounded-lg text-lg transition-colors inline-flex items-center"
-              >
-                <FaPhone className="mr-2" /> Llamar: +57 123 456 789
-              </a>
-            </div>
           </div>
         </div>
       </section>

@@ -103,7 +103,7 @@ const Products: React.FC = () => {
       y: 0,
       opacity: 1,
       transition: { 
-        type: "spring" as const, // ✅ Corregido: "spring" como literal
+        type: "spring" as const,
         stiffness: 80,
         damping: 15 
       },
@@ -116,10 +116,15 @@ const Products: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
+    <div 
+      className="min-h-screen text-gray-800"
+      style={{
+        backgroundImage: "url(\"image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4d4d4' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V4h4V2H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
+      }}
+    >
       {/* Sección de Marcas con Imagen de Fondo */}
       <section 
-        className="relative w-full h-[55vh] min-h-[400px] flex items-center justify-center mb-20 rounded-2xl overflow-hidden"
+        className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center mb-16 rounded-2xl overflow-hidden"
         style={{
           backgroundImage: `url('/products.jpg')`,
           backgroundSize: 'cover',
@@ -134,7 +139,7 @@ const Products: React.FC = () => {
         {/* Contenido centrado */}
         <div className="relative z-10 text-center text-white max-w-4xl px-6">
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -145,7 +150,7 @@ const Products: React.FC = () => {
           </motion.h1>
 
           <motion.p 
-            className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed max-w-3xl mx-auto"
+            className="text-base md:text-lg text-gray-100 mb-6 leading-relaxed max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -157,36 +162,42 @@ const Products: React.FC = () => {
 
           <motion.div 
             initial={{ width: 0 }}
-            whileInView={{ width: "100px" }}
+            whileInView={{ width: "80px" }}
             viewport={{ once: true }}
             transition={{ delay: 0.6, duration: 1 }}
-            className="h-1 bg-[#e3001b] mx-auto mt-8 rounded-full shadow-lg"
+            className="h-1 bg-[#e3001b] mx-auto mt-6 rounded-full shadow-lg"
           />
         </div>
       </section>
 
-      <main className="container mx-auto px-4 sm:px-6 max-w-7xl">
-        {/* Sección de Marcas (logos) */}
-        {brands.length > 0 && (
-          <section className="mb-20" aria-label="Logos de marcas">
+      {/* Sección de Marcas (logos) - AHORA OCUPA TODO EL ANCHO DE LA PANTALLA */}
+      {brands.length > 0 && (
+        <section 
+          className="w-full relative overflow-hidden py-6"
+          aria-label="Logos de marcas"
+        >
+          {/* Degradado lateral oscuro en los bordes (OCUPA TODO EL ANCHO) */}
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/8 via-white to-gray-900/8" />
+          
+          <div className="max-w-4xl mx-auto relative z-10">
             <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
+              className="grid grid-cols-2 md:grid-cols-4 gap-6"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={containerVariants}
             >
-              {brands.map((brand) => ( // ✅ Eliminado 'index' ya que no se usa
+              {brands.map((brand) => (
                 <motion.div
                   key={brand.name}
                   variants={itemVariants}
-                  className="flex items-center justify-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 aspect-square"
-                  whileHover={{ scale: 1.05 }}
+                  className="flex items-center justify-center p-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-300 aspect-[4/3]"
+                  whileHover={{ scale: 1.05, y: -5 }}
                 >
                   <img
                     src={brand.img}
                     alt={`Logo de ${brand.name}`}
-                    className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                    className="max-w-full max-h-full object-contain transition-all duration-300"
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.src = "/img/placeholder-brand.jpg";
@@ -195,14 +206,16 @@ const Products: React.FC = () => {
                 </motion.div>
               ))}
             </motion.div>
-          </section>
-        )}
+          </div>
+        </section>
+      )}
 
+      <main className="container mx-auto px-4 sm:px-6 max-w-7xl mt-12">
         {/* Catálogo de Productos */}
-        <section aria-label="Catálogo de productos" className="mb-24">
-          <div className="text-center mb-16">
+        <section aria-label="Catálogo de productos" className="mb-20">
+          <div className="text-center mb-12">
             <motion.h2
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-6"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-4"
               variants={fadeInVariants}
               initial="hidden"
               whileInView="visible"
@@ -213,7 +226,7 @@ const Products: React.FC = () => {
             </motion.h2>
             
             <motion.p 
-              className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed"
+              className="text-gray-600 max-w-xl mx-auto text-base leading-relaxed"
               variants={fadeInVariants}
               initial="hidden"
               whileInView="visible"
@@ -226,15 +239,15 @@ const Products: React.FC = () => {
             
             <motion.div 
               initial={{ width: 0 }}
-              whileInView={{ width: "80px" }}
+              whileInView={{ width: "60px" }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="h-1 bg-[#e3001b] mx-auto mt-8 rounded-full"
+              className="h-1 bg-[#e3001b] mx-auto mt-6 rounded-full"
             />
           </div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -243,21 +256,21 @@ const Products: React.FC = () => {
             {products.map((product) => (
               <motion.article
                 key={product.slug}
-                variants={itemVariants} // ✅ Ahora correcto gracias a 'as const'
-                whileHover={{ y: -8, scale: 1.02 }}
+                variants={itemVariants}
+                whileHover={{ y: -6, scale: 1.01 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleProductClick(product.categoryKey)}
-                className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl border border-gray-100 hover:border-[#e3001b]/30 group cursor-pointer"
+                className="bg-white/80 backdrop-blur-sm rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl border border-gray-100/50 hover:border-[#e3001b]/20 group cursor-pointer"
                 role="button"
                 tabIndex={0}
                 aria-label={`Ver detalles de ${product.name}`}
                 onKeyDown={(e) => handleKeyDown(e, product.categoryKey)}
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
                   <img
                     src={product.img}
                     alt={`Imagen de ${product.name}`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.src = "/img/placeholder-product.jpg";
@@ -265,37 +278,37 @@ const Products: React.FC = () => {
                   />
                   
                   {/* Overlay gradiente */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   
                   {/* Contenido superpuesto */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
-                    <h3 className="text-xl font-bold text-white mb-2">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                    <h3 className="text-lg font-bold text-white mb-1">
                       {product.name}
                     </h3>
-                    <p className="text-gray-200 text-sm line-clamp-2">
+                    <p className="text-gray-200 text-xs line-clamp-2">
                       {product.description}
                     </p>
                   </div>
                 </div>
                 
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-[#e3001b] transition-colors duration-300 line-clamp-2">
+                <div className="p-4">
+                  <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#e3001b] transition-colors duration-300 line-clamp-1">
                     {product.name}
                   </h3>
                   
-                  <p className="text-gray-600 leading-relaxed mb-6 text-sm line-clamp-3">
+                  <p className="text-gray-600 leading-relaxed mb-4 text-sm line-clamp-2">
                     {product.description}
                   </p>
                   
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                    <span className="text-[#e3001b] font-semibold group-hover:underline transition-all duration-300">
+                  <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+                    <span className="text-[#e3001b] font-medium group-hover:underline transition-all duration-300 text-sm">
                       Ver productos
                     </span>
                     
-                    <div className="w-10 h-10 rounded-full bg-[#e3001b]/10 flex items-center justify-center group-hover:bg-[#e3001b] transition-all duration-300 group-hover:scale-110">
+                    <div className="w-8 h-8 rounded-full bg-[#e3001b]/10 flex items-center justify-center group-hover:bg-[#e3001b] transition-all duration-300">
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
-                        className="h-5 w-5 text-[#e3001b] group-hover:text-white transition-colors duration-300" 
+                        className="h-4 w-4 text-[#e3001b] group-hover:text-white transition-colors duration-300" 
                         viewBox="0 0 20 20" 
                         fill="currentColor"
                         aria-hidden="true"
@@ -316,22 +329,22 @@ const Products: React.FC = () => {
 
         {/* Call to Action final */}
         <motion.section 
-          className="text-center py-16 mb-16"
+          className="text-center py-12 mb-12 rounded-xl bg-white/70 backdrop-blur-sm"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+          <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3">
             ¿No encuentras lo que buscas?
           </h3>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+          <p className="text-gray-600 mb-6 max-w-xl mx-auto text-base">
             Contáctanos para consultas especializadas y soluciones personalizadas
           </p>
           <motion.button
-            className="bg-[#e3001b] text-white px-8 py-3 rounded-lg font-semibold hover:bg-[#c8001a] transition-colors duration-300 shadow-lg hover:shadow-xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="bg-[#e3001b] text-white px-6 py-2.5 rounded-lg font-medium hover:bg-[#c8001a] transition-colors duration-300 shadow-md hover:shadow-lg"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() => navigate('/contact')}
           >
             Contáctanos
