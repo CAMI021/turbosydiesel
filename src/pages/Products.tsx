@@ -103,7 +103,7 @@ const Products: React.FC = () => {
       y: 0,
       opacity: 1,
       transition: { 
-        type: "spring", 
+        type: "spring" as const, // ✅ Corregido: "spring" como literal
         stiffness: 80,
         damping: 15 
       },
@@ -176,7 +176,7 @@ const Products: React.FC = () => {
               viewport={{ once: true }}
               variants={containerVariants}
             >
-              {brands.map((brand, index) => (
+              {brands.map((brand) => ( // ✅ Eliminado 'index' ya que no se usa
                 <motion.div
                   key={brand.name}
                   variants={itemVariants}
@@ -243,7 +243,7 @@ const Products: React.FC = () => {
             {products.map((product) => (
               <motion.article
                 key={product.slug}
-                variants={itemVariants}
+                variants={itemVariants} // ✅ Ahora correcto gracias a 'as const'
                 whileHover={{ y: -8, scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => handleProductClick(product.categoryKey)}

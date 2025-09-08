@@ -1,5 +1,5 @@
 // src/pages/ProductDetails.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { products } from "../data/products";
 import { ArrowLeft, Package, Shield, Star, ShoppingCart, Heart } from "lucide-react";
@@ -7,7 +7,6 @@ import { ArrowLeft, Package, Shield, Star, ShoppingCart, Heart } from "lucide-re
 const ProductDetails = () => {
   const { categoryKey, productId } = useParams();
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   // Obtener el producto directamente

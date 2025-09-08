@@ -82,10 +82,10 @@ const EquipmentCategory: React.FC = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { 
-        type: "spring", 
+      transition: {
+        type: "spring" as const, // ✅ Corrección clave: "spring" como literal
         stiffness: 70,
-        damping: 15 
+        damping: 15,
       },
     },
   };
@@ -107,8 +107,8 @@ const EquipmentCategory: React.FC = () => {
         <div className="bg-red-50 border border-red-200 rounded-xl p-6 max-w-md text-center">
           <h2 className="text-xl font-bold text-red-700 mb-2">Error</h2>
           <p className="text-gray-700 mb-4">{error}</p>
-          <button 
-            onClick={() => navigate('/equipos')}
+          <button
+            onClick={() => navigate("/equipos")}
             className="text-[#e3001b] hover:underline font-medium"
           >
             Volver al catálogo de equipos
@@ -122,7 +122,7 @@ const EquipmentCategory: React.FC = () => {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         {/* Encabezado de categoría */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -132,10 +132,12 @@ const EquipmentCategory: React.FC = () => {
             {categoryName}
           </h1>
           <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-            Explora nuestra gama completa de equipos especializados para 
-            {categoryKey === "hartridge" ? "pruebas y calibración de sistemas diesel" : "limpieza y diagnóstico con tecnología ultrasónica"}
+            Explora nuestra gama completa de equipos especializados para{" "}
+            {categoryKey === "hartridge"
+              ? "pruebas y calibración de sistemas diesel"
+              : "limpieza y diagnóstico con tecnología ultrasónica"}
           </p>
-          
+
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <span className="bg-[#e3001b]/10 text-[#e3001b] px-4 py-2 rounded-full font-medium">
               Tecnología Profesional
@@ -183,33 +185,33 @@ const EquipmentCategory: React.FC = () => {
                   Profesional
                 </div>
               </div>
-              
+
               <div className="p-6">
                 <h2 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2">
                   {equipment.name}
                 </h2>
-                
+
                 <p className="text-gray-600 mb-4 line-clamp-3">
                   {equipment.description}
                 </p>
-                
+
                 <div className="mt-4 pt-4 border-t border-gray-100">
                   <div className="flex items-center justify-between">
                     <span className="text-[#e3001b] font-semibold">
                       Ver detalles técnicos
                     </span>
-                    
+
                     <div className="w-8 h-8 rounded-full bg-[#e3001b]/10 flex items-center justify-center">
-                      <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        className="h-4 w-4 text-[#e3001b]" 
-                        viewBox="0 0 20 20" 
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 text-[#e3001b]"
+                        viewBox="0 0 20 20"
                         fill="currentColor"
                       >
-                        <path 
-                          fillRule="evenodd" 
-                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" 
-                          clipRule="evenodd" 
+                        <path
+                          fillRule="evenodd"
+                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                          clipRule="evenodd"
                         />
                       </svg>
                     </div>
@@ -224,11 +226,11 @@ const EquipmentCategory: React.FC = () => {
         {equipments.length === 0 && (
           <div className="text-center py-12 bg-white rounded-xl shadow-md">
             <p className="text-gray-600 text-lg">
-              Actualmente no hay equipos disponibles en esta categoría. 
-              Por favor, contacte con nuestro equipo técnico para más información.
+              Actualmente no hay equipos disponibles en esta categoría. Por favor,
+              contacte con nuestro equipo técnico para más información.
             </p>
-            <button 
-              onClick={() => navigate('/contact')}
+            <button
+              onClick={() => navigate("/contact")}
               className="mt-4 text-[#e3001b] hover:underline font-medium"
             >
               Contactar con soporte técnico
@@ -237,7 +239,7 @@ const EquipmentCategory: React.FC = () => {
         )}
 
         {/* CTA final */}
-        <motion.div 
+        <motion.div
           className="mt-20 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -248,24 +250,24 @@ const EquipmentCategory: React.FC = () => {
               ¿Necesitas ayuda para elegir?
             </h3>
             <p className="text-gray-600 mb-6">
-              Nuestro equipo técnico está disponible para asesorarte en la selección 
+              Nuestro equipo técnico está disponible para asesorarte en la selección
               del equipo más adecuado para tus necesidades específicas
             </p>
             <button
-              onClick={() => navigate('/contact')}
+              onClick={() => navigate("/contact")}
               className="bg-[#e3001b] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#c8001a] transition-colors duration-300 inline-flex items-center"
             >
               Solicitar Asesoría Técnica
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-5 w-5 ml-2" 
-                viewBox="0 0 20 20" 
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5 ml-2"
+                viewBox="0 0 20 20"
                 fill="currentColor"
               >
-                <path 
-                  fillRule="evenodd" 
-                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" 
-                  clipRule="evenodd" 
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
                 />
               </svg>
             </button>
