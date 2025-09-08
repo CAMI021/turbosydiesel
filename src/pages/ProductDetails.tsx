@@ -1,12 +1,12 @@
 // src/pages/ProductDetails.tsx
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { products } from "../data/products";
-import { ArrowLeft, Shield, Star } from "lucide-react";
+import { ArrowLeft, Shield } from "lucide-react";
 
 const ProductDetails = () => {
   const { categoryKey, productId } = useParams();
   const navigate = useNavigate();
-  
+
   // Obtener el producto directamente
   const category = products[categoryKey as keyof typeof products];
   const product = category?.products.find(p => p.id === productId) || null;
@@ -78,8 +78,15 @@ const ProductDetails = () => {
                 </h1>
                 <p className="text-gray-600 mb-2">Modelo: {product.id}</p>
 
-                {/* Rating */}
-                
+                {/* Rating - Comentado temporalmente */}
+                {/* 
+                <div className="flex items-center space-x-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className={`w-5 h-5 ${i < 4 ? 'text-yellow-400' : 'text-gray-300'}`} fill="currentColor" />
+                  ))}
+                  <span className="text-sm text-gray-600 ml-2">(4.0)</span>
+                </div>
+                */}
               </div>
 
               {/* Precio */}
@@ -135,7 +142,8 @@ const ProductDetails = () => {
                     <span>Garantía: 12 meses</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    
+                    {/* Aquí podrías agregar ícono de camión o reloj para envío */}
+                    <span>Envío gratuito</span>
                   </div>
                 </div>
               </div>
