@@ -56,26 +56,27 @@ const Home = () => {
             className="relative z-10 text-center px-4 max-w-5xl mx-auto"
           >
             <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight hero-text-shadow" 
+              className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight hero-text-shadow font-space-grotesk" 
               variants={{ 
                 visible: { transition: { staggerChildren: 0.03 } } 
               }}
             >
               {Array.from("VENTAS Y SERVICIO").map((char, index) => (
                 <motion.span 
-                  key={index} 
-                  variants={{ 
-                    hidden: { opacity: 0, y: 30 }, 
-                    visible: { opacity: 1, y: 0 } 
-                  }}
-                  style={{ 
-                    display: 'inline-block', 
-                    color: index >= 9 ? '#e3001b' : 'white', 
-                    textShadow: '0 2px 10px rgba(0,0,0,0.3)'
-                  }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>
+                key={index}
+                className="font-orbitron"
+                variants={{ 
+                  hidden: { opacity: 0, y: 30 }, 
+                  visible: { opacity: 1, y: 0 } 
+                }}
+                style={{ 
+                  display: 'inline-block', 
+                  color: 'white',
+                  textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
               ))}
             </motion.h1>
             <motion.p 
@@ -338,7 +339,7 @@ const Home = () => {
             >
               {/* Botón de Google Maps */}
               <a 
-                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA" 
+                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA  " 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
@@ -348,7 +349,7 @@ const Home = () => {
               
               {/* Botón de WhatsApp */}
               <a 
-                href="https://wa.me/573185141579" 
+                href="https://wa.me/573185141579  " 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"

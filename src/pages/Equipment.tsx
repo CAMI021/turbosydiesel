@@ -19,14 +19,16 @@ const equipmentCategories: EquipmentCategory[] = [
     categoryKey: "hartridge",
     name: "Equipos Hartridge",
     img: "/equipos/hartridge-catalogo.jpg",
-    description: "Equipos profesionales de prueba y calibración para sistemas de inyección diesel de última generación, con tecnología de precisión milimétrica.",
+    description:
+      "Equipos profesionales de prueba y calibración para sistemas de inyección diesel de última generación, con tecnología de precisión milimétrica.",
   },
   {
     slug: "ultrasonidos",
     categoryKey: "ultrasonidos",
     name: "Sistemas de Ultrasonidos",
     img: "/equipos/ultrasonidos-catalogo.jpg",
-    description: "Soluciones avanzadas de limpieza y diagnóstico con tecnología ultrasónica para componentes diesel de alto rendimiento.",
+    description:
+      "Soluciones avanzadas de limpieza y diagnóstico con tecnología ultrasónica para componentes diesel de alto rendimiento.",
   },
 ];
 
@@ -61,68 +63,48 @@ const Equipment: React.FC = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { 
-        type: "spring" as const, // ✅ Corregido: aseguramos que sea un literal
+      transition: {
+        type: "spring" as const,
         stiffness: 70,
-        damping: 15 
+        damping: 15,
       },
     },
   };
 
   const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
-      {/* Sección Principal */}
-      <section 
-        className="relative w-full h-[55vh] min-h-[400px] flex items-center justify-center mb-20 rounded-2xl overflow-hidden"
+      {/* 🔥 Header estandarizado */}
+      <header
+        className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center rounded-2xl overflow-hidden mb-20"
         style={{
-          backgroundImage: `url('/equipos-bg.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
+          backgroundImage: "url('/products.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
-        aria-label="Catálogo de equipos especializados"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 to-gray-800/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
 
         <div className="relative z-10 text-center text-white max-w-4xl px-6">
-          <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
             Nuestros <span className="text-[#e3001b]">Equipos Especializados</span>
-          </motion.h1>
-
-          <motion.p 
-            className="text-lg md:text-xl text-gray-100 mb-8 leading-relaxed max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            Soluciones profesionales para mantenimiento y diagnóstico de sistemas diesel 
-            con tecnología de vanguardia y precisión milimétrica
-          </motion.p>
-
-          <motion.div 
-            initial={{ width: 0 }}
-            whileInView={{ width: "120px" }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 1 }}
-            className="h-1 bg-[#e3001b] mx-auto mt-8 rounded-full shadow-lg"
-          />
+          </h1>
+          <p className="text-base md:text-lg text-gray-100 leading-relaxed max-w-2xl mx-auto">
+            Soluciones profesionales para mantenimiento y diagnóstico de sistemas
+            diesel con tecnología de vanguardia y precisión milimétrica
+          </p>
+          <div className="h-1 bg-[#e3001b] mx-auto mt-6 rounded-full shadow-lg w-20" />
         </div>
-      </section>
+      </header>
 
+      {/* Contenido principal */}
       <main className="container mx-auto px-4 sm:px-6 max-w-7xl">
-        {/* Catálogo de Categorías de Equipos */}
+        {/* Catálogo de Categorías */}
         <section aria-label="Categorías de equipos" className="mb-24">
           <div className="text-center mb-16">
             <motion.h2
@@ -135,8 +117,8 @@ const Equipment: React.FC = () => {
             >
               Nuestras <span className="text-[#e3001b]">Soluciones Profesionales</span>
             </motion.h2>
-            
-            <motion.p 
+
+            <motion.p
               className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed"
               variants={fadeInVariants}
               initial="hidden"
@@ -144,11 +126,11 @@ const Equipment: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              Seleccione una categoría para explorar nuestros equipos especializados 
+              Seleccione una categoría para explorar nuestros equipos especializados
               diseñados para talleres y profesionales del sector diesel
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: "80px" }}
               viewport={{ once: true }}
@@ -187,9 +169,7 @@ const Equipment: React.FC = () => {
                       e.currentTarget.src = "/img/placeholder-category.jpg";
                     }}
                   />
-                  
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <h3 className="text-2xl font-bold text-white mb-2">
                       {category.name}
@@ -199,25 +179,23 @@ const Equipment: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                
                 <div className="p-6 pt-4">
                   <div className="flex items-center justify-between">
                     <span className="text-[#e3001b] font-semibold">
                       Ver equipos disponibles
                     </span>
-                    
                     <div className="w-10 h-10 rounded-full bg-[#e3001b]/10 flex items-center justify-center group-hover:bg-[#e3001b] transition-all duration-300">
-                      <svg 
-                        xmlns="http://www.w3.org/2000/svg" 
-                        className="h-5 w-5 text-[#e3001b] group-hover:text-white transition-colors duration-300" 
-                        viewBox="0 0 20 20" 
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 text-[#e3001b] group-hover:text-white transition-colors duration-300"
+                        viewBox="0 0 20 20"
                         fill="currentColor"
                         aria-hidden="true"
                       >
-                        <path 
-                          fillRule="evenodd" 
-                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" 
-                          clipRule="evenodd" 
+                        <path
+                          fillRule="evenodd"
+                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                          clipRule="evenodd"
                         />
                       </svg>
                     </div>
@@ -228,8 +206,8 @@ const Equipment: React.FC = () => {
           </motion.div>
         </section>
 
-        {/* Sección de Beneficios */}
-        <motion.section 
+        {/* Beneficios */}
+        <motion.section
           className="bg-white rounded-2xl shadow-md p-8 md:p-12 mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -237,40 +215,89 @@ const Equipment: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* 3 tarjetas */}
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-[#e3001b]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#e3001b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-8 w-8 text-[#e3001b]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Tecnología Certificada</h3>
-              <p className="text-gray-600">Equipos homologados y calibrados según estándares internacionales de precisión</p>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">
+                Tecnología Certificada
+              </h3>
+              <p className="text-gray-600">
+                Equipos homologados y calibrados según estándares internacionales
+                de precisión
+              </p>
             </div>
-            
+
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-[#e3001b]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#e3001b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-8 w-8 text-[#e3001b]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Soporte Técnico Especializado</h3>
-              <p className="text-gray-600">Asesoramiento profesional para la implementación y uso óptimo de los equipos</p>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">
+                Soporte Técnico Especializado
+              </h3>
+              <p className="text-gray-600">
+                Asesoramiento profesional para la implementación y uso óptimo de
+                los equipos
+              </p>
             </div>
-            
+
             <div className="text-center p-6">
               <div className="w-16 h-16 bg-[#e3001b]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#e3001b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm7-6h-2a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2v-6a2 2 0 00-2-2z" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-8 w-8 text-[#e3001b]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm7-6h-2a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2v-6a2 2 0 00-2-2z"
+                  />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-2">Documentación Completa</h3>
-              <p className="text-gray-600">Manuales técnicos detallados y protocolos de operación para cada equipo</p>
+              <h3 className="text-xl font-bold text-gray-800 mb-2">
+                Documentación Completa
+              </h3>
+              <p className="text-gray-600">
+                Manuales técnicos detallados y protocolos de operación para cada
+                equipo
+              </p>
             </div>
           </div>
         </motion.section>
 
-        {/* Call to Action final */}
-        <motion.section 
+        {/* Call to Action */}
+        <motion.section
           className="text-center py-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -281,14 +308,14 @@ const Equipment: React.FC = () => {
             ¿Necesitas asesoramiento especializado?
           </h3>
           <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Nuestro equipo técnico está disponible para ayudarte a seleccionar 
-            la solución óptima para tus necesidades
+            Nuestro equipo técnico está disponible para ayudarte a seleccionar la
+            solución óptima para tus necesidades
           </p>
           <motion.button
             className="bg-[#e3001b] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#c8001a] transition-colors duration-300 shadow-lg hover:shadow-xl text-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => navigate('/contact')}
+            onClick={() => navigate("/contact")}
           >
             Solicitar Asesoría Técnica
           </motion.button>

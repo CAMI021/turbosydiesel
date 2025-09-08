@@ -1,3 +1,9 @@
+/* IMPORTACIONES DE FUENTES - DEBEN IR PRIMERO */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&display=swap');
+
+/* Ahora vienen las directivas de Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,6 +14,10 @@ html, body {
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
+}
+
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
 }
 
 .full-width {
@@ -89,11 +99,37 @@ html, body {
     box-sizing: border-box;
   }
   
+  /* Fuente principal para cuerpo */
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+  
+  /* Space Grotesk para todos los títulos */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  
+  h3 {
+    @apply text-2xl;
+  }
+  
+  p {
+    @apply leading-relaxed;
   }
   
   .hero-text-shadow {
@@ -151,29 +187,6 @@ html, body {
   
   .pulse-glow {
     animation: pulse-glow 2s infinite;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 800;
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-  }
-  
-  h1 {
-    @apply text-4xl md:text-6xl;
-  }
-  
-  h2 {
-    @apply text-3xl md:text-4xl;
-  }
-  
-  h3 {
-    @apply text-2xl;
-  }
-  
-  p {
-    @apply leading-relaxed;
-    line-height: 1.6;
   }
   
   .badge-diesel {
