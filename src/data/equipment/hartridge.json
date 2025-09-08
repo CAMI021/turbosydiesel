@@ -1,0 +1,41 @@
+
+[
+  {
+    "id": "hartridge-9000",
+    "name": "Sistema Hartridge 9000",
+    "img": "/equipos/hartridge-9000.jpg",
+    "description": "Equipo de prueba y calibración de última generación para sistemas Common Rail. Permite diagnóstico completo de inyectores con análisis de caudal, presión y tiempo de inyección.",
+    "specifications": [
+      "Rango de presión: 0-2500 bar",
+      "Precisión de medición: ±0.5%",
+      "Capacidad para inyectores hasta 800 mm³/rev",
+      "Interfaz táctil HD de 15\"",
+      "Conexión WiFi para actualizaciones remotas"
+    ],
+    "applications": [
+      "Diagnóstico de sistemas Common Rail",
+      "Calibración de inyectores piezoeléctricos",
+      "Pruebas de estanqueidad y rendimiento",
+      "Análisis de curvas de inyección"
+    ]
+  },
+  {
+    "id": "hartridge-7500",
+    "name": "Sistema Hartridge 7500",
+    "img": "/equipos/hartridge-7500.jpg",
+    "description": "Solución profesional para talleres de mediano tamaño. Sistema completo de prueba para inyectores diesel de sistemas convencionales y electrónicos.",
+    "specifications": [
+      "Rango de presión: 0-1800 bar",
+      "Precisión de medición: ±1.0%",
+      "Capacidad para inyectores hasta 500 mm³/rev",
+      "Pantalla táctil de 10\"",
+      "Software de análisis avanzado incluido"
+    ],
+    "applications": [
+      "Pruebas de inyectores rotativos",
+      "Calibración de bombas diesel",
+      "Diagnóstico de sistemas VP",
+      "Verificación de caudal y patrón de inyección"
+    ]
+  }
+]

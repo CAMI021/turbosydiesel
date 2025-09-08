@@ -1,92 +1,251 @@
-
-import { motion } from 'framer-motion';
+// src/pages/Payments.tsx
+import { useState } from "react";
+import { 
+  FaCreditCard, 
+  FaMoneyBillWave, 
+  FaMobileAlt, 
+  FaLock, 
+  FaCheckCircle,
+  FaArrowRight
+} from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Payments = () => {
-  const services = [
+  const [paymentMethod, setPaymentMethod] = useState("credit-card");
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const paymentMethods = [
     {
-      title: "Servicio Autorizado Bosch Diesel Center",
-      description:
-        "Ofrecemos diagnóstico, reparación y mantenimiento certificado por Bosch para sistemas de inyección diesel. Utilizamos herramientas originales y piezas de repuesto genuinas para garantizar un rendimiento óptimo y duradero.",
-      image: "https://via.placeholder.com/500x300/2d2d2d/ffffff?text=Bosch+Diesel+Center",
-      color: "#e3001b",
+      id: "credit-card",
+      title: "Tarjeta de Crédito/Débito",
+      icon: <FaCreditCard className="text-3xl text-red-600" />,
+      description: "Paga de forma segura con tu tarjeta Visa, Mastercard o American Express"
     },
     {
-      title: "Servicio Autorizado Delphi Diesel Excellence",
-      description:
-        "Contamos con tecnología avanzada para la calibración y reparación de componentes Delphi. Nuestros técnicos están certificados para trabajar con sistemas de inyección electrónica, bombas de alta presión y sensores críticos.",
-      image: "https://via.placeholder.com/500x300/2d2d2d/ffffff?text=Delphi+Excellence",
-      color: "#0066cc",
+      id: "cash",
+      title: "Efectivo",
+      icon: <FaMoneyBillWave className="text-3xl text-red-600" />,
+      description: "Paga en efectivo al recoger tu servicio o producto"
     },
     {
-      title: "Servicio Autorizado Holset Turbo",
-      description:
-        "Reparación y remanufactura de turbocompresores Holset con garantía extendida. Realizamos pruebas dinámicas en banco para asegurar que cada turbo funcione a plena capacidad antes de salir de nuestros talleres.",
-      image: "https://via.placeholder.com/500x300/2d2d2d/ffffff?text=Holset+Turbo",
-      color: "#3399ff",
-    },
+      id: "mobile",
+      title: "Transferencia Móvil",
+      icon: <FaMobileAlt className="text-3xl text-red-600" />,
+      description: "Realiza tu pago mediante Nequi, Davivienda o Bancolombia"
+    }
   ];
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowConfirmation(true);
+    
+    // En una implementación real, aquí enviarías los datos a tu gateway de pago
+    setTimeout(() => {
+      setShowConfirmation(false);
+    }, 5000);
+  };
+
   return (
-    <div className="flex flex-col h-screen bg-gray-50 text-gray-800">
-      {/* Header con imagen de fondo */}
-      <header className="relative h-64 bg-red-700 text-white flex items-center justify-center shadow-lg overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://via.placeholder.com/1920x1080/e3001b/ffffff?text=Our+Services')" }}></div>
-        <div className="relative z-10 text-center px-6">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Servicios</h1>
-          <p className="mt-2 text-lg opacity-90">Soluciones autorizadas para motores diesel</p>
+    <div className="bg-black text-white min-h-screen">
+      {/* Hero Section */}
+      <section className="py-12 md:py-20 bg-gradient-to-r from-black to-gray-900 border-b border-gray-800">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-600/10 mb-6">
+              <FaCreditCard className="text-red-600 text-3xl" />
+            </div>
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">
+              Realiza tu <span className="text-red-600">pago</span> de forma segura
+            </h1>
+            <p className="text-gray-400 text-lg">
+              Elige tu método de pago preferido y completa tu transacción con total confianza
+            </p>
+          </div>
         </div>
-      </header>
+      </section>
 
-      {/* Contenido principal */}
-      <main className="flex-1 p-6 md:p-10 overflow-y-auto">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "100px" }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
-              >
-                {/* Imagen */}
-                <div className="h-48 overflow-hidden">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-3xl mx-auto">
+          {/* Payment Methods */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-center">Métodos de Pago</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {paymentMethods.map((method) => (
+                <div
+                  key={method.id}
+                  onClick={() => setPaymentMethod(method.id)}
+                  className={`p-5 rounded-xl border cursor-pointer transition-all ${
+                    paymentMethod === method.id
+                      ? "border-red-600 bg-red-600/5"
+                      : "border-gray-700 hover:border-gray-600"
+                  }`}
+                >
+                  <div className="flex items-center mb-3">
+                    {method.icon}
+                    <h3 className="font-bold ml-3">{method.title}</h3>
+                  </div>
+                  <p className="text-gray-400 text-sm">{method.description}</p>
                 </div>
+              ))}
+            </div>
+          </div>
 
-                {/* Contenido */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
+          {/* Payment Form */}
+          {!showConfirmation ? (
+            <div className="bg-gray-900 rounded-2xl p-6 md:p-8 border border-gray-800">
+              <h2 className="text-2xl font-bold mb-6">Información de Pago</h2>
+              
+              {paymentMethod === "credit-card" && (
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-5">
+                    <label className="block text-sm font-medium mb-2">Número de tarjeta</label>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        placeholder="**** **** **** ****"
+                        className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-red-600"
+                        maxLength={19}
+                        required
+                      />
+                      <div className="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2">
+                        <div className="w-8 h-5 bg-gray-700 rounded"></div>
+                        <div className="w-8 h-5 bg-gray-700 rounded"></div>
+                        <div className="w-8 h-5 bg-gray-700 rounded"></div>
+                        <div className="w-8 h-5 bg-gray-700 rounded"></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-2 gap-4 mb-5">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Fecha de expiración</label>
+                      <input
+                        type="text"
+                        placeholder="MM/AA"
+                        className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-red-600"
+                        maxLength={5}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">CVV</label>
+                      <input
+                        type="text"
+                        placeholder="***"
+                        className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-red-600"
+                        maxLength={3}
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="mb-6">
+                    <label className="block text-sm font-medium mb-2">Nombre en la tarjeta</label>
+                    <input
+                      type="text"
+                      placeholder="Nombre Completo"
+                      className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:border-red-600"
+                      required
+                    />
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors flex items-center justify-center"
+                  >
+                    Procesar Pago
+                    <FaCreditCard className="ml-2" />
+                  </button>
+                </form>
+              )}
+
+              {paymentMethod === "cash" && (
+                <div className="text-center py-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-600/10 mx-auto mb-4">
+                    <FaMoneyBillWave className="text-red-600 text-2xl" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">Pago en Efectivo</h3>
+                  <p className="text-gray-400 mb-6">
+                    Puedes realizar el pago en efectivo al momento de recoger tu servicio o producto en nuestras instalaciones.
+                  </p>
+                  <div className="bg-gray-800 rounded-lg p-4 mb-6">
+                    <p className="font-bold">Dirección:</p>
+                    <p>Calle 123 # 45-67, Bogotá, Colombia</p>
+                    <p className="mt-2">Horario: Lunes a Viernes 8:00 AM - 5:00 PM</p>
+                  </div>
+                  <Link
+                    to="/#contact"
+                    className="inline-flex items-center bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                  >
+                    Ver en Mapa
+                    <FaArrowRight className="ml-2" />
+                  </Link>
                 </div>
+              )}
 
-                {/* Botón opcional */}
-                <div className="p-6 pt-0">
-                  <button className="w-full py-2 px-4 bg-red-600 hover:bg-red-700 text-white font-medium rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-                    Ver Detalles
+              {paymentMethod === "mobile" && (
+                <div className="text-center py-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-600/10 mx-auto mb-4">
+                    <FaMobileAlt className="text-red-600 text-2xl" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">Transferencia Móvil</h3>
+                  <p className="text-gray-400 mb-6">
+                    Realiza tu pago mediante Nequi, Davivienda o Bancolombia con los siguientes datos:
+                  </p>
+                  <div className="bg-gray-800 rounded-lg p-4 mb-6">
+                    <p className="font-bold">Número de Teléfono:</p>
+                    <p className="text-2xl font-bold text-red-500">+57 321 456 7890</p>
+                    <p className="mt-2">Nombre: Diesel & Turbos SAS</p>
+                  </div>
+                  <button
+                    onClick={() => setShowConfirmation(true)}
+                    className="inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+                  >
+                    Confirmar Pago
+                    <FaCheckCircle className="ml-2" />
                   </button>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              )}
+            </div>
+          ) : (
+            // Confirmation Message
+            <div className="bg-gray-900 rounded-2xl p-8 text-center border border-green-500/20">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-500/10 mx-auto mb-4">
+                <FaCheckCircle className="text-green-500 text-3xl" />
+              </div>
+              <h2 className="text-2xl font-bold mb-3">¡Pago Exitoso!</h2>
+              <p className="text-gray-400 mb-6">
+                Tu pago ha sido procesado correctamente. Recibirás un comprobante en tu correo electrónico en unos minutos.
+              </p>
+              <div className="bg-gray-800 rounded-lg p-4 mb-6">
+                <p className="font-bold">Número de Confirmación:</p>
+                <p className="text-xl text-red-500">PAY-2023-789456</p>
+              </div>
+              <Link
+                to="/"
+                className="inline-flex items-center bg-gray-800 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition-colors"
+              >
+                Volver al Inicio
+                <FaArrowRight className="ml-2" />
+              </Link>
+            </div>
+          )}
 
-          {/* Sección de contacto o llamado a acción */}
-          <div className="mt-16 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">¿Necesitas ayuda con tu motor?</h2>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Contáctanos hoy mismo para programar una revisión técnica completa con nuestros expertos certificados.
-            </p>
-            <button className="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-              Programar Servicio
-            </button>
+          {/* Security Information */}
+          <div className="mt-10 p-5 bg-gray-900 rounded-xl border border-gray-800">
+            <div className="flex items-start">
+              <FaLock className="text-red-600 mt-1 mr-3 flex-shrink-0" />
+              <div>
+                <h3 className="font-bold mb-2">Seguridad de Pagos</h3>
+                <p className="text-gray-400 text-sm">
+                  Todos los pagos se procesan a través de pasarelas de pago seguras con encriptación SSL de 256 bits. 
+                  No almacenamos información sensible de tus métodos de pago. Tu seguridad es nuestra prioridad.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 };
