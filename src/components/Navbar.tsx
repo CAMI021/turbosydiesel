@@ -1,6 +1,7 @@
 // Navbar.tsx
 import { useState, useEffect } from "react";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom"; // 👈 IMPORTA Link
 
 const Navbar = () => {
   const [showTopBar, setShowTopBar] = useState(true);
@@ -21,6 +22,17 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // 🔹 Mapeo de rutas a tus páginas
+  const routeMap: Record<string, string> = {
+    "Inicio": "/",
+    "Sobre Nosotros": "/about",
+    "Servicios": "/services",
+    "Productos": "/products",
+    "Equipos": "/equipos",
+    "Descargas": "/downloads",
+    "Pago": "/payments", // Para el botón de pago
+  };
 
   const menuItems = [
     { title: "Inicio", submenu: [] },
@@ -62,9 +74,13 @@ const Navbar = () => {
             <a href="#" aria-label="LinkedIn">
               <FaLinkedin />
             </a>
-            <button className="ml-2 px-3 py-1 bg-red-600 hover:bg-red-700 rounded transition-colors text-xs sm:text-sm">
+            {/* 🔹 CAMBIO CLAVE: Botón de pago ahora es un Link */}
+            <Link 
+              to={routeMap["Pago"]} 
+              className="ml-2 px-3 py-1 bg-red-600 hover:bg-red-700 rounded transition-colors text-xs sm:text-sm"
+            >
               Pago
-            </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -73,62 +89,68 @@ const Navbar = () => {
       <nav className="bg-black shadow-md">
         <div className="container mx-auto flex justify-between items-center px-4 py-3">
           {/* Logo */}
-<div className="relative flex items-center justify-center w-40 h-12 transition-all duration-500 ease-in-out">
-  {/* Logo grande */}
-  <img
-    src="/logonegativo.png"
-    alt="Logo Diesel & Turbos SAS"
-    className={`absolute object-contain transition-all duration-500 ease-in-out
-      ${showTopBar 
-        ? "opacity-100 scale-100 w-40 h-12 translate-x-0" 
-        : "opacity-0 scale-95 w-40 h-12 translate-x-5"}
-    `}
-  />
-  {/* Logo compacto - CORREGIDO PARA QUE VENGA DE LA IZQUIERDA */}
-  <img
-    src="/logonegativoD.png"
-    alt="Logo Diesel & Turbos SAS Compact"
-    className={`absolute object-contain transition-all duration-500 ease-in-out
-      ${showTopBar 
-        ? "opacity-0 scale-95 w-20 h-12 -translate-x-full" 
-        : "opacity-100 scale-100 w-20 h-12 translate-x-0"}
-    `}
-  />
-</div>
+          <div className="relative flex items-center justify-center w-40 h-12 transition-all duration-500 ease-in-out">
+            <img
+              src="/logonegativo.png"
+              alt="Logo Diesel & Turbos SAS"
+              className={`absolute object-contain transition-all duration-500 ease-in-out
+                ${showTopBar 
+                  ? "opacity-100 scale-100 w-40 h-12 translate-x-0" 
+                  : "opacity-0 scale-95 w-40 h-12 translate-x-5"}
+              `}
+            />
+            <img
+              src="/logonegativoD.png"
+              alt="Logo Diesel & Turbos SAS Compact"
+              className={`absolute object-contain transition-all duration-500 ease-in-out
+                ${showTopBar 
+                  ? "opacity-0 scale-95 w-20 h-12 -translate-x-full" 
+                  : "opacity-100 scale-100 w-20 h-12 translate-x-0"}
+              `}
+            />
+          </div>
 
           {/* Menu */}
           <ul className="flex flex-wrap items-center gap-3 md:gap-5">
-            {menuItems.map((item, idx) => (
-              <li key={idx} className="relative group">
-                <a
-                  href="#"
-                  className="text-white hover:text-red-600 transition-colors block py-1 text-sm md:text-base"
-                >
-                  {item.title}
-                </a>
-                {item.submenu.length > 0 && (
-                  <ul className="absolute top-full left-0 mt-1 w-48 bg-black border border-gray-800 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
-                    {item.submenu.map((sub, subIdx) => (
-                      <li
-                        key={subIdx}
-                        className="px-4 py-2 hover:bg-red-600 hover:text-white transition-colors"
-                      >
-                        <a href="#" className="block">
-                          {sub}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
+            {menuItems.map((item, idx) => {
+              // 🔹 Determina la ruta correcta
+              const toPath = routeMap[item.title] || (item.title === "Contacto" ? "/" : "#");
+              
+              return (
+                <li key={idx} className="relative group">
+                  {/* 🔹 CAMBIO CLAVE: Usa Link en lugar de <a> */}
+                  <Link
+                    to={toPath}
+                    className="text-white hover:text-red-600 transition-colors block py-1 text-sm md:text-base"
+                  >
+                    {item.title}
+                  </Link>
+                  {item.submenu.length > 0 && (
+                    <ul className="absolute top-full left-0 mt-1 w-48 bg-black border border-gray-800 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
+                      {item.submenu.map((sub, subIdx) => (
+                        <li
+                          key={subIdx}
+                          className="px-4 py-2 hover:bg-red-600 hover:text-white transition-colors"
+                        >
+                          {/* 🔹 Submenús: Usa # temporalmente (deberías crear rutas específicas después) */}
+                          <Link to="#" className="block">
+                            {sub}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              );
+            })}
+            {/* 🔹 Botón de contacto */}
             <li>
-              <a
-                href="#contact"
+              <Link
+                to="/#contact" // 👈 Así mantienes el scroll a la sección
                 className="px-3 py-1.5 bg-red-600 text-white rounded hover:bg-red-700 transition-colors font-semibold block text-center text-sm md:text-base"
               >
                 Contacto
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -1,0 +1,41 @@
+
+[
+    {
+      "id": "ultrasonic-5000",
+      "name": "Sistema UltraClean 5000",
+      "img": "/equipos/ultrasonidos-5000.jpg",
+      "description": "Sistema profesional de limpieza ultrasónica para componentes diesel. Diseñado para recuperar inyectores, bombas y otros elementos críticos.",
+      "specifications": [
+        "Frecuencia: 25-45 kHz ajustable",
+        "Capacidad del tanque: 50 litros",
+        "Control de temperatura: 20-80°C",
+        "Tiempo de ciclo programable",
+        "Sistema de filtrado integrado"
+      ],
+      "applications": [
+        "Limpieza de inyectores diesel",
+        "Recuperación de bombas de alta presión",
+        "Limpieza de componentes de turbo",
+        "Tratamiento de sistemas de combustible"
+      ]
+    },
+    {
+      "id": "ultrasonic-pro",
+      "name": "UltraSonic Pro",
+      "img": "/equipos/ultrasonidos-pro.jpg",
+      "description": "Equipo industrial de alta potencia para talleres especializados. Sistema de limpieza con doble frecuencia y control avanzado.",
+      "specifications": [
+        "Frecuencia dual: 28/40 kHz",
+        "Capacidad del tanque: 80 litros",
+        "Sistema de calentamiento rápido",
+        "Control digital preciso",
+        "Tanque de acero inoxidable 316L"
+      ],
+      "applications": [
+        "Limpieza profunda de inyectores",
+        "Recuperación de sistemas DPF",
+        "Tratamiento de componentes grandes",
+        "Mantenimiento de sistemas de combustible"
+      ]
+    }
+  ]
