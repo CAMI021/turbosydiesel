@@ -79,19 +79,7 @@ const ProductDetails = () => {
                 <p className="text-gray-600 mb-2">Modelo: {product.id}</p>
 
                 {/* Rating */}
-                <div className="flex items-center space-x-2 mb-4">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-4 h-4 ${
-                          i < 4 ? "text-yellow-400 fill-current" : "text-gray-300"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm text-gray-600">4.8 (127 reseñas)</span>
-                </div>
+                
               </div>
 
               {/* Precio */}

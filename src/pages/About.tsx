@@ -3,67 +3,92 @@ const About = () => {
     <div className="flex flex-col min-h-screen bg-gray-50 text-gray-800">
       {/* Header moderno con imagen de fondo profesional */}
       <header 
-  className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center rounded-2xl overflow-hidden"
-  style={{
-    backgroundImage: "url('/products.jpg')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-  }}
->
-  {/* Overlay oscuro con gradiente */}
-  <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
+        className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center rounded-2xl overflow-hidden"
+        style={{
+          backgroundImage: "url('/products.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Overlay oscuro con gradiente */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
 
-  {/* Contenido centrado */}
-  <div className="relative z-10 text-center text-white max-w-4xl px-6">
-    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-      Nuestra Historia <span className="text-[#e3001b]"></span>
-    </h1>
-    <p className="text-base md:text-lg text-gray-100 leading-relaxed max-w-2xl mx-auto">
-      Conoce quioenes somos
-    </p>
-    <div className="h-1 bg-[#e3001b] mx-auto mt-6 rounded-full shadow-lg w-20" />
-  </div>
-</header>
+        {/* Contenido centrado */}
+        <div className="relative z-10 text-center text-white max-w-4xl px-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+            Nuestros Servicios <span className="text-[#e3001b]"></span>
+          </h1>
+          <p className="text-base md:text-lg text-gray-100 leading-relaxed max-w-2xl mx-auto">
+            Especialistas en sistemas de inyección diesel y nuevas tecnologías
+          </p>
+          <div className="h-1 bg-[#e3001b] mx-auto mt-6 rounded-full shadow-lg w-20" />
+        </div>
+      </header>
 
       {/* Contenido principal con diseño moderno */}
       <main className="flex-1 py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Columna izquierda: descripción */}
+          {/* Columna izquierda: servicios y descripción */}
           <div className="lg:col-span-2 space-y-6">
+            {/* Sección principal */}
             <div className="bg-white rounded-2xl shadow-xl p-7 border border-gray-100">
               <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center">
                 <span className="w-2 h-10 bg-red-600 rounded-r-lg mr-4"></span>
-                Nuestra Historia
+                Servicios Especializados Diesel
               </h2>
-              
+
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
                 <p className="mb-5">
-                  <strong className="text-red-700">DieselPro®</strong> es una empresa líder en el mercado colombiano especializada en la fabricación, reparación y distribución de componentes diesel de alta calidad, incluyendo <strong>tubopartes, inyectores, bombas de combustible, filtros y sistemas de inyección electrónica</strong>. Desde nuestra fundación en 2005, nos hemos posicionado como referencia en la industria por nuestro compromiso con la excelencia técnica y la innovación.
+                  Somos un <strong className="text-red-700">taller especialista en sistemas diesel</strong> con enfoque en las nuevas tecnologías de inyección. Ofrecemos un servicio completo de diagnóstico, reparación, comprobación en vehículo y soporte técnico especializado para todos los motores diesel, en vehículos turismos, comerciales e industriales.
                 </p>
+
+                <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Nuestras Ventajas</h3>
                 <p className="mb-5">
-                  Fundada por el ingeniero <strong className="text-red-700">Juan Carlos Mendoza</strong>, DieselPro nació con la visión de ofrecer soluciones confiables y duraderas para vehículos comerciales, camiones pesados y maquinaria agrícola. Con más de 18 años de experiencia, nuestros técnicos certificados han resuelto miles de casos complejos, garantizando el rendimiento óptimo de cada motor.
+                  Contamos con una alta cualificación técnica, posicionándonos como el especialista más completo para sistemas <strong>Diesel de la Red Bosch, Delphi, Holset, Stanadyne, Doowan y Zexel</strong>. Estamos autorizados por las fábricas para gestionar garantías de repuestos y componentes.
                 </p>
-                <p className="mb-5">
-                  Nos enfocamos en ofrecer productos remanufacturados con estándares superiores al original (OE), asegurando un rendimiento superior y una vida útil extendida. Todos nuestros procesos están certificados bajo normas ISO 9001, lo que refuerza nuestro compromiso con la calidad.
-                </p>
+
+                <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Sistemas que Atendemos</h3>
+                <ul className="list-disc list-inside text-gray-700 space-y-2 mb-5">
+                  <li><strong>Sistemas Common Rail</strong> – Alta presión electrónica</li>
+                  <li><strong>Inyectores EUI (UIS) y PLD (EUP)</strong> – Bombas solidarias</li>
+                  <li><strong>Inyectores HEUI</strong> – Tecnología hidráulica</li>
+                  <li><strong>Turboalimentadores</strong> – Reparación y balanceo</li>
+                </ul>
+
+                <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Servicios que Ofrecemos</h3>
+                <ul className="list-disc list-inside text-gray-700 space-y-2 mb-5">
+                  <li>Diagnóstico avanzado del sistema del vehículo</li>
+                  <li>Desmontaje e instalación de componentes</li>
+                  <li>Inspección, mantenimiento y reparación de sistemas de inyección diesel convencional y electrónico</li>
+                  <li>Lavado de tanques de combustible</li>
+                  <li>Análisis de combustible y medición de contaminación por partículas</li>
+                  <li>Pruebas de opacidad de humo</li>
+                  <li>Campañas de reparación por kilometraje</li>
+                </ul>
+
                 <p className="italic text-gray-600 border-l-4 border-amber-300 pl-4 py-2 bg-amber-50 rounded-r-lg mt-6">
-                  "Potencia. Precisión. Confianza." - Nuestro lema desde el primer día
+                  "Precisión. Tecnología. Confianza." – Nuestro compromiso técnico
                 </p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {[
-                { title: "18+ Años", description: "Experiencia en el mercado" },
-                { title: "50+", description: "Técnicos Certificados" },
-                { title: "15,000+", description: "Productos Vendidos" }
-              ].map((stat, index) => (
-                <div key={index} className="bg-white rounded-xl shadow-md p-5 text-center hover:shadow-xl transition-shadow border border-gray-100">
-                  <div className="text-3xl font-bold text-red-700 mb-2">{stat.title}</div>
-                  <div className="text-gray-600 text-sm">{stat.description}</div>
-                </div>
-              ))}
+            {/* Servicios autorizados */}
+            <div className="bg-white rounded-2xl shadow-xl p-7 border border-gray-100">
+              <h3 className="text-2xl font-bold text-gray-900 mb-5">Servicios Autorizados</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  "Servicio Autorizado Bosch Diesel Center",
+                  "Servicio Autorizado Delphi Diesel Excellence para Colombia",
+                  "Distribuidor y Servicio Autorizado Turbos Holset",
+                  "Servicio Autorizado Stanadyne, Doowan y Zexel"
+                ].map((service, index) => (
+                  <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <div className="w-2 h-2 bg-red-600 rounded-full"></div>
+                    <span className="text-gray-800 font-medium text-sm">{service}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
