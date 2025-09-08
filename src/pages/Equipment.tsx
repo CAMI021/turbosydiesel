@@ -62,7 +62,7 @@ const Equipment: React.FC = () => {
       y: 0,
       opacity: 1,
       transition: { 
-        type: "spring", 
+        type: "spring" as const, // ✅ Corregido: aseguramos que sea un literal
         stiffness: 70,
         damping: 15 
       },

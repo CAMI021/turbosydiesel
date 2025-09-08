@@ -1,27 +1,38 @@
 import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Star, ChevronLeft, ChevronRight, Phone, MessageCircle, CheckCircle, MapPin } from "lucide-react";
+import { Star, MessageCircle, CheckCircle, MapPin } from "lucide-react"; // ✅ Eliminados: Card, CardContent, ChevronLeft
+
+// Interfaz para testimonios incluyendo 'role'
+interface Testimonial {
+  name: string;
+  content: string;
+  rating: number;
+  avatar: string;
+  role?: string; // ✅ Propiedad opcional: role
+}
 
 const Home = () => {
-  const testimonials = [
+  const testimonials: Testimonial[] = [
     {
       name: "Ivan Aldana Martinez",
       content: "Gran servicio y excelente mano de obra.",
       rating: 4,
-      avatar: "/avatar1.jpg"
+      avatar: "/avatar1.jpg",
+      role: "Cliente regular" // ✅ Añadido
     },
     {
       name: "Hector Jamaica",
       content: "Buena atencion para reparacion de bombas de inyeccion e inyectores.todas las marcas.Ademas venta de equipos para pruebas de inyectores y bombas nuevas tecnologías.",
       rating: 5,
-      avatar: "/avatar2.jpg"
+      avatar: "/avatar2.jpg",
+      role: "Taller mecánico" // ✅ Añadido
     },
     {
       name: "Oscar Julian Zambrano Martin",
       content: "Una excelente atención",
       rating: 5,
-      avatar: "/avatar3.jpg"
+      avatar: "/avatar3.jpg",
+      role: "Transportista" // ✅ Añadido
     }
   ];
 
@@ -221,7 +232,7 @@ const Home = () => {
                     </div>
                     <div>
                       <h4 className="font-bold text-sm">{testimonial.name}</h4>
-                      <p className="text-xs text-gray-500">{testimonial.role}</p>
+                      <p className="text-xs text-gray-500">{testimonial.role}</p> {/* ✅ Ahora 'role' existe */}
                     </div>
                   </div>
                   <div className="flex text-yellow-400 mb-2">
@@ -325,31 +336,22 @@ const Home = () => {
               transition={{ delay: 0.6 }} 
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              {/* Solución definitiva para el botón de Google Maps */}
+              {/* Botón de Google Maps */}
               <a 
                 href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
-                onClick={(e) => {
-                  // Asegurar que el enlace se abra correctamente
-                  window.open('https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA', '_blank');
-                  e.preventDefault();
-                }}
               >
                 <MapPin className="inline mr-2 h-5 w-5" /> Ver ubicación
               </a>
               
-              {/* Solución definitiva para el botón de WhatsApp */}
+              {/* Botón de WhatsApp */}
               <a 
                 href="https://wa.me/573185141579" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
-                onClick={(e) => {
-                  window.open('https://wa.me/573185141579', '_blank');
-                  e.preventDefault();
-                }}
               >
                 <MessageCircle className="inline mr-2 h-5 w-5" /> Escribir al WhatsApp
               </a>
