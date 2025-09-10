@@ -1,7 +1,7 @@
 // Navbar.tsx
 import { useState, useEffect } from "react";
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
-import { Link } from "react-router-dom"; // 👈 IMPORTA Link
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showTopBar, setShowTopBar] = useState(true);
@@ -23,7 +23,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🔹 Mapeo de rutas a tus páginas
   const routeMap: Record<string, string> = {
     "Inicio": "/",
     "Sobre Nosotros": "/about",
@@ -31,7 +30,7 @@ const Navbar = () => {
     "Productos": "/products",
     "Equipos": "/equipos",
     "Descargas": "/downloads",
-    "Pago": "/payments", // Para el botón de pago
+    "Pago": "/payments",
   };
 
   const menuItems = [
@@ -39,17 +38,17 @@ const Navbar = () => {
     { title: "Sobre Nosotros", submenu: [] },
     {
       title: "Servicios",
-      submenu: ["Reparación", "Mantenimiento", "Instalación"],
+      submenu: ["Reparación Profesional", "Mantenimiento Preventivo", "Instalación Especializada"],
     },
-    { title: "Productos", submenu: ["Bombas", "Inyectores", "Turbos"] },
-    { title: "Equipos", submenu: ["Diesel", "Gas", "Universal"] },
+    { title: "Productos", submenu: ["Bombas de Alta Presión", "Inyectores de Precisión", "Turbos de Alto Rendimiento"] },
+    { title: "Equipos", submenu: ["Para Motores Diesel", "Sistemas de Gas", "Equipos Universales"] },
     { title: "Preguntas Frecuentes", submenu: [] },
     { title: "Descargas", submenu: [] },
   ];
 
   return (
-    <header className="w-full fixed top-0 z-50 bg-black">
-      {/* 🔹 Top Bar */}
+    <header className="w-full fixed top-0 z-50">
+      {/* Top Bar */}
       <div
         className={`text-white transition-all duration-300 overflow-hidden bg-[#141313] ${
           showTopBar ? "max-h-12 opacity-100" : "max-h-0 opacity-0"
@@ -62,31 +61,30 @@ const Navbar = () => {
             <span>✉️ contacto@dieselyturbos.com</span>
           </div>
           <div className="flex items-center gap-3 mt-1 sm:mt-0">
-            <a href="#" aria-label="Facebook">
+            <a href="#" aria-label="Facebook" className="hover:text-red-500 transition-colors">
               <FaFacebookF />
             </a>
-            <a href="#" aria-label="Twitter">
+            <a href="#" aria-label="Twitter" className="hover:text-red-500 transition-colors">
               <FaTwitter />
             </a>
-            <a href="#" aria-label="Instagram">
+            <a href="#" aria-label="Instagram" className="hover:text-red-500 transition-colors">
               <FaInstagram />
             </a>
-            <a href="#" aria-label="LinkedIn">
+            <a href="#" aria-label="LinkedIn" className="hover:text-red-500 transition-colors">
               <FaLinkedin />
             </a>
-            {/* 🔹 CAMBIO CLAVE: Botón de pago ahora es un Link */}
             <Link 
               to={routeMap["Pago"]} 
-              className="ml-2 px-3 py-1 bg-red-600 hover:bg-red-700 rounded transition-colors text-xs sm:text-sm"
+              className="ml-2 px-3 py-1 bg-[#e3001b] hover:bg-[#c00000] rounded transition-colors text-xs sm:text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]"
             >
-              Pago
+              Pago Seguro
             </Link>
           </div>
         </div>
       </div>
 
-      {/* 🔹 Navbar principal */}
-      <nav className="bg-black shadow-md">
+      {/* Navbar principal */}
+      <nav className="bg-[#e3001b] shadow-lg">
         <div className="container mx-auto flex justify-between items-center px-4 py-3">
           {/* Logo */}
           <div className="relative flex items-center justify-center w-40 h-12 transition-all duration-500 ease-in-out">
@@ -111,43 +109,60 @@ const Navbar = () => {
           </div>
 
           {/* Menu */}
-          <ul className="flex flex-wrap items-center gap-3 md:gap-5">
+          <ul className="flex flex-wrap items-center gap-1 md:gap-2">
             {menuItems.map((item, idx) => {
-              // 🔹 Determina la ruta correcta
               const toPath = routeMap[item.title] || (item.title === "Contacto" ? "/" : "#");
               
               return (
                 <li key={idx} className="relative group">
-                  {/* 🔹 CAMBIO CLAVE: Usa Link en lugar de <a> */}
                   <Link
                     to={toPath}
-                    className="text-white hover:text-red-600 transition-colors block py-1 text-sm md:text-base"
+                    className="text-white hover:bg-[#c00000] transition-all duration-300 px-3 py-2 rounded-md font-medium text-sm md:text-base flex items-center"
                   >
                     {item.title}
+                    {item.submenu.length > 0 && (
+                      <svg 
+                        className="ml-1 w-4 h-4 transition-transform group-hover:rotate-180" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    )}
                   </Link>
                   {item.submenu.length > 0 && (
-                    <ul className="absolute top-full left-0 mt-1 w-48 bg-black border border-gray-800 rounded shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50">
+                    <ul className="absolute top-full left-0 mt-2 w-64 bg-[#c00000] border-t-2 border-[#e3001b] rounded-xl shadow-xl opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-300 z-50 scale-y-95 group-hover:scale-y-100 origin-top transform">
                       {item.submenu.map((sub, subIdx) => (
                         <li
                           key={subIdx}
-                          className="px-4 py-2 hover:bg-red-600 hover:text-white transition-colors"
+                          className="px-4 py-3 hover:bg-[#e3001b] hover:pl-5 transition-all duration-300 border-l-2 border-transparent hover:border-white"
                         >
-                          {/* 🔹 Submenús: Usa # temporalmente (deberías crear rutas específicas después) */}
-                          <Link to="#" className="block">
+                          <Link to="#" className="block text-white font-medium">
                             {sub}
                           </Link>
                         </li>
                       ))}
+                      {/* Separador y enlace especial en submenús */}
+                      <div className="border-t border-[#e3001b]/30 my-1"></div>
+                      <li className="px-4 py-2 text-[#e3001b] font-semibold hover:bg-[#b00000] transition-colors">
+                        <Link to="#" className="flex items-center">
+                          Ver todos los {item.title.toLowerCase()}
+                          <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </Link>
+                      </li>
                     </ul>
                   )}
                 </li>
               );
             })}
-            {/* 🔹 Botón de contacto */}
+            {/* Botón de contacto */}
             <li>
               <Link
-                to="/#contact" // 👈 Así mantienes el scroll a la sección
-                className="px-3 py-1.5 bg-red-600 text-white rounded hover:bg-red-700 transition-colors font-semibold block text-center text-sm md:text-base"
+                to="/#contact"
+                className="px-4 py-2 bg-white text-[#e3001b] rounded-md hover:bg-gray-100 transition-colors font-bold text-sm md:text-base shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
               >
                 Contacto
               </Link>
