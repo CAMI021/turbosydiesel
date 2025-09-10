@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Star, MessageCircle, CheckCircle, MapPin } from "lucide-react"; // ✅ Eliminados: Card, CardContent, ChevronLeft
+import { Star, MessageCircle, CheckCircle, MapPin, X } from "lucide-react"; // ✅ Añadido X para el botón de cierre
+import { useState } from "react"; // ✅ Importado useState
 
 // Interfaz para testimonios incluyendo 'role'
 interface Testimonial {
@@ -12,6 +13,8 @@ interface Testimonial {
 }
 
 const Home = () => {
+  const [showDevAlert, setShowDevAlert] = useState(true); // ✅ Estado para controlar la visibilidad de la alerta
+  
   const testimonials: Testimonial[] = [
     {
       name: "Ivan Aldana Martinez",
@@ -38,8 +41,36 @@ const Home = () => {
 
   return (
     <div className="no-horizontal-scroll bg-[#f4f4f4]">
+      {/* ✅ ALERTA DE DESARROLLO - Grande y prominente */}
+      {showDevAlert && (
+        <div className="fixed top-0 left-0 right-0 bg-yellow-50 border-b-4 border-yellow-400 z-50 min-h-[160px] flex items-center shadow-xl">
+          <div className="container-wide px-6">
+            <div className="relative">
+              <div className="text-center py-4">
+                <h3 className="text-3xl md:text-4xl font-bold text-yellow-800 mb-3 animate-pulse">
+                  ¡AVISO IMPORTANTE!
+                </h3>
+                <p className="text-xl md:text-2xl text-yellow-700 max-w-4xl mx-auto px-4 py-2">
+                  Esta página web se encuentra en fase de desarrollo. Algunas funcionalidades pueden no estar disponibles o podrían cambiar.
+                </p>
+                <p className="text-lg text-yellow-600 mt-2 max-w-3xl mx-auto">
+                  Estamos trabajando para ofrecerle la mejor experiencia posible. ¡Gracias por su comprensión!
+                </p>
+              </div>
+              <button 
+                onClick={() => setShowDevAlert(false)}
+                className="absolute top-4 right-4 bg-yellow-100 hover:bg-yellow-200 text-yellow-800 rounded-full p-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                aria-label="Cerrar alerta de desarrollo"
+              >
+                <X className="h-7 w-7" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero mejorado */}
-      <section className="full-width relative bg-black text-white h-screen flex items-center justify-center overflow-hidden">
+      <section className="full-width relative bg-black text-white h-screen flex items-center justify-center overflow-hidden" style={{ marginTop: showDevAlert ? "160px" : "0" }}>
         <div className="container-wide">
           <div className="absolute inset-0 z-0">
             <motion.div className="w-full h-full" 
@@ -339,7 +370,7 @@ const Home = () => {
             >
               {/* Botón de Google Maps */}
               <a 
-                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA  " 
+                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA      " 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
@@ -349,7 +380,7 @@ const Home = () => {
               
               {/* Botón de WhatsApp */}
               <a 
-                href="https://wa.me/573185141579  " 
+                href="https://wa.me/573185141579      " 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
