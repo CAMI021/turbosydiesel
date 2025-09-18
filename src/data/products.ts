@@ -26,52 +26,7 @@ export const products = {
           'Sistema de filtración completo y confiable para motores diésel'
         ]
       },
-      {
-        id: 'spin-on',
-        name: 'Filtros Serie Spin-on',
-        brand: 'Racor',
-        images: [
-          '/productos/filtros/spin-on-main.jpg',
-          '/productos/filtros/spin-on1.jpg',
-          '/productos/filtros/spin-on2.jpg'
-        ],
-        technicalSheetPdf: '/pdfs/spin-on-specs.pdf',
-        shortDesc: 'Filtros/separadores de agua de alta capacidad con diseño Spin-on',
-        technicalSpecs: [
-          { label: 'Tecnología', value: 'Aquabloc II' },
-          { label: 'Aplicación', value: 'Motores diésel con necesidades de alto caudal' },
-          { label: 'Construcción', value: 'Unidades flexibles y adaptables' }
-        ],
-        mainFeatures: [
-          'Incorporan elementos Spin-on de fácil mantenimiento',
-          'Separación de agua y contaminantes altamente eficaz',
-          'Compatibles con distintas configuraciones de instalación',
-          'Incluyen Aquabloc II como estándar'
-        ]
-      },
-      {
-        id: 'fbo',
-        name: 'Filtros Serie FBO',
-        brand: 'Racor',
-        images: [
-          '/productos/filtros/fbo-main.jpg',
-          '/productos/filtros/fbo1.jpg',
-          '/productos/filtros/fbo2.jpg'
-        ],
-        technicalSheetPdf: '/pdfs/fbo-specs.pdf',
-        shortDesc: 'Unidades FBO-10 y FBO-14 para aplicaciones de alto caudal',
-        technicalSpecs: [
-          { label: 'Flujo', value: '95–230 l/min según modelo' },
-          { label: 'Presión de diseño', value: '10 bar @ 116 °C' },
-          { label: 'Aplicaciones', value: 'Diesel, aviación, gasolina, keroseno, JP4–JP8' }
-        ],
-        mainFeatures: [
-          'Cambio de filtro rápido y sin herramientas especiales',
-          'Componentes en acero inoxidable y aluminio fundido',
-          'Opciones de montaje versátiles para múltiples sistemas',
-          'Disponible con indicadores de presión diferencial y mirilla de nivel'
-        ]
-      }
+    
     ]
   },
   'common-rail-systems': {
@@ -231,8 +186,8 @@ export const products = {
     description: 'Turbos de alto rendimiento con durabilidad comprobada en condiciones extremas',
     products: [
       {
-        id: 'holset-hx50',
-        name: 'Turbo Holset HX50',
+        id: 'holset',
+        name: 'Turbos Holset ',
         brand: 'Holset',
         images: [
           '/productos/turbo/holset-hx50-main.jpg',
@@ -250,46 +205,7 @@ export const products = {
           'Sistema de enfriamiento integrado'
         ]
       },
-      {
-        id: 'garrett-gt25',
-        name: 'Turbo Garrett GT25',
-        brand: 'Garrett',
-        images: [
-          '/productos/turbo/garrett-gt25-main.jpg',
-          '/productos/turbo/garrett-gt251.jpg'
-        ],
-        technicalSheetPdf: '/pdfs/garrett-gt25-specs.pdf',
-        shortDesc: 'Turbo para vehículos de alto rendimiento',
-        technicalSpecs: [
-          { label: 'Flujo de aire', value: '25 lb/min' },
-          { label: 'Velocidad', value: '120,000 RPM' }
-        ],
-        mainFeatures: [
-          'Respuesta rápida a cambios de carga',
-          'Optimizado para eficiencia',
-          'Compatibilidad con intercooler'
-        ]
-      },
-      {
-        id: 'holset-vgt',
-        name: 'Turbo Holset VGT',
-        brand: 'Holset',
-        images: [
-          '/productos/turbo/holset-vgt-main.jpg',
-          '/productos/turbo/holset-vgt1.jpg'
-        ],
-        technicalSheetPdf: '/pdfs/holset-vgt-specs.pdf',
-        shortDesc: 'Turbo de geometría variable para máxima eficiencia',
-        technicalSpecs: [
-          { label: 'Tecnología', value: 'Geometría variable (VGT)' },
-          { label: 'Aplicación', value: 'Motores diésel modernos' }
-        ],
-        mainFeatures: [
-          'Optimiza el rendimiento en todo el rango de RPM',
-          'Mejora consumo y emisiones',
-          'Durabilidad comprobada en motores de carga pesada'
-        ]
-      }
+    
     ]
   }
 };

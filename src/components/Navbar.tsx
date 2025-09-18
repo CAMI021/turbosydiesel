@@ -1,6 +1,6 @@
 // Navbar.tsx
 import { useState, useEffect } from "react";
-import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
