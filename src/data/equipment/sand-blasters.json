@@ -1,0 +1,22 @@
+[
+    {
+      "id": "sand-blast-100",
+      "name": "Sand Blaster Industrial",
+      "images": ["/equipos/sand-blast-100.jpg"],
+      "description": "Sistema de chorro de arena industrial para limpieza profunda, desgaste controlado y preparación de superficies en componentes metálicos.",
+      "specifications": [
+        "Presión de trabajo: 6-10 bar",
+        "Capacidad de tanque: 100 kg",
+        "Sistema de reciclaje de arena",
+        "Control digital de presión",
+        "Cámara de chorro con visor de seguridad"
+      ],
+      "applications": [
+        "Limpieza de superficies metálicas",
+        "Preparación de superficies para pintura",
+        "Eliminación de óxido y pintura antigua",
+        "Tratamiento de piezas para reparación"
+      ],
+      "technicalSheetPdf": "/pdfs/sand-blast-100.pdf"
+    }
+  ]

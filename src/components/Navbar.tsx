@@ -56,23 +56,19 @@ const Navbar = () => {
       >
         <div className="container mx-auto flex flex-wrap justify-between items-center h-full px-4 py-2 text-xs sm:text-sm">
           <div className="flex items-center gap-2 flex-wrap">
-            <span>📞 +57 123 456 789</span>
+            <span>📞 (57) 311 478-2000</span>
             <span className="hidden sm:inline">|</span>
-            <span>✉️ contacto@dieselyturbos.com</span>
+            <span>✉️ bogota@dieselyturbos.com</span>
           </div>
           <div className="flex items-center gap-3 mt-1 sm:mt-0">
             <a href="#" aria-label="Facebook" className="hover:text-red-500 transition-colors">
               <FaFacebookF />
             </a>
-            <a href="#" aria-label="Twitter" className="hover:text-red-500 transition-colors">
-              <FaTwitter />
-            </a>
+            
             <a href="#" aria-label="Instagram" className="hover:text-red-500 transition-colors">
               <FaInstagram />
             </a>
-            <a href="#" aria-label="LinkedIn" className="hover:text-red-500 transition-colors">
-              <FaLinkedin />
-            </a>
+            
             <Link 
               to={routeMap["Pago"]} 
               className="ml-2 px-3 py-1 bg-[#e3001b] hover:bg-[#c00000] rounded transition-colors text-xs sm:text-sm font-medium shadow-[inset_0_0_0_1px_rgba(255,255,255,0.2)]"

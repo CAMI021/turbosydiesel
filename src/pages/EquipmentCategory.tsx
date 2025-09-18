@@ -1,4 +1,3 @@
-// src/pages/EquipmentCategory.tsx
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useParams, useNavigate } from "react-router-dom";
@@ -6,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 interface Equipment {
   id: string;
   name: string;
-  img: string;
+  images: string[]; // Ahora es un array de imágenes
   description: string;
   specifications: string[];
   applications: string[];
@@ -27,31 +26,32 @@ const EquipmentCategory: React.FC = () => {
       return;
     }
 
-    try {
-      // Determinar nombre de la categoría
-      if (categoryKey === "hartridge") {
-        setCategoryName("Equipos Hartridge");
-      } else if (categoryKey === "ultrasonidos") {
-        setCategoryName("Sistemas de Ultrasonidos");
-      } else {
-        throw new Error("Categoría no válida");
-      }
+    // Mapeo de categoryKey a nombre visual (estructura exacta)
+    const categoryNames: Record<string, string> = {
+      hartridge: "Hartridge",
+      ultrasonidos: "Ultrasonidos",
+      balanceadoras: "Balanceadoras",
+      dpf: "DPF",
+      millennium: "Millennium",
+      "sand-blasters": "Sand Blasters (Equipos de limpieza por arena a presión)",
+      luxometro: "Luxómetros",
+    };
 
-      // Cargar datos específicos
-      import(`../data/equipment/${categoryKey}.json`)
-        .then((data) => {
-          setEquipments(data.default);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error("Error loading equipment category", err);
-          setError("No se pudieron cargar los equipos de esta categoría");
-          setLoading(false);
-        });
-    } catch (err) {
-      setError("Categoría no válida");
-      setLoading(false);
-    }
+    // Establecer el nombre de la categoría
+    setCategoryName(categoryNames[categoryKey] || categoryKey);
+
+    // Cargar datos específicos
+    import(`../data/equipment/${categoryKey}.json`)
+      .then((module) => {
+        const equipments: Equipment[] = module.default;
+        setEquipments(equipments);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Error loading equipment category", err);
+        setError("No se pudieron cargar los equipos de esta categoría");
+        setLoading(false);
+      });
   }, [categoryKey]);
 
   const handleEquipmentClick = (equipmentId: string): void => {
@@ -83,7 +83,7 @@ const EquipmentCategory: React.FC = () => {
       y: 0,
       opacity: 1,
       transition: {
-        type: "spring" as const, // ✅ Corrección clave: "spring" como literal
+        type: "spring" as const,
         stiffness: 70,
         damping: 15,
       },
@@ -135,7 +135,19 @@ const EquipmentCategory: React.FC = () => {
             Explora nuestra gama completa de equipos especializados para{" "}
             {categoryKey === "hartridge"
               ? "pruebas y calibración de sistemas diesel"
-              : "limpieza y diagnóstico con tecnología ultrasónica"}
+              : categoryKey === "ultrasonidos"
+                ? "limpieza y diagnóstico con tecnología ultrasónica"
+                : categoryKey === "balanceadoras"
+                  ? "equilibrio dinámico de componentes rotativos"
+                  : categoryKey === "dpf"
+                    ? "limpieza y regeneración de filtros de partículas diesel"
+                    : categoryKey === "millennium"
+                      ? "diagnóstico avanzado para vehículos comerciales y pesados"
+                      : categoryKey === "sand-blasters"
+                        ? "limpieza profunda y preparación de superficies metálicas"
+                        : categoryKey === "luxometro"
+                          ? "verificación de iluminación de faros y sistemas de iluminación"
+                          : "soluciones especializadas"}
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -173,7 +185,7 @@ const EquipmentCategory: React.FC = () => {
             >
               <div className="relative h-56 overflow-hidden">
                 <img
-                  src={equipment.img}
+                  src={equipment.images[0]} // Mostrar primera imagen del array
                   alt={equipment.name}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                   loading="lazy"

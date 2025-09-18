@@ -1,0 +1,22 @@
+[
+    {
+      "id": "balanceadora-turbinas",
+      "name": "Balanceadora de turbinas y compresoras para turbos",
+      "images": ["/equipos/balanceadora-turbinas.jpg"],
+      "description": "Máquina de equilibrio dinámico de alta precisión para turbinas y compresoras de turbos. Ideal para talleres especializados en turbo reparación.",
+      "specifications": [
+        "Rango de peso: 0.5 - 20 kg",
+        "Precisión: ±0.01g",
+        "Velocidad de equilibrio: 1000 - 10000 RPM",
+        "Pantalla táctil de 10\"",
+        "Compatibilidad con diferentes tipos de turbinas"
+      ],
+      "applications": [
+        "Equilibrio de turbinas de turbo",
+        "Equilibrio de compresores",
+        "Verificación de desequilibrio",
+        "Calibración de componentes rotativos"
+      ],
+      "technicalSheetPdf": "/pdfs/balanceadora-turbinas.pdf"
+    }
+  ]

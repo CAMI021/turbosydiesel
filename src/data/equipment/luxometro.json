@@ -1,0 +1,22 @@
+[
+    {
+      "id": "nhd-6108",
+      "name": "NHD-6108 Luxómetro Comprobador de Luces",
+      "images": ["/equipos/nhd-6108.jpg"],
+      "description": "Medidor de intensidad luminosa para verificar iluminación de faros y sistemas de iluminación automotriz según estándares internacionales.",
+      "specifications": [
+        "Rango de medición: 0-100,000 lux",
+        "Precisión: ±2%",
+        "Pantalla LCD retroiluminada",
+        "Almacenamiento de datos",
+        "Compatibilidad con estándares ECE y SAE"
+      ],
+      "applications": [
+        "Verificación de faros delanteros",
+        "Medición de intensidad de luces",
+        "Cumplimiento de normativas de iluminación",
+        "Diagnóstico de sistemas de iluminación"
+      ],
+      "technicalSheetPdf": "/pdfs/nhd-6108.pdf"
+    }
+  ]

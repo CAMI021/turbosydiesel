@@ -1,0 +1,22 @@
+[
+    {
+      "id": "millennium-100",
+      "name": "Estación de Diagnóstico Millennium 100",
+      "images": ["/equipos/millennium-100.jpg"],
+      "description": "Estación de diagnóstico avanzado para vehículos comerciales y pesados, con soporte multilenguaje y actualizaciones en tiempo real.",
+      "specifications": [
+        "Compatibilidad: Vehículos comerciales y pesados",
+        "Interfaz: Pantalla táctil de 12\"",
+        "Soporte multilenguaje",
+        "Actualizaciones OTA (Over-The-Air)",
+        "Conexión Bluetooth y WiFi"
+      ],
+      "applications": [
+        "Diagnóstico de sistemas electrónicos",
+        "Lectura y borrado de códigos de falla",
+        "Calibración de sistemas",
+        "Actualización de software"
+      ],
+      "technicalSheetPdf": "/pdfs/millennium-100.pdf"
+    }
+  ]

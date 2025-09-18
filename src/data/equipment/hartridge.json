@@ -1,41 +1,198 @@
-
 [
+  
   {
-    "id": "hartridge-9000",
-    "name": "Sistema Hartridge 9000",
-    "img": "/equipos/hartridge-9000.jpg",
-    "description": "Equipo de prueba y calibración de última generación para sistemas Common Rail. Permite diagnóstico completo de inyectores con análisis de caudal, presión y tiempo de inyección.",
+    "id": "toledo-heui-master",
+    "name": "Toledo HEUi Master",
+    "images": ["/equipos/toledo-heui-master.jpg"],
+    "description": "Test bench electrónico de unidad hidráulica altamente sofisticado y compacto para inyectores de todas las marcas, principalmente para inyectores pesados HEUI. Combina la plataforma reconocida 'Sabre' con nuevas funciones desarrolladas especialmente para la tecnología HEUI [[5]].",
     "specifications": [
-      "Rango de presión: 0-2500 bar",
-      "Precisión de medición: ±0.5%",
-      "Capacidad para inyectores hasta 800 mm³/rev",
-      "Interfaz táctil HD de 15\"",
-      "Conexión WiFi para actualizaciones remotas"
+      "Fuente de alimentación: Corriente alterna monofásica",
+      "Voltaje: 200-240 V",
+      "Color: Azul",
+      "Grado: Automático",
+      "Tipo de pantalla: Pantalla táctil Windows 10",
+      "Interfaz operada desde una tableta táctil estilo aplicación con software magmah Touch [[2]]"
     ],
     "applications": [
-      "Diagnóstico de sistemas Common Rail",
-      "Calibración de inyectores piezoeléctricos",
-      "Pruebas de estanqueidad y rendimiento",
-      "Análisis de curvas de inyección"
-    ]
+      "Pruebas de inyectores HEUI",
+      "Pruebas de inyectores electrónicos de unidad hidráulica",
+      "Diagnóstico de inyectores CAT C7/C9 [[6]]",
+      "Adaptabilidad fácil, instalación sencilla y mantenimiento fácil [[1]]"
+    ],
+    "technicalSheetPdf": "/pdfs/toledo-heui-master.pdf"
   },
   {
-    "id": "hartridge-7500",
-    "name": "Sistema Hartridge 7500",
-    "img": "/equipos/hartridge-7500.jpg",
-    "description": "Solución profesional para talleres de mediano tamaño. Sistema completo de prueba para inyectores diesel de sistemas convencionales y electrónicos.",
+    "id": "sabre-cri-expert",
+    "name": "Sabre CRi Expert",
+    "images": ["/equipos/sabre-cri-expert.jpg"],
+    "description": "Banco de pruebas de inyectores Common Rail altamente avanzado y compacto, capaz de probar inyectores Common Rail de alta presión, incluidos los próximos. Ofrece pruebas rápidas y simplificadas con tecnología patentada [[13]].",
     "specifications": [
-      "Rango de presión: 0-1800 bar",
-      "Precisión de medición: ±1.0%",
-      "Capacidad para inyectores hasta 500 mm³/rev",
-      "Pantalla táctil de 10\"",
-      "Software de análisis avanzado incluido"
+      "Presión del riel: 1-2700 bar [[11]]",
+      "Velocidad de inyección: 120-3000 iny/m",
+      "Ancho de pulso: 0-4000 μS",
+      "Retardo de tiempo: 0-600 segundos",
+      "Capacidad del tanque: 10 litros [[11]]",
+      "Dimensiones: 610 mm (Ancho) x 610 mm (Profundidad) x 1100 mm (Altura) [[12]]",
+      "Peso: 145 kg"
     ],
     "applications": [
-      "Pruebas de inyectores rotativos",
-      "Calibración de bombas diesel",
-      "Diagnóstico de sistemas VP",
-      "Verificación de caudal y patrón de inyección"
-    ]
+      "Pruebas de inyectores Common Rail de alta presión",
+      "Pruebas de inyectores de marcas múltiples",
+      "Solución rentable para talleres",
+      "Pruebas avanzadas con licencia de pago por uso [[15]]"
+    ],
+    "technicalSheetPdf": "/pdfs/sabre-cri-expert.pdf"
+  },
+  {
+    "id": "sabre-cri-master",
+    "name": "Sabre CRi Master",
+    "images": ["/equipos/sabre-cri-master.jpg"],
+    "description": "Banco de pruebas compacto de inyectores Diesel Common Rail de todas las marcas, equipado con funciones avanzadas para pruebas y codificación de inyectores. Diseñado para ofrecer alta precisión, fiabilidad y operación rápida [[26]].",
+    "specifications": [
+      "Fuente de alimentación: Monofásica",
+      "Voltaje: 240 V",
+      "Uso/Aplicación: Inyector Common Rail",
+      "Tipo de pantalla: Pantalla táctil Windows 10 [[21]]"
+    ],
+    "applications": [
+      "Pruebas de inyectores Common Rail",
+      "Codificación de inyectores",
+      "Pruebas rápidas y precisas",
+      "Operación simplificada y confiable [[26]]"
+    ],
+    "technicalSheetPdf": "/pdfs/sabre-cri-master.pdf"
+  },
+  {
+    "id": "hk1400-expert",
+    "name": "HK1400 Expert",
+    "images": ["/equipos/hk1400-expert.jpg"],
+    "description": "Banco de pruebas universal diseñado para cerrar la brecha entre los talleres aprobados por OEM para la reparación de EUI/EUP y el mercado general de reparación de EUI/EUP diesel [[34]]. Altamente preciso, robusto, flexible y fácil de usar [[33]].",
+    "specifications": [
+      "Modelo: HK 1400",
+      "Uso/Aplicación: Inyectores y Bombas EUI",
+      "Tipo de pantalla: Digital [[29]]",
+      "Grado de automatización: Automático [[29]]",
+      "Capacidad del tanque de aceite: 15 L [[30]]",
+      "Voltaje: 240 V [[30]]",
+      "Requisitos eléctricos: 85 - 264Vac, 2 amps max [[38]]"
+    ],
+    "applications": [
+      "Pruebas de inyectores EUI",
+      "Pruebas de bombas EUP",
+      "Aumento de capacidad de reparación EUI/EUP en talleres diesel [[33]]",
+      "Aplicaciones múltiples con diseño ajustable [[35]]"
+    ],
+    "technicalSheetPdf": "/pdfs/hk1400-expert.pdf"
+  },
+  {
+    "id": "hk1400",
+    "name": "HK1400",
+    "images": ["/equipos/hk1400.jpg"],
+    "description": "Banco de pruebas universal para aplicaciones EUI y EUP, diseñado para cerrar la brecha entre los talleres aprobados por OEM para la reparación de EUI/EUP y el mercado general de reparación de EUI/EUP diesel [[45]]. Altamente preciso, robusto, flexible y fácil de usar [[43]].",
+    "specifications": [
+      "Modelo: HK 1400",
+      "Uso/Aplicación: Inyectores y Bombas EUI",
+      "Tipo de pantalla: Digital [[41]]",
+      "Grado de automatización: Automático [[41]]",
+      "Requisitos eléctricos: 85 - 264Vac, 2 amps max [[42]]"
+    ],
+    "applications": [
+      "Pruebas de inyectores EUI",
+      "Pruebas de bombas EUP",
+      "Conexión con bancos de pruebas diesel tradicionales [[44]]",
+      "Aumento de capacidad de reparación EUI/EUP en talleres diesel [[43]]"
+    ],
+    "technicalSheetPdf": "/pdfs/hk1400.pdf"
+  },
+  {
+    "id": "avm2-pc",
+    "name": "AVM2-PC",
+    "images": ["/equipos/avm2-pc.jpg"],
+    "description": "Sistema avanzado de pruebas de bombas de combustible diesel basado en computadora, diseñado para ahorrar tiempo en los procesos de prueba [[48]]. Puede manejar bombas en línea, rotativas y Common Rail, así como inyectores EUI, EUP e inyectores Common Rail [[51]].",
+    "specifications": [
+      "Software desarrollado para velocidad y facilidad de operación [[49]]",
+      "Opción de operación semiautomática desde un plan de prueba de pasos automáticos [[49]]",
+      "Maneja bombas en línea, rotativas y Common Rail, así como inyectores EUI, EUP y Common Rail [[51]]",
+      "Incorpora motores mejorados para mayor torque a bajas rpm y mayor capacidad de refrigeración del aceite de prueba [[52]]"
+    ],
+    "applications": [
+      "Pruebas de bombas de combustible diesel",
+      "Pruebas de bombas inyectoras",
+      "Pruebas de inyectores EUI y EUP [[51]]",
+      "Pruebas de inyectores Common Rail [[54]]"
+    ],
+    "technicalSheetPdf": "/pdfs/avm2-pc.pdf"
+  },
+  {
+    "id": "hk1500",
+    "name": "HK1500",
+    "images": ["/equipos/hk1500.jpg"],
+    "description": "Serie HK1500, un complemento para el AVM2-PC que proporciona la capacidad de probar una amplia gama de aplicaciones EUI/EUP [[63]]. Es una pieza de equipo de nivel OE altamente comprobada que permite probar aplicaciones EUI/EUP en conjunto con el AVM2-PC [[55]].",
+    "specifications": [
+      "Diseñado para usarse junto con el AVM2-PC [[64]]",
+      "Kit de hardware: Kit de gabinete HK1500, Base Cambox HK1502 incl. sobrecarga [[64]]"
+    ],
+    "applications": [
+      "Pruebas de inyectores EUI",
+      "Pruebas de bombas EUP",
+      "Ampliación de capacidades del AVM2-PC para pruebas EUI/EUP [[63]]"
+    ],
+    "technicalSheetPdf": "/pdfs/hk1500.pdf"
+  },
+  {
+    "id": "testmaster-2-hh700",
+    "name": "Testmaster 2 HH700",
+    "images": ["/equipos/testmaster-2-hh700.jpg"],
+    "description": "Tester de función de inyector altamente robusto y comprobado. Operado manualmente, con pantalla LCD y software avanzado basado en menús [[66]]. Cumple con las normas ISO 8984-1 y ISO 8984-2 [[67]].",
+    "specifications": [
+      "Operado manualmente",
+      "Pantalla LCD",
+      "Software basado en menús [[68]]",
+      "Facilidad de plan de prueba de inyector (hasta 200) [[67]]",
+      "Cumple con ISO 8984-1 y ISO 8984-2 [[67]]"
+    ],
+    "applications": [
+      "Pruebas de función de inyectores",
+      "Pruebas de presión de inyectores",
+      "Diagnóstico básico de inyectores diesel",
+      "Uso en talleres con operación manual"
+    ],
+    "technicalSheetPdf": "/pdfs/testmaster-2-hh700.pdf"
+  },
+  {
+    "id": "nozzle-reconditioner-hh008",
+    "name": "Nozzle Re-conditioner HH008",
+    "images": ["/equipos/nozzle-reconditioner-hh008.jpg"],
+    "description": "Equipo especializado para el reacondicionamiento de boquillas de inyectores diesel.",
+    "specifications": [
+      "Fabricante: HARTRIDGE [[75]]",
+      "Código: HH008-N o HH008-M [[75]]",
+      "Tipo: Reacondicionador de Boquillas"
+    ],
+    "applications": [
+      "Reacondicionamiento de boquillas de inyectores",
+      "Mantenimiento de componentes de inyección",
+      "Reparación de piezas de inyectores diesel"
+    ],
+    "technicalSheetPdf": "/pdfs/nozzle-reconditioner-hh008.pdf"
+  },
+  {
+    "id": "excalibur-gdi-master",
+    "name": "Excalibur GDi Master",
+    "images": ["/equipos/excalibur-gdi-master.jpg"],
+    "description": "Banco de pruebas avanzado de todas las marcas para inyección directa de gasolina (GDi) y de puerto (PFI). Capaz de pruebas de inyectores de bobina y piezoeléctricos, con función de retro-lavado integrada [[82]].",
+    "specifications": [
+      "Capacidad de prueba de inyectores de bobina y piezoeléctricos [[82]]",
+      "Evaluación innovadora del patrón de pulverización [[82]]",
+      "Función de retro-lavado integrada [[82]]",
+      "Compatible con GDI, PFI e IRF (Retro-lavado inverso de inyectores) [[83]]"
+    ],
+    "applications": [
+      "Pruebas de inyectores GDi (Gasolina de Inyección Directa)",
+      "Pruebas de inyectores PFi (Inyección en el Puerto)",
+      "Pruebas de inyectores electromagnéticos y piezoeléctricos [[88]]",
+      "Limpieza y prueba de inyectores de gasolina"
+    ],
+    "technicalSheetPdf": "/pdfs/excalibur-gdi-master.pdf"
   }
 ]

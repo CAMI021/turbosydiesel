@@ -1,152 +1,159 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Star, MessageCircle, CheckCircle, MapPin, X } from "lucide-react"; // ✅ Añadido X para el botón de cierre
-import { useState } from "react"; // ✅ Importado useState
+import { Star, MessageCircle, CheckCircle, MapPin } from "lucide-react";
+import { useState, useEffect } from 'react';
 
-// Interfaz para testimonios incluyendo 'role'
 interface Testimonial {
   name: string;
   content: string;
   rating: number;
   avatar: string;
-  role?: string; // ✅ Propiedad opcional: role
+  role?: string;
 }
 
-const Home = () => {
-  const [showDevAlert, setShowDevAlert] = useState(true); // ✅ Estado para controlar la visibilidad de la alerta
-  
+const App = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const images = [
+    '/videohome.gif',
+    '/image1.jpg',
+    '/image2.jpg',
+    '/image3.png'
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 6000); // Increased from 4000 to 6000 (6 seconds per image)
+
+    return () => clearInterval(interval);
+  }, [images]);
+
   const testimonials: Testimonial[] = [
     {
       name: "Ivan Aldana Martinez",
       content: "Gran servicio y excelente mano de obra.",
       rating: 4,
       avatar: "/avatar1.jpg",
-      role: "Cliente regular" // ✅ Añadido
+      role: "Cliente regular"
     },
     {
       name: "Hector Jamaica",
       content: "Buena atencion para reparacion de bombas de inyeccion e inyectores.todas las marcas.Ademas venta de equipos para pruebas de inyectores y bombas nuevas tecnologías.",
       rating: 5,
       avatar: "/avatar2.jpg",
-      role: "Taller mecánico" // ✅ Añadido
+      role: "Taller mecánico"
     },
     {
       name: "Oscar Julian Zambrano Martin",
       content: "Una excelente atención",
       rating: 5,
       avatar: "/avatar3.jpg",
-      role: "Transportista" // ✅ Añadido
+      role: "Transportista"
     }
   ];
 
   return (
     <div className="no-horizontal-scroll bg-[#f4f4f4]">
-      {/* ✅ ALERTA DE DESARROLLO - Grande y prominente */}
-      {showDevAlert && (
-        <div className="fixed top-0 left-0 right-0 bg-yellow-50 border-b-4 border-yellow-400 z-50 min-h-[160px] flex items-center shadow-xl">
-          <div className="container-wide px-6">
-            <div className="relative">
-              <div className="text-center py-4">
-                <h3 className="text-3xl md:text-4xl font-bold text-yellow-800 mb-3 animate-pulse">
-                  ¡AVISO IMPORTANTE!
-                </h3>
-                <p className="text-xl md:text-2xl text-yellow-700 max-w-4xl mx-auto px-4 py-2">
-                  Esta página web se encuentra en fase de desarrollo. Algunas funcionalidades pueden no estar disponibles o podrían cambiar.
-                </p>
-                <p className="text-lg text-yellow-600 mt-2 max-w-3xl mx-auto">
-                  Estamos trabajando para ofrecerle la mejor experiencia posible. ¡Gracias por su comprensión!
-                </p>
-              </div>
-              <button 
-                onClick={() => setShowDevAlert(false)}
-                className="absolute top-4 right-4 bg-yellow-100 hover:bg-yellow-200 text-yellow-800 rounded-full p-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
-                aria-label="Cerrar alerta de desarrollo"
-              >
-                <X className="h-7 w-7" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Hero mejorado */}
-      <section className="full-width relative bg-black text-white h-screen flex items-center justify-center overflow-hidden" style={{ marginTop: showDevAlert ? "160px" : "0" }}>
+      <section className="full-width relative bg-black text-white h-screen flex items-center justify-center overflow-hidden">
         <div className="container-wide">
           <div className="absolute inset-0 z-0">
-            <motion.div className="w-full h-full" 
-              animate={{ scale: [1, 1.02, 1], opacity: [0.9, 1, 0.9] }} 
-              transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <img src="/videohome.gif" alt="Sistema diesel en acción" className="w-full h-full object-cover" loading="eager" />
-            </motion.div>
-            <div className="absolute inset-0 bg-black opacity-40" />
-          </div>
-          <motion.div 
-            initial="hidden" 
-            animate="visible" 
-            className="relative z-10 text-center px-4 max-w-5xl mx-auto"
-          >
-            <motion.h1 
-              className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight hero-text-shadow font-space-grotesk" 
-              variants={{ 
-                visible: { transition: { staggerChildren: 0.03 } } 
-              }}
-            >
-              {Array.from("VENTAS Y SERVICIO").map((char, index) => (
-                <motion.span 
+            {images.map((src, index) => (
+              <motion.div
                 key={index}
-                className="font-orbitron"
+                className={`w-full h-full absolute inset-0 ${
+                  index === currentIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+                animate={{ opacity: index === currentIndex ? 1 : 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <img 
+                  src={src} 
+                  alt={`Background ${index}`} 
+                  className={`w-full h-full ${index === 0 ? 'object-cover' : 'object-contain'}`} 
+                  loading="eager" 
+                />
+              </motion.div>
+            ))}
+          </div>
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+            {images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`w-3 h-3 rounded-full ${
+                  index === currentIndex ? 'bg-white' : 'bg-gray-500'
+                }`}
+              />
+            ))}
+          </div>
+          {currentIndex === 0 && (
+            <motion.div 
+              initial="hidden" 
+              animate="visible" 
+              className="relative z-10 text-center px-4 max-w-5xl mx-auto"
+            >
+              <motion.h1 
+                className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight hero-text-shadow font-space-grotesk" 
                 variants={{ 
-                  hidden: { opacity: 0, y: 30 }, 
-                  visible: { opacity: 1, y: 0 } 
-                }}
-                style={{ 
-                  display: 'inline-block', 
-                  color: 'white',
-                  textShadow: '0 2px 10px rgba(0,0,0,0.3)'
+                  visible: { transition: { staggerChildren: 0.03 } } 
                 }}
               >
-                {char === ' ' ? '\u00A0' : char}
-              </motion.span>
-              ))}
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 1.2, duration: 0.8 }} 
-              className="text-xl md:text-2xl max-w-3xl mx-auto text-gray-200 mb-10"
-            >
-              Especialistas certificados en sistemas de inyección diesel de alta precisión con tecnología europea
-            </motion.p>
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              transition={{ delay: 2, duration: 0.8 }} 
-              className="mt-12 flex flex-wrap justify-center gap-6 max-w-4xl mx-auto"
-            >
-              {[
-                { icon: "🔧", text: "Sincronización de vehículos" },
-                { icon: "🛠️", text: "Servicio de scáner" },
-                { icon: "🚗", text: "Medición de gases" },
-                { icon: "🧼", text: "Limpieza y diálisis de tanques" }
-              ].map((item, index) => (
-                <motion.div 
-                  key={index} 
-                  initial={{ opacity: 0, y: 20 }} 
-                  animate={{ opacity: 1, y: 0 }} 
-                  transition={{ delay: 2.2 + index * 0.1 }} 
-                  className="flex items-center bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20"
-                >
-                  <span className="mr-2 text-[#e3001b]">{item.icon}</span>
-                  <span className="text-white">{item.text}</span>
-                </motion.div>
-              ))}
+                {Array.from("VENTAS Y SERVICIO").map((char, index) => (
+                  <motion.span 
+                    key={index}
+                    className="font-orbitron"
+                    variants={{ 
+                      hidden: { opacity: 0, y: 30 }, 
+                      visible: { opacity: 1, y: 0 } 
+                    }}
+                    style={{ 
+                      display: 'inline-block', 
+                      color: 'white',
+                      textShadow: '0 0 25px rgba(0,0,0,0.9)'
+                    }}
+                  >
+                    {char === ' ' ? '\u00A0' : char}
+                  </motion.span>
+                ))}
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ delay: 1.2, duration: 0.8 }} 
+                className="text-xl md:text-2xl max-w-3xl mx-auto text-white mb-10"
+                style={{ textShadow: '0 0 35px rgba(0,0,0,0.9)' }}
+              >
+                Especialistas certificados en sistemas de inyección diesel de alta precisión
+              </motion.p>
+              <motion.div 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                transition={{ delay: 2, duration: 0.8 }} 
+                className="mt-12 flex flex-wrap justify-center gap-6 max-w-4xl mx-auto"
+              >
+                {[
+                  { icon: "🔧", text: "Sincronización de vehículos" },
+                  { icon: "🛠️", text: "Servicio de scáner" },
+                  { icon: "🚗", text: "Medición de gases" },
+                  { icon: "🧼", text: "Limpieza y diálisis de tanques" }
+                ].map((item, index) => (
+                  <motion.div 
+                    key={index} 
+                    initial={{ opacity: 0, y: 20 }} 
+                    animate={{ opacity: 1, y: 0 }} 
+                    transition={{ delay: 2.2 + index * 0.1 }} 
+                    className="flex items-center bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20"
+                  >
+                    <span className="mr-2 text-[#e3001b]">{item.icon}</span>
+                    <span className="text-white">{item.text}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
-          </motion.div>
+          )}
         </div>
       </section>
 
-      {/* Galería de productos */}
       <section className="full-width py-16 bg-white overflow-hidden relative">
         <div className="absolute inset-0 pointer-events-none z-0">
           <motion.div 
@@ -198,7 +205,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonios - MODIFICADO */}
       <section className="full-width py-16 bg-gray-50">
         <div className="container-wide">
           <motion.h2 
@@ -264,7 +270,7 @@ const Home = () => {
                     </div>
                     <div>
                       <h4 className="font-bold text-sm">{testimonial.name}</h4>
-                      <p className="text-xs text-gray-500">{testimonial.role}</p> {/* ✅ Ahora 'role' existe */}
+                      <p className="text-xs text-gray-500">{testimonial.role}</p>
                     </div>
                   </div>
                   <div className="flex text-yellow-400 mb-2">
@@ -290,7 +296,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Sección de inyectores */}
       <section className="full-width bg-gradient-to-r from-gray-900 to-black py-20 flex items-center relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <motion.div 
@@ -319,9 +324,9 @@ const Home = () => {
               transition={{ delay: 0.2 }} 
               className="text-white"
             >
-              <h2 className="text-4xl font-bold mb-6">INYECTORES ELECTRÓNICOS</h2>
+              <h2 className="text-4xl font-bold mb-6">Sistemas de Inyección</h2>
               <ul className="space-y-4 mb-8">
-                {["Cummins PT", " Cummins ISX / XPI", "Cummins HPI"].map((item, index) => (
+                {["Common Rail", " Unit Pump System (UPS)", "Bomba en línea (line pump)", "Mira nuestro catálogo entero para más"].map((item, index) => (
                   <li key={index} className="flex items-center">
                     <span className="w-3 h-3 bg-[#e3001b] rounded-full mr-3"></span> {item}
                   </li>
@@ -335,7 +340,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA MODIFICADO - SOLUCIÓN DEFINITIVA */}
       <section className="full-width py-20 bg-gradient-to-r from-[#e3001b] to-[#b00000] text-white text-center relative overflow-hidden">
         <div className="container-wide">
           <div className="absolute inset-0 z-0">
@@ -368,19 +372,16 @@ const Home = () => {
               transition={{ delay: 0.6 }} 
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              {/* Botón de Google Maps */}
               <a 
-                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA      " 
+                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA        " 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
               >
                 <MapPin className="inline mr-2 h-5 w-5" /> Ver ubicación
               </a>
-              
-              {/* Botón de WhatsApp */}
               <a 
-                href="https://wa.me/573185141579      " 
+                href="https://wa.me/573185141579        " 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
@@ -395,9 +396,9 @@ const Home = () => {
               className="mt-8 flex flex-wrap justify-center gap-4 max-w-2xl mx-auto"
             >
               {[
-                "Respuesta en menos de 15 minutos",
-                "Diagnóstico gratuito",
-                "Presupuesto sin compromiso"
+                "Respuesta rápida en horarios de atención",
+                "Diagnóstico",
+                "Presupuestos"
               ].map((item, index) => (
                 <div key={index} className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-green-400 mr-2" /> 
@@ -412,4 +413,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default App;
