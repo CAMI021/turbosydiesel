@@ -1,5 +1,5 @@
 
-import { FaFacebookF, FaTwitter, FaYoutube, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -13,7 +13,7 @@ const Footer = () => {
           <div className="flex space-x-4 text-[#e3001b] text-2xl">
             <a href="#"><FaFacebookF /></a>
             
-            <a href="#"><FaYoutube /></a>
+          
             
             <a href="#"><FaInstagram /></a>
           </div>
