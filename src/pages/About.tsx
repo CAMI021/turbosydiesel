@@ -2,7 +2,7 @@ const About = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 text-gray-800">
       {/* Header moderno con imagen de fondo profesional */}
-      <header 
+      <header
         className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center rounded-2xl overflow-hidden"
         style={{
           backgroundImage: "url('/products.jpg')",
@@ -26,12 +26,31 @@ const About = () => {
         </div>
       </header>
 
-      {/* Contenido principal con diseño moderno */}
+      {/* Sección de logotipos autorizados con diseño mimetizado */}
+      <section className="py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-xl p-7 border border-gray-100">
+            <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center">
+              <span className="w-2 h-10 bg-red-600 rounded-r-lg mr-4"></span>
+              Servicios Autorizados por las Principales Marcas
+            </h2>
+            <div className="text-center">
+              <img
+                src="/authorized-services-logos.png"
+                alt="Logotipos de marcas autorizadas: Bosch, Delphi, Holset, Stanadyne, Doowan, Zexel"
+                className="mx-auto max-w-full h-auto max-h-40 object-contain opacity-90"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contenido principal */}
       <main className="flex-1 py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Columna izquierda: servicios y descripción */}
           <div className="lg:col-span-2 space-y-6">
-            {/* Sección principal */}
             <div className="bg-white rounded-2xl shadow-xl p-7 border border-gray-100">
               <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center">
                 <span className="w-2 h-10 bg-red-600 rounded-r-lg mr-4"></span>
@@ -72,24 +91,6 @@ const About = () => {
                 </p>
               </div>
             </div>
-
-            {/* Servicios autorizados */}
-            <div className="bg-white rounded-2xl shadow-xl p-7 border border-gray-100">
-              <h3 className="text-2xl font-bold text-gray-900 mb-5">Servicios Autorizados</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  "Servicio Autorizado Bosch Diesel Center",
-                  "Servicio Autorizado Delphi Diesel Excellence para Colombia",
-                  "Distribuidor y Servicio Autorizado Turbos Holset",
-                  "Servicio Autorizado Stanadyne, Doowan y Zexel"
-                ].map((service, index) => (
-                  <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                    <div className="w-2 h-2 bg-red-600 rounded-full"></div>
-                    <span className="text-gray-800 font-medium text-sm">{service}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Columna derecha: contacto y ubicación */}
@@ -101,10 +102,10 @@ const About = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  Nuestras Ubicaciones
+                  Nuestra Ubicación
                 </h3>
               </div>
-              
+
               <div className="p-5 space-y-5">
                 <div className="flex items-start">
                   <div className="bg-red-100 p-2.5 rounded-lg mr-3">
@@ -128,7 +129,7 @@ const About = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900">Teléfono:</h4>
-                    <p className="text-gray-600 text-sm">(57) 312 456-7890</p>
+                    <p className="text-gray-600 text-sm">(57) 311 478-2000</p>
                   </div>
                 </div>
 
@@ -140,7 +141,7 @@ const About = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900">Correo:</h4>
-                    <p className="text-gray-600 text-sm">info@dieselpromx.com</p>
+                    <p className="text-gray-600 text-sm">bogota@dieselyturbos.com</p>
                   </div>
                 </div>
 
@@ -153,8 +154,9 @@ const About = () => {
                     </div>
                     <div>
                       <h4 className="font-bold text-gray-900">Horario:</h4>
-                      <p className="text-gray-600 text-sm">Lunes a Viernes: 8:00 AM – 6:00 PM</p>
-                      <p className="text-gray-600 text-sm">Sábados: 9:00 AM – 1:00 PM</p>
+                      <p className="text-gray-600 text-sm">Lunes a Jueves: 8:30 AM – 5:00 PM</p>
+                      <p className="text-gray-600 text-sm">Viernes: 8:30 AM – 5:30 PM</p>
+                      <p className="text-gray-600 text-sm">Sábados: 8:30 AM – 12:30 PM</p>
                     </div>
                   </div>
                 </div>

@@ -9,18 +9,20 @@ const Footer = () => {
         {/* Columna 1: Logo, slogan, redes, contacto */}
         <div className="space-y-4">
           <h1 className="text-3xl font-bold text-[#e3001b]">Diesel y Turbos SAS</h1>
-          <p>Be a Part of Team #DieselyTurbos!</p>
+          <p>tecnología Diesel en sus manos #DieselyTurbos</p>
           <div className="flex space-x-4 text-[#e3001b] text-2xl">
             <a href="#"><FaFacebookF /></a>
-            <a href="#"><FaTwitter /></a>
+            
             <a href="#"><FaYoutube /></a>
-            <a href="#"><FaLinkedin /></a>
+            
             <a href="#"><FaInstagram /></a>
           </div>
           <div className="space-y-1 text-gray-400 mt-4">
-            <p>📞 (123) 456-7890</p>
-            <p>✉ info@dieselyturbos.com</p>
-            <p>🕒 Lun-Vie 8:00am - 5:00pm</p>
+            <p>📞 (57) 311 478-2000</p>
+            <p>✉ bogota@dieselyturbos.com</p>
+            <p>🕒 Lun a Jue: 8:30 AM – 5:00 PM</p>
+            <p>🕒 Vie: 8:30 AM – 5:30 PM</p>
+            <p>🕒 Sáb: 8:30 AM – 12:30 PM</p>
           </div>
         </div>
 
@@ -57,12 +59,12 @@ const Footer = () => {
 
         {/* Columna 4: Newsletter */}
         <div className="space-y-3">
-          <h2 className="text-xl font-semibold border-b-2 border-[#e3001b] inline-block pb-1">Boletín</h2>
-          <p>Enter your email to get news about products, events, and sales.</p>
+          <h2 className="text-xl font-semibold border-b-2 border-[#e3001b] inline-block pb-1">Contacto</h2>
+          <p>Escríbenos mediante correo electrónico</p>
           <div className="flex mt-2">
             <input 
               type="email" 
-              placeholder="Enter your email" 
+              placeholder="Tu correo" 
               className="w-full p-2 rounded-l-md border-none outline-none text-black" 
             />
             <button className="bg-[#e3001b] px-4 rounded-r-md text-white font-semibold hover:bg-red-700">

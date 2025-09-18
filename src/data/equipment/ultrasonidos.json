@@ -1,41 +1,62 @@
-
 [
-    {
-      "id": "ultrasonic-5000",
-      "name": "Sistema UltraClean 5000",
-      "img": "/equipos/ultrasonidos-5000.jpg",
-      "description": "Sistema profesional de limpieza ultrasónica para componentes diesel. Diseñado para recuperar inyectores, bombas y otros elementos críticos.",
-      "specifications": [
-        "Frecuencia: 25-45 kHz ajustable",
-        "Capacidad del tanque: 50 litros",
-        "Control de temperatura: 20-80°C",
-        "Tiempo de ciclo programable",
-        "Sistema de filtrado integrado"
-      ],
-      "applications": [
-        "Limpieza de inyectores diesel",
-        "Recuperación de bombas de alta presión",
-        "Limpieza de componentes de turbo",
-        "Tratamiento de sistemas de combustible"
-      ]
-    },
-    {
-      "id": "ultrasonic-pro",
-      "name": "UltraSonic Pro",
-      "img": "/equipos/ultrasonidos-pro.jpg",
-      "description": "Equipo industrial de alta potencia para talleres especializados. Sistema de limpieza con doble frecuencia y control avanzado.",
-      "specifications": [
-        "Frecuencia dual: 28/40 kHz",
-        "Capacidad del tanque: 80 litros",
-        "Sistema de calentamiento rápido",
-        "Control digital preciso",
-        "Tanque de acero inoxidable 316L"
-      ],
-      "applications": [
-        "Limpieza profunda de inyectores",
-        "Recuperación de sistemas DPF",
-        "Tratamiento de componentes grandes",
-        "Mantenimiento de sistemas de combustible"
-      ]
-    }
-  ]
+  {
+    "id": "ultrasonido-6lts",
+    "name": "Equipo Ultrasonido 6Lts",
+    "images": ["/equipos/ultrasonido-6lts.jpg"],
+    "description": "Equipo de limpieza ultrasónica de alta eficiencia para componentes diesel y automotrices. Capacidad de 6 litros para piezas medianas.",
+    "specifications": [
+      "Capacidad: 6 litros",
+      "Frecuencia: 40 kHz",
+      "Potencia: 300W",
+      "Control digital de tiempo y temperatura",
+      "Cesta de acero inoxidable"
+    ],
+    "applications": [
+      "Limpieza de inyectores",
+      "Limpieza de componentes de turbos",
+      "Limpieza de válvulas y piezas metálicas",
+      "Preparación de superficies antes de reparación"
+    ],
+    "technicalSheetPdf": "/pdfs/ultrasonido-6lts.pdf"
+  },
+  {
+    "id": "ultrasonido-2lts",
+    "name": "Equipo Ultrasonido 2Lts",
+    "images": ["/equipos/ultrasonido-2lts.jpg"],
+    "description": "Equipo compacto de limpieza ultrasónica ideal para pequeñas piezas y reparaciones en taller. Capacidad de 2 litros.",
+    "specifications": [
+      "Capacidad: 2 litros",
+      "Frecuencia: 40 kHz",
+      "Potencia: 150W",
+      "Control manual de tiempo",
+      "Cesta de acero inoxidable"
+    ],
+    "applications": [
+      "Limpieza de pequeños componentes",
+      "Limpieza de piezas de motor",
+      "Limpieza de herramientas",
+      "Preparación de piezas para reparación"
+    ],
+    "technicalSheetPdf": "/pdfs/ultrasonido-2lts.pdf"
+  },
+  {
+    "id": "ultrasonido-120l",
+    "name": "Equipo Ultrasonido 120L",
+    "images": ["/equipos/ultrasonido-120l.jpg"],
+    "description": "Equipo industrial de limpieza ultrasónica de gran capacidad para piezas grandes y pesadas. Ideal para talleres especializados.",
+    "specifications": [
+      "Capacidad: 120 litros",
+      "Frecuencia: 40 kHz",
+      "Potencia: 1500W",
+      "Control digital avanzado",
+      "Cesta de acero inoxidable con soporte para piezas grandes"
+    ],
+    "applications": [
+      "Limpieza de piezas grandes de motor",
+      "Limpieza de componentes de transmisión",
+      "Limpieza de piezas industriales",
+      "Preparación de superficies para soldadura"
+    ],
+    "technicalSheetPdf": "/pdfs/ultrasonido-120l.pdf"
+  }
+]

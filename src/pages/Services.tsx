@@ -6,7 +6,12 @@ import {
   FaTools, 
   FaShieldAlt, 
   FaClock, 
-  FaCheckCircle
+  FaCheckCircle,
+  FaCertificate,
+  FaGasPump,
+  FaTachometerAlt,
+  FaSearch,
+  FaFlask
 } from "react-icons/fa";
 
 const Services = () => {
@@ -24,14 +29,7 @@ const Services = () => {
         "Análisis de fallos con reporte detallado",
         "Garantía extendida de 12 meses en todas las reparaciones"
       ],
-      image: "/reparacion.jpg",
-      process: [
-        { step: "1", title: "Evaluación Inicial", description: "Análisis completo del sistema" },
-        { step: "2", title: "Diagnóstico", description: "Identificación precisa del problema" },
-        { step: "3", title: "Presupuesto", description: "Cotización sin compromiso" },
-        { step: "4", title: "Reparación", description: "Trabajo especializado con repuestos originales" },
-        { step: "5", title: "Pruebas", description: "Verificación de funcionamiento" }
-      ]
+      image: "/reparacion.jpg"
     },
     {
       id: "mantenimiento",
@@ -44,14 +42,7 @@ const Services = () => {
         "Revisión periódica de componentes críticos",
         "Optimización de rendimiento y eficiencia"
       ],
-      image: "/mantenimiento.jpg",
-      process: [
-        { step: "1", title: "Inspección", description: "Revisión completa del sistema" },
-        { step: "2", title: "Limpieza", description: "Eliminación de depósitos y residuos" },
-        { step: "3", title: "Calibración", description: "Ajuste preciso de componentes" },
-        { step: "4", title: "Pruebas", description: "Verificación de parámetros operativos" },
-        { step: "5", title: "Reporte", description: "Documentación detallada del servicio" }
-      ]
+      image: "/mantenimiento.jpg"
     },
     {
       id: "instalacion",
@@ -64,14 +55,63 @@ const Services = () => {
         "Configuración electrónica avanzada",
         "Soporte post-instalación completo"
       ],
-      image: "/instalacion.jpg",
-      process: [
-        { step: "1", title: "Análisis", description: "Evaluación de requerimientos específicos" },
-        { step: "2", title: "Preparación", description: "Selección de componentes adecuados" },
-        { step: "3", title: "Instalación", description: "Montaje profesional con herramientas especializadas" },
-        { step: "4", title: "Configuración", description: "Ajuste de parámetros electrónicos" },
-        { step: "5", title: "Pruebas", description: "Verificación de funcionamiento óptimo" }
-      ]
+      image: "/instalacion.jpg"
+    }
+  ];
+
+  const certifications = [
+    {
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      title: "Delphi Diesel Excellence",
+      description: "Servicio Autorizado"
+    },
+    {
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      title: "Bosch Diesel Center",
+      description: "Servicio Autorizado"
+    },
+    {
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      title: "Zexel, Stanadyne, Doowan",
+      description: "Servicio Autorizado"
+    },
+    {
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      title: "HOLSET Turbos",
+      description: "Servicio Autorizado"
+    }
+  ];
+
+  const technicalServices = [
+    {
+      icon: <FaWrench className="text-[#e3001b]" />,
+      title: "Sistemas de Inyección",
+      description: "Diesel convencionales, Common Rail, EUI, PLD"
+    },
+    {
+      icon: <FaTools className="text-[#e3001b]" />,
+      title: "Bombas Mecánicas y Electrónicas",
+      description: "Tic s, RE 30/36 y Covec VP44"
+    },
+    {
+      icon: <FaTachometerAlt className="text-[#e3001b]" />,
+      title: "Turbos",
+      description: "Reparación de todas las marcas"
+    },
+    {
+      icon: <FaSearch className="text-[#e3001b]" />,
+      title: "Motores Diesel",
+      description: "Diagnóstico, sincronización y reparación"
+    },
+    {
+      icon: <FaGasPump className="text-[#e3001b]" />,
+      title: "Inyectores",
+      description: "Convencionales y electrónicos STH, EUI, HEUI, Common Rail"
+    },
+    {
+      icon: <FaFlask className="text-[#e3001b]" />,
+      title: "Análisis de Combustible",
+      description: "Lavado, diálisis de tanques y medición de opacidad"
     }
   ];
 
@@ -183,48 +223,58 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Process Timeline */}
+      {/* Certifications */}
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold mb-4 text-[#e3001b]">Nuestro Proceso de Trabajo</h2>
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold mb-4 text-[#e3001b]">Certificaciones Oficiales</h2>
             <p className="text-gray-600">
-              Un enfoque estructurado para garantizar la máxima calidad en cada servicio
+              Autorizados por las principales marcas del mercado
             </p>
           </div>
           
-          <div className="relative max-w-4xl mx-auto">
-            {/* Timeline line */}
-            <div className="hidden md:block absolute top-0 left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-[#e3001b]"></div>
-            
-            {currentService.process.map((step, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {certifications.map((cert, index) => (
               <div 
                 key={index}
-                className={`flex flex-col md:flex-row items-center mb-12 ${
-                  index % 2 === 1 ? "md:flex-row-reverse" : ""
-                }`}
+                className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm text-center"
               >
-                <div className="md:w-5/12 mb-4 md:mb-0">
-                  <div className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all">
-                    <div className="flex items-center mb-3">
-                      <div className="bg-[#e3001b] text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mr-3">
-                        {step.step}
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
-                    </div>
-                    <p className="text-gray-600">{step.description}</p>
+                <div className="flex justify-center mb-4">
+                  <div className="bg-[#e3001b]/10 p-3 rounded-full">
+                    {cert.icon}
                   </div>
                 </div>
-                
-                <div className="md:w-2/12 flex justify-center">
-                  <div className="w-12 h-12 rounded-full bg-[#e3001b] flex items-center justify-center text-white font-bold text-xl border-4 border-white shadow-md">
-                    {index + 1}
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{cert.title}</h3>
+                <p className="text-gray-600 text-sm">{cert.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Technical Services */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold mb-4 text-[#e3001b]">Servicios Técnicos Especializados</h2>
+            <p className="text-gray-600">
+              Tecnología avanzada para el diagnóstico y reparación de sistemas diesel
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {technicalServices.map((service, index) => (
+              <div 
+                key={index}
+                className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 group"
+              >
+                <div className="flex items-start mb-4">
+                  <div className="bg-[#e3001b]/10 p-2 rounded-lg mr-4 group-hover:bg-[#e3001b] transition-colors">
+                    {service.icon}
                   </div>
+                  <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
                 </div>
-                
-                {index < currentService.process.length - 1 && (
-                  <div className="hidden md:block md:w-2/12"></div>
-                )}
+                <p className="text-gray-600 ml-12">{service.description}</p>
               </div>
             ))}
           </div>
@@ -232,7 +282,7 @@ const Services = () => {
       </section>
 
       {/* Benefits */}
-      <section className="py-16">
+      <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-3xl font-bold mb-4 text-[#e3001b]">¿Por qué Elegirnos?</h2>
@@ -245,9 +295,13 @@ const Services = () => {
             {benefits.map((benefit, index) => (
               <div 
                 key={index}
-                className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm"
+                className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm text-center"
               >
-                <div className="mb-4">{benefit.icon}</div>
+                <div className="flex justify-center mb-4">
+                  <div className="bg-[#e3001b]/10 p-3 rounded-full">
+                    {benefit.icon}
+                  </div>
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
               </div>

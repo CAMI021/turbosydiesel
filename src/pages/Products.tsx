@@ -1,22 +1,18 @@
-// src/pages/Products.tsx
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-
 // Tipos TypeScript
 interface Brand {
   name: string;
   img: string;
 }
-
 interface Product {
   slug: string;
+  categoryKey: string;
   name: string;
   img: string;
   description: string;
-  categoryKey: string;
 }
-
 // Datos de marcas (miniaturas)
 const brands: Brand[] = [
   { name: "Delphi", img: "/marcas/delphi.png" },
@@ -24,8 +20,7 @@ const brands: Brand[] = [
   { name: "Racor", img: "/marcas/racor.png" },
   { name: "Hartridge", img: "/marcas/hartridge.png" },
 ];
-
-// Datos de productos (ahora coinciden con las categorías en products.ts)
+// Datos de productos (solo componentes y repuestos)
 const products: Product[] = [
   {
     slug: "filtros",
@@ -35,56 +30,59 @@ const products: Product[] = [
     description: "Filtros de combustible y aceite con tecnología de separación de agua avanzada.",
   },
   {
-    slug: "inyectores",
-    categoryKey: "injectors",
-    name: "Sistemas de inyección",
-    img: "/productos/sistemas_inyeccion.jpg",
-    description: "Sistemas de inyección diesel convencionales y electrónicos de alta precisión.",
+    slug: "common-rail-systems",
+    categoryKey: "common-rail-systems",
+    name: "Sistemas de inyección Common Rail",
+    img: "/productos/common-rail.jpg",
+    description: "Sistemas de inyección diesel de alta precisión con tecnología Common Rail",
   },
   {
-    slug: "turbo-holset",
-    categoryKey: "turbos",
-    name: "Turboalimentadores Holset",
+    slug: "eui-injectors",
+    categoryKey: "eui-injectors",
+    name: "Inyectores EUI",
+    img: "/productos/inyectores_eui.jpg",
+    description: "Inyectores de tipo Unidad Electrónica (EUI) para motores diesel",
+  },
+  {
+    slug: "pld-pumps",
+    categoryKey: "pld-pumps",
+    name: "Bombas PLD",
+    img: "/productos/bombas_pld.jpg",
+    description: "Bombas de alta precisión para sistemas PLD de inyección diesel",
+  },
+  {
+    slug: "heui-injectors",
+    categoryKey: "heui-injectors",
+    name: "Inyectores HEUI",
+    img: "/productos/inyectores_heui.jpg",
+    description: "Inyectores HEUI para motores de alta presión y rendimiento",
+  },
+  {
+    slug: "conventional-injection-systems",
+    categoryKey: "conventional-injection-systems",
+    name: "Sistemas de inyección convencionales",
+    img: "/productos/sistemas_convencionales.jpg",
+    description: "Sistemas de inyección tradicionales para motores diesel",
+  },
+  {
+    slug: "turbochargers",
+    categoryKey: "turbochargers",
+    name: "Turboalimentadores",
     img: "/productos/turbo_holset.jpg",
-    description: "Turbos de alto rendimiento con durabilidad comprobada en condiciones extremas.",
-  },
-  {
-    slug: "equipos-hartridge",
-    categoryKey: "testBenches",
-    name: "Equipos Hartridge",
-    img: "/productos/hartridge.jpg",
-    description: "Equipos de prueba y calibración para inyectores diesel de última generación.",
-  },
-  {
-    slug: "balanceadoras",
-    categoryKey: "balanceadoras",
-    name: "Balanceadoras",
-    img: "/productos/balanceadoras.jpg",
-    description: "Soluciones para balanceo dinámico de motores y componentes rotativos.",
-  },
-  {
-    slug: "equipo-dpf",
-    categoryKey: "dpf",
-    name: "Limpieza DPF",
-    img: "/productos/dpf_cleaning.jpg",
-    description: "Sistemas profesionales para limpieza y recuperación de filtros DPF.",
+    description: "Turbos de alto rendimiento con durabilidad comprobada en condiciones extremas",
   },
 ];
-
 const Products: React.FC = () => {
   const navigate = useNavigate();
-
   const handleProductClick = (categoryKey: string): void => {
     navigate(`/products/${categoryKey}`);
   };
-
   const handleKeyDown = (e: React.KeyboardEvent, categoryKey: string): void => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       handleProductClick(categoryKey);
     }
   };
-
   // Animaciones
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -96,7 +94,6 @@ const Products: React.FC = () => {
       },
     },
   };
-
   const itemVariants = {
     hidden: { y: 40, opacity: 0 },
     visible: {
@@ -109,17 +106,15 @@ const Products: React.FC = () => {
       },
     },
   };
-
   const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
   };
-
   return (
     <div 
       className="min-h-screen text-gray-800"
       style={{
-        backgroundImage: "url(\"image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4d4d4' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V4h4V2H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
+        backgroundImage: "url(\"image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4d4d4' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM0 34v-4H-2v4H-6v2h4v4h2V4h4V2H0zM6 34v-4H4v4H0v2h4v4h2V4h4V2H6zM6 4V0H4v4H0v2h4v4h2V4h4V2H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
       }}
     >
       {/* Sección de Marcas con Imagen de Fondo */}
@@ -135,7 +130,6 @@ const Products: React.FC = () => {
       >
         {/* Overlay oscuro con gradiente */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-
         {/* Contenido centrado */}
         <div className="relative z-10 text-center text-white max-w-4xl px-6">
           <motion.h1
@@ -148,7 +142,6 @@ const Products: React.FC = () => {
             Nuestras Marcas{" "}
             <span className="text-[#e3001b] drop-shadow-lg">Premium</span>
           </motion.h1>
-
           <motion.p 
             className="text-base md:text-lg text-gray-100 mb-6 leading-relaxed max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -159,7 +152,6 @@ const Products: React.FC = () => {
             Trabajamos exclusivamente con las marcas líderes en tecnología diesel 
             para garantizar la máxima calidad y rendimiento en cada proyecto
           </motion.p>
-
           <motion.div 
             initial={{ width: 0 }}
             whileInView={{ width: "80px" }}
@@ -169,7 +161,6 @@ const Products: React.FC = () => {
           />
         </div>
       </section>
-
       {/* Sección de Marcas (logos) - AHORA OCUPA TODO EL ANCHO DE LA PANTALLA */}
       {brands.length > 0 && (
         <section 
@@ -178,7 +169,6 @@ const Products: React.FC = () => {
         >
           {/* Degradado lateral oscuro en los bordes (OCUPA TODO EL ANCHO) */}
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900/8 via-white to-gray-900/8" />
-          
           <div className="max-w-4xl mx-auto relative z-10">
             <motion.div
               className="grid grid-cols-2 md:grid-cols-4 gap-6"
@@ -209,7 +199,6 @@ const Products: React.FC = () => {
           </div>
         </section>
       )}
-
       <main className="container mx-auto px-4 sm:px-6 max-w-7xl mt-12">
         {/* Catálogo de Productos */}
         <section aria-label="Catálogo de productos" className="mb-20">
@@ -224,7 +213,6 @@ const Products: React.FC = () => {
             >
               Nuestro <span className="text-[#e3001b]">Catálogo</span>
             </motion.h2>
-            
             <motion.p 
               className="text-gray-600 max-w-xl mx-auto text-base leading-relaxed"
               variants={fadeInVariants}
@@ -236,7 +224,6 @@ const Products: React.FC = () => {
               Descubre nuestra selección de productos especializados para el 
               mantenimiento y reparación de sistemas diesel de última generación
             </motion.p>
-            
             <motion.div 
               initial={{ width: 0 }}
               whileInView={{ width: "60px" }}
@@ -245,7 +232,6 @@ const Products: React.FC = () => {
               className="h-1 bg-[#e3001b] mx-auto mt-6 rounded-full"
             />
           </div>
-
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             variants={containerVariants}
@@ -276,10 +262,8 @@ const Products: React.FC = () => {
                       e.currentTarget.src = "/img/placeholder-product.jpg";
                     }}
                   />
-                  
                   {/* Overlay gradiente */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
                   {/* Contenido superpuesto */}
                   <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-3 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
                     <h3 className="text-lg font-bold text-white mb-1">
@@ -290,21 +274,17 @@ const Products: React.FC = () => {
                     </p>
                   </div>
                 </div>
-                
                 <div className="p-4">
                   <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-[#e3001b] transition-colors duration-300 line-clamp-1">
                     {product.name}
                   </h3>
-                  
                   <p className="text-gray-600 leading-relaxed mb-4 text-sm line-clamp-2">
                     {product.description}
                   </p>
-                  
                   <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                     <span className="text-[#e3001b] font-medium group-hover:underline transition-all duration-300 text-sm">
                       Ver productos
                     </span>
-                    
                     <div className="w-8 h-8 rounded-full bg-[#e3001b]/10 flex items-center justify-center group-hover:bg-[#e3001b] transition-all duration-300">
                       <svg 
                         xmlns="http://www.w3.org/2000/svg" 
@@ -326,7 +306,6 @@ const Products: React.FC = () => {
             ))}
           </motion.div>
         </section>
-
         {/* Call to Action final */}
         <motion.section 
           className="text-center py-12 mb-12 rounded-xl bg-white/70 backdrop-blur-sm"
@@ -354,5 +333,4 @@ const Products: React.FC = () => {
     </div>
   );
 };
-
 export default Products;

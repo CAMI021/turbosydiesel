@@ -1,0 +1,22 @@
+[
+    {
+      "id": "dpf-50",
+      "name": "DPF 5.0 Cleaning Machine",
+      "images": ["/equipos/dpf-50.jpg"],
+      "description": "Sistema especializado para la limpieza y regeneración de filtros de partículas diesel (DPF). Cumple con normativas Euro 6.",
+      "specifications": [
+        "Capacidad: Hasta 20 DPF por hora",
+        "Tecnología de limpieza: Agua a alta presión y limpiadores químicos",
+        "Sistema de secado por aire caliente",
+        "Control digital con interfaz intuitiva",
+        "Compatibilidad con DPF de todos los fabricantes"
+      ],
+      "applications": [
+        "Limpieza de DPF",
+        "Regeneración de filtros bloqueados",
+        "Pruebas de presión y flujo",
+        "Verificación de eficiencia post-limpieza"
+      ],
+      "technicalSheetPdf": "/pdfs/dpf-50.pdf"
+    }
+  ]
