@@ -45,9 +45,6 @@ const FloatingButton = () => {
 };
 
 // Animación personalizada para el icono
-const bounceKeyframes = {
-  '0%, 100%': { transform: 'translateY(0)' },
-  '50%': { transform: 'translateY(-5px)' }
-};
+
 
 export default FloatingButton;
