@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 
 interface Equipment {
   id: string;
@@ -19,6 +19,10 @@ const EquipmentDetails: React.FC = () => {
   const [equipment, setEquipment] = useState<Equipment | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string>("");
+
+  // Número de WhatsApp (reemplaza con el tuyo)
+  const whatsappNumber = "+5491112345678"; // Formato internacional
 
   // Mapeo de categoryKey a nombre visual
   const getCategoryName = (key: string): string => {
@@ -49,6 +53,7 @@ const EquipmentDetails: React.FC = () => {
 
         if (found) {
           setEquipment(found);
+          setSelectedImage(found.images[0]); // Establecer primera imagen como seleccionada
         } else {
           setError("Equipo no encontrado en esta categoría");
         }
@@ -60,6 +65,12 @@ const EquipmentDetails: React.FC = () => {
         setLoading(false);
       });
   }, [categoryKey, equipmentId]);
+
+  const handleWhatsAppClick = () => {
+    const message = `Hola, estoy interesado en el equipo ${equipment?.name} de la categoría ${getCategoryName(categoryKey || "")}`;
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+  };
 
   if (loading) {
     return (
@@ -94,7 +105,7 @@ const EquipmentDetails: React.FC = () => {
       <section className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center mb-16 rounded-2xl overflow-hidden" style={{ backgroundImage: `url('/products.jpg')` }}>
         {/* Overlay oscuro */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-        <div className="relative z-10 text-center text-white max-w-4xl px-6">
+        <div className="relative z-10 text-center text-white max-w-4xl px-6 pt-20"> {/* Ajuste de padding superior agregado */}
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{equipment.name}</h1>
           <p className="text-base md:text-lg text-gray-100 mb-6">{getCategoryName(categoryKey || "")}</p>
         </div>
@@ -104,11 +115,11 @@ const EquipmentDetails: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Columna Izquierda: Imágenes y características */}
           <div className="space-y-6">
-            {/* Galería de imágenes */}
+            {/* Galería de imágenes interactiva */}
             <div className="bg-white rounded-2xl shadow-md overflow-hidden">
               <div className="relative h-96">
                 <img
-                  src={equipment.images[0]}
+                  src={selectedImage}
                   alt={equipment.name}
                   className="w-full h-full object-contain"
                   onError={(e) => {
@@ -117,12 +128,15 @@ const EquipmentDetails: React.FC = () => {
                 />
               </div>
               <div className="flex justify-center gap-4 p-4">
-                {equipment.images.slice(1).map((img, index) => (
+                {equipment.images.map((img, index) => (
                   <img
                     key={index}
                     src={img}
                     alt={`${equipment.name} - ${index + 1}`}
-                    className="w-24 h-24 object-cover cursor-pointer hover:scale-105 transition-transform"
+                    className={`w-24 h-24 object-cover cursor-pointer transition-transform hover:scale-105 ${
+                      selectedImage === img ? "ring-2 ring-[#e3001b]" : ""
+                    }`}
+                    onClick={() => setSelectedImage(img)}
                   />
                 ))}
               </div>
@@ -177,6 +191,17 @@ const EquipmentDetails: React.FC = () => {
               <p className="text-sm text-gray-500 mt-4">ID: {equipment.id}</p>
             </div>
           </div>
+        </div>
+
+        {/* Botón de Contacto por WhatsApp al final - Mismo estilo que ProductDetails */}
+        <div className="mt-12 mb-8 flex justify-center">
+          <button
+            onClick={handleWhatsAppClick}
+            className="flex items-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-4 px-8 rounded-full shadow-lg transform transition-all duration-200 hover:scale-105"
+          >
+            <Phone className="w-6 h-6" />
+            <span>Contactar por WhatsApp</span>
+          </button>
         </div>
       </main>
     </div>

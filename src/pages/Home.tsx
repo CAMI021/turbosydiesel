@@ -23,7 +23,7 @@ const App = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
-    }, 6000); // Increased from 4000 to 6000 (6 seconds per image)
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [images]);
@@ -51,6 +51,12 @@ const App = () => {
       role: "Transportista"
     }
   ];
+
+  // Función para navegar al catálogo (simulada para el ejemplo)
+  const handleViewCatalog = () => {
+    // En tu aplicación real, esto funcionará con react-router-dom
+    window.location.href = '/products';
+  };
 
   return (
     <div className="no-horizontal-scroll bg-[#f4f4f4]">
@@ -123,7 +129,7 @@ const App = () => {
                 className="text-xl md:text-2xl max-w-3xl mx-auto text-white mb-10"
                 style={{ textShadow: '0 0 35px rgba(0,0,0,0.9)' }}
               >
-                Especialistas certificados en sistemas de inyección diesel de alta precisión
+                tecnología Diesel en sus manos
               </motion.p>
               <motion.div 
                 initial={{ opacity: 0 }} 
@@ -185,22 +191,52 @@ const App = () => {
           >
             Componentes premium y reparaciones de alta precisión para sistemas diesel
           </motion.p>
-          <div className="relative">
+          
+          {/* PRIMER CARRUSEL - MODIFICADO CON MENOS ESPACIO Y ZOOM */}
+          <div className="relative mb-8">
             <motion.div 
-              className="flex gap-6 pb-8" 
-              animate={{ x: [0, -1000, 0], transition: { x: { repeat: Infinity, duration: 40, ease: "linear" } } }}
+              className="flex gap-1 pb-6" 
+              animate={{ x: [0, -1200, 0], transition: { x: { repeat: Infinity, duration: 45, ease: "linear" } } }}
             >
-              {[...Array(10)].map((_, i) => (
+              {[...Array(12)].map((_, i) => (
                 <motion.div 
                   key={i} 
-                  className="flex-shrink-0 w-64 h-36 rounded-xl overflow-hidden" 
+                  className="flex-shrink-0 w-48 h-24 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100" 
                   whileHover={{ scale: 1.05 }} 
                   transition={{ type: "spring", stiffness: 300, damping: 15 }}
                 >
-                  <img src={`/product-${(i % 9) + 1}.jpg`} alt={`Producto diesel ${i + 1}`} className="w-full h-full object-cover" />
+                  <img 
+                    src={`/product-${(i % 9) + 1}.jpg`} 
+                    alt={`Producto diesel ${i + 1}`} 
+                    className="w-full h-full object-cover scale-100" 
+                  />
                 </motion.div>
               ))}
             </motion.div>
+          </div>
+
+          {/* SEGUNDO CARRUSEL - MODIFICADO (ahora estático con título) */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-center text-black mb-8">Estamos asociados con:</h3>
+            <div className="flex justify-center gap-2">
+              {/* Primera imagen */}
+              <div className="w-80 h-20 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100">
+                <img 
+                  src={`/brand-1.jpg`} 
+                  alt="Asociado 1" 
+                  className="w-full h-full object-contain" 
+                />
+              </div>
+              
+              {/* Segunda imagen */}
+              <div className="w-80 h-20 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100">
+                <img 
+                  src={`/brand-2.jpg`} 
+                  alt="Asociado 2" 
+                  className="w-full h-full object-contain" 
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -326,13 +362,16 @@ const App = () => {
             >
               <h2 className="text-4xl font-bold mb-6">Sistemas de Inyección</h2>
               <ul className="space-y-4 mb-8">
-                {["Common Rail", " Unit Pump System (UPS)", "Bomba en línea (line pump)", "Mira nuestro catálogo entero para más"].map((item, index) => (
+                {["Common Rail", "Unit Pump System (UPS)", "Bomba en línea (line pump)", "Mira nuestro catálogo entero para más"].map((item, index) => (
                   <li key={index} className="flex items-center">
                     <span className="w-3 h-3 bg-[#e3001b] rounded-full mr-3"></span> {item}
                   </li>
                 ))}
               </ul>
-              <Button className="bg-[#e3001b] text-white hover:bg-[#b00000] px-6 py-3 rounded-full font-bold text-lg min-w-[200px]">
+              <Button 
+                onClick={handleViewCatalog}
+                className="bg-[#e3001b] text-white hover:bg-[#b00000] px-6 py-3 rounded-full font-bold text-lg min-w-[200px] cursor-pointer"
+              >
                 Ver catálogo completo
               </Button>
             </motion.div>
@@ -373,7 +412,7 @@ const App = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <a 
-                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA        " 
+                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA      " 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
@@ -381,7 +420,7 @@ const App = () => {
                 <MapPin className="inline mr-2 h-5 w-5" /> Ver ubicación
               </a>
               <a 
-                href="https://wa.me/573185141579        " 
+                href="https://wa.me/573185141579      " 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
@@ -389,6 +428,24 @@ const App = () => {
                 <MessageCircle className="inline mr-2 h-5 w-5" /> Escribir al WhatsApp
               </a>
             </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0 }} 
+              animate={{ opacity: 1 }} 
+              transition={{ delay: 0.7 }} 
+              className="mt-8 flex justify-center"
+            >
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.8555787914743!2d-74.10359652454618!3d4.619842342352263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f995d7ec17ded%3A0x91d29e1da34260fc!2sDiesel%20y%20Turbos%20SAS!5e0!3m2!1ses-419!2sco!4v1758565470155!5m2!1ses-419!2sco" 
+                width="1000" 
+                height="400" 
+                style={{ border: 0 }} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </motion.div>
+            
             <motion.div 
               initial={{ opacity: 0 }} 
               animate={{ opacity: 1 }} 

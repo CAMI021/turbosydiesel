@@ -15,7 +15,7 @@ const About = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
 
         {/* Contenido centrado */}
-        <div className="relative z-10 text-center text-white max-w-4xl px-6">
+        <div className="relative z-10 text-center text-white max-w-4xl px-6 pt-20"> {/* Agregado pt-20 para ajustar el espacio superior */}
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
             Nuestros Servicios <span className="text-[#e3001b]"></span>
           </h1>

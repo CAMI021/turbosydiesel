@@ -2,7 +2,7 @@
   {
     "id": "cri-pro",
     "name": "CRi Pro",
-    "images": ["/equipos/cri-pro.jpg"],
+    "images": ["/equipos/cri-pro.png"],
     "description": "Banco de pruebas avanzado para inyectores Common Rail, diseñado para diagnósticos de precisión y alto rendimiento.",
     "specifications": [
       "Alta presión de prueba hasta 2700 bar",
@@ -18,7 +18,7 @@
   {
     "id": "avm2-pc",
     "name": "AVM2-PC",
-    "images": ["/equipos/avm2-pc.jpg"],
+    "images": ["/equipos/avm2-pc.png"],
     "description": "Sistema avanzado de pruebas de bombas de combustible diesel basado en computadora, diseñado para ahorrar tiempo en los procesos de prueba.",
     "specifications": [
       "Pruebas de bombas en línea, rotativas y Common Rail",
@@ -35,7 +35,7 @@
   {
     "id": "sabre-cri-expert",
     "name": "Sabre CRi Expert",
-    "images": ["/equipos/sabre-cri-expert.jpg"],
+    "images": ["/equipos/sabre-cri-expert.png"],
     "description": "Banco de pruebas de inyectores Common Rail altamente avanzado y compacto.",
     "specifications": [
       "Presión del riel: hasta 2700 bar",
@@ -51,7 +51,7 @@
   {
     "id": "sabre-cri-master",
     "name": "Sabre CRi Master",
-    "images": ["/equipos/sabre-cri-master.jpg"],
+    "images": ["/equipos/sabre-cri-master.png"],
     "description": "Banco de pruebas compacto para inyectores Diesel Common Rail de todas las marcas.",
     "specifications": [
       "Fuente de alimentación: Monofásica",
@@ -67,7 +67,7 @@
   {
     "id": "toledo-heui-master",
     "name": "Toledo HEUi Master",
-    "images": ["/equipos/toledo-heui-master.jpg"],
+    "images": ["/equipos/toledo-heui-master.png"],
     "description": "Banco de pruebas especializado en inyectores HEUI, altamente sofisticado y compacto.",
     "specifications": [
       "Voltaje: 200-240 V",
@@ -83,7 +83,7 @@
   {
     "id": "excalibur-gdi",
     "name": "Excalibur GDi",
-    "images": ["/equipos/excalibur-gdi.jpg"],
+    "images": ["/equipos/excalibur-gdi.png"],
     "description": "Banco de pruebas avanzado para inyección directa de gasolina (GDi) y PFI.",
     "specifications": [
       "Prueba de inyectores electromagnéticos y piezoeléctricos",
@@ -99,7 +99,7 @@
   {
     "id": "hk1400-expert",
     "name": "HK1400 Expert",
-    "images": ["/equipos/hk1400-expert.jpg"],
+    "images": ["/equipos/hk1400-expert.png"],
     "description": "Banco universal para pruebas de inyectores y bombas EUI/EUP.",
     "specifications": [
       "Capacidad de tanque: 15 L",
@@ -115,7 +115,7 @@
   {
     "id": "hk1400",
     "name": "HK1400",
-    "images": ["/equipos/hk1400.jpg"],
+    "images": ["/equipos/hk1400.png"],
     "description": "Banco de pruebas robusto y flexible para aplicaciones EUI/EUP.",
     "specifications": [
       "Uso/Aplicación: Inyectores y Bombas EUI",
@@ -126,7 +126,7 @@
       "Pruebas de inyectores EUI",
       "Pruebas de bombas EUP"
     ],
-    "technicalSheetPdf": "/pdfs/hk1400.pdf"
+    "technicalSheetPdf": "/pdfs/hk-1400.pdf"
   },
   {
     "id": "hk1500",
