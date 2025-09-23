@@ -4,8 +4,6 @@ import {
   FaWrench, 
   FaCog, 
   FaTools, 
-  FaShieldAlt, 
-  FaClock, 
   FaCheckCircle,
   FaCertificate,
   FaGasPump,
@@ -29,7 +27,7 @@ const Services = () => {
         "Análisis de fallos con reporte detallado",
         "Garantía extendida de 12 meses en todas las reparaciones"
       ],
-      image: "/reparacion.jpg"
+      image: "/reparacion.png"
     },
     {
       id: "mantenimiento",
@@ -42,7 +40,7 @@ const Services = () => {
         "Revisión periódica de componentes críticos",
         "Optimización de rendimiento y eficiencia"
       ],
-      image: "/mantenimiento.jpg"
+      image: "/mantenimiento.png"
     },
     {
       id: "instalacion",
@@ -55,7 +53,7 @@ const Services = () => {
         "Configuración electrónica avanzada",
         "Soporte post-instalación completo"
       ],
-      image: "/instalacion.jpg"
+      image: "/instalacion.png"
     }
   ];
 
@@ -63,22 +61,26 @@ const Services = () => {
     {
       icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
       title: "Delphi Diesel Excellence",
-      description: "Servicio Autorizado"
+      description: "Servicio Autorizado",
+      image: "/cert-delphi.png"
     },
     {
       icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
       title: "Bosch Diesel Center",
-      description: "Servicio Autorizado"
+      description: "Servicio Autorizado",
+      image: "/cert-bosch.jpg"
     },
     {
       icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
       title: "Zexel, Stanadyne, Doowan",
-      description: "Servicio Autorizado"
+      description: "Servicio Autorizado",
+      image: "/cert-zexel.png"
     },
     {
       icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
       title: "HOLSET Turbos",
-      description: "Servicio Autorizado"
+      description: "Servicio Autorizado",
+      image: "/cert-holset.png"
     }
   ];
 
@@ -115,29 +117,6 @@ const Services = () => {
     }
   ];
 
-  const benefits = [
-    {
-      icon: <FaShieldAlt className="text-[#e3001b] text-3xl" />,
-      title: "Garantía Extendida",
-      description: "Todas nuestras reparaciones incluyen garantía de 12 meses"
-    },
-    {
-      icon: <FaClock className="text-[#e3001b] text-3xl" />,
-      title: "Atención Personalizada",
-      description: "Cada caso es único. Diseñamos soluciones a medida según las necesidades específicas de tu equipo"
-    },
-    {
-      icon: <FaCheckCircle className="text-[#e3001b] text-3xl" />,
-      title: "Técnicos Certificados",
-      description: "Equipo con más de 10 años de experiencia especializada"
-    },
-    {
-      icon: <FaWrench className="text-[#e3001b] text-3xl" />,
-      title: "Repuestos Originales",
-      description: "Usamos únicamente componentes de calidad premium"
-    }
-  ];
-
   const currentService = services.find(s => s.title === activeService) || services[0];
 
   return (
@@ -146,7 +125,7 @@ const Services = () => {
       <header 
         className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center rounded-2xl overflow-hidden"
         style={{
-          backgroundImage: "url('/boch.png')",
+          backgroundImage: "url('/services.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
@@ -156,7 +135,7 @@ const Services = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
 
         {/* Contenido centrado */}
-        <div className="relative z-10 text-center text-white max-w-4xl px-6">
+        <div className="relative z-10 text-center text-white max-w-4xl px-6 pt-20">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
             Nuestros <span className="text-[#e3001b]">Servicios</span>
           </h1>
@@ -195,8 +174,23 @@ const Services = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
               <div className="bg-white border-2 border-[#e3001b] rounded-2xl overflow-hidden shadow-md">
-                <div className="aspect-video bg-gray-100 flex items-center justify-center">
-                  <span className="text-5xl text-[#e3001b]">{currentService.icon}</span>
+                <div className="aspect-video bg-gray-100 flex items-center justify-center relative">
+                  <img 
+                    src={currentService.image} 
+                    alt={currentService.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const imgElement = e.currentTarget as HTMLImageElement;
+                      imgElement.style.display = 'none';
+                      const nextSibling = imgElement.nextElementSibling;
+                      if (nextSibling) {
+                        (nextSibling as HTMLElement).style.display = 'flex';
+                      }
+                    }}
+                  />
+                  <div className="absolute inset-0 hidden items-center justify-center bg-gray-100">
+                    <span className="text-5xl text-[#e3001b]">{currentService.icon}</span>
+                  </div>
                 </div>
               </div>
               <div className="absolute -bottom-6 -right-6 bg-[#e3001b] text-white px-6 py-3 rounded-xl font-bold shadow-lg hidden md:block">
@@ -244,6 +238,26 @@ const Services = () => {
                     {cert.icon}
                   </div>
                 </div>
+                
+                <div className="mb-4 h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={cert.image} 
+                    alt={`Certificación ${cert.title}`}
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      const imgElement = e.currentTarget as HTMLImageElement;
+                      imgElement.style.display = 'none';
+                      const nextSibling = imgElement.nextElementSibling;
+                      if (nextSibling) {
+                        (nextSibling as HTMLElement).style.display = 'flex';
+                      }
+                    }}
+                  />
+                  <div className="hidden items-center justify-center text-gray-400 text-sm">
+                    Imagen de certificación
+                  </div>
+                </div>
+                
                 <h3 className="text-lg font-bold text-gray-900 mb-2">{cert.title}</h3>
                 <p className="text-gray-600 text-sm">{cert.description}</p>
               </div>
@@ -275,35 +289,6 @@ const Services = () => {
                   <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
                 </div>
                 <p className="text-gray-600 ml-12">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Benefits */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-[#e3001b]">¿Por qué Elegirnos?</h2>
-            <p className="text-gray-600">
-              Compromiso con la excelencia en cada servicio que ofrecemos
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
-              <div 
-                key={index}
-                className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm text-center"
-              >
-                <div className="flex justify-center mb-4">
-                  <div className="bg-[#e3001b]/10 p-3 rounded-full">
-                    {benefit.icon}
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
               </div>
             ))}
           </div>

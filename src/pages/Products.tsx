@@ -1,6 +1,8 @@
+//Products.tsx
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+
 // Tipos TypeScript
 interface Brand {
   name: string;
@@ -13,6 +15,7 @@ interface Product {
   img: string;
   description: string;
 }
+
 // Datos de marcas (miniaturas)
 const brands: Brand[] = [
   { name: "Delphi", img: "/marcas/delphi.png" },
@@ -20,7 +23,8 @@ const brands: Brand[] = [
   { name: "Racor", img: "/marcas/racor.png" },
   { name: "Hartridge", img: "/marcas/hartridge.png" },
 ];
-// Datos de productos (solo componentes y repuestos)
+
+// Datos de productos (solo componentes y repuestos) - ORDENADO
 const products: Product[] = [
   {
     slug: "filtros",
@@ -30,11 +34,11 @@ const products: Product[] = [
     description: "Filtros de combustible y aceite con tecnología de separación de agua avanzada.",
   },
   {
-    slug: "common-rail-systems",
-    categoryKey: "common-rail-systems",
-    name: "Sistemas de inyección Common Rail",
-    img: "/productos/common-rail.jpg",
-    description: "Sistemas de inyección diesel de alta precisión con tecnología Common Rail",
+    slug: "turbochargers",
+    categoryKey: "turbochargers",
+    name: "Turboalimentadores",
+    img: "/productos/turbo_holset.jpg",
+    description: "Turbos de alto rendimiento con durabilidad comprobada en condiciones extremas",
   },
   {
     slug: "eui-injectors",
@@ -42,13 +46,6 @@ const products: Product[] = [
     name: "Inyectores EUI",
     img: "/productos/inyectores_eui.jpg",
     description: "Inyectores de tipo Unidad Electrónica (EUI) para motores diesel",
-  },
-  {
-    slug: "pld-pumps",
-    categoryKey: "pld-pumps",
-    name: "Bombas PLD",
-    img: "/productos/bombas_pld.jpg",
-    description: "Bombas de alta precisión para sistemas PLD de inyección diesel",
   },
   {
     slug: "heui-injectors",
@@ -65,24 +62,42 @@ const products: Product[] = [
     description: "Sistemas de inyección tradicionales para motores diesel",
   },
   {
-    slug: "turbochargers",
-    categoryKey: "turbochargers",
-    name: "Turboalimentadores",
-    img: "/productos/turbo_holset.jpg",
-    description: "Turbos de alto rendimiento con durabilidad comprobada en condiciones extremas",
+    slug: "common-rail-systems",
+    categoryKey: "common-rail-systems",
+    name: "Sistemas de inyección Common Rail",
+    img: "/productos/common-rail.jpg",
+    description: "Sistemas de inyección diesel de alta precisión con tecnología Common Rail",
+  },
+  {
+    slug: "pld-pumps",
+    categoryKey: "pld-pumps",
+    name: "Bombas PLD",
+    img: "/productos/bombas_pld.jpg",
+    description: "Bombas de alta precisión para sistemas PLD de inyección diesel",
+  },
+  {
+    slug: "calibration-fluid",
+    categoryKey: "calibration-fluid",
+    name: "Líquido de Calibración",
+    img: "/productos/calibration-fluid-main.jpg",
+    description: "Líquidos especializados para la calibración precisa de sistemas de inyección diesel",
   },
 ];
+
 const Products: React.FC = () => {
   const navigate = useNavigate();
+
   const handleProductClick = (categoryKey: string): void => {
     navigate(`/products/${categoryKey}`);
   };
+
   const handleKeyDown = (e: React.KeyboardEvent, categoryKey: string): void => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
       handleProductClick(categoryKey);
     }
   };
+
   // Animaciones
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -94,6 +109,7 @@ const Products: React.FC = () => {
       },
     },
   };
+
   const itemVariants = {
     hidden: { y: 40, opacity: 0 },
     visible: {
@@ -106,13 +122,15 @@ const Products: React.FC = () => {
       },
     },
   };
+
   const fadeInVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
   };
+
   return (
     <div 
-      className="min-h-screen text-gray-800"
+      className="min-h-screen text-gray-800 pt-4" // Añadido padding top base
       style={{
         backgroundImage: "url(\"image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4d4d4' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM0 34v-4H-2v4H-6v2h4v4h2V4h4V2H0zM6 34v-4H4v4H0v2h4v4h2V4h4V2H6zM6 4V0H4v4H0v2h4v4h2V4h4V2H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")"
       }}
@@ -121,7 +139,7 @@ const Products: React.FC = () => {
       <section 
         className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center mb-16 rounded-2xl overflow-hidden"
         style={{
-          backgroundImage: `url('/products.jpg')`,
+          backgroundImage: `url('/productsbk.jpg')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -130,8 +148,9 @@ const Products: React.FC = () => {
       >
         {/* Overlay oscuro con gradiente */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-        {/* Contenido centrado */}
-        <div className="relative z-10 text-center text-white max-w-4xl px-6">
+        
+        {/* Contenido centrado - AJUSTADO CON pt-20 */}
+        <div className="relative z-10 text-center text-white max-w-4xl px-6 pt-20">
           <motion.h1
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight"
             initial={{ opacity: 0, y: 30 }}
@@ -161,6 +180,7 @@ const Products: React.FC = () => {
           />
         </div>
       </section>
+
       {/* Sección de Marcas (logos) - AHORA OCUPA TODO EL ANCHO DE LA PANTALLA */}
       {brands.length > 0 && (
         <section 
@@ -199,9 +219,10 @@ const Products: React.FC = () => {
           </div>
         </section>
       )}
-      <main className="container mx-auto px-4 sm:px-6 max-w-7xl mt-12">
+
+      <main className="container mx-auto px-4 sm:px-6 max-w-7xl mt-20"> {/* AQUÍ SE AJUSTÓ EL MARGEN SUPERIOR */}
         {/* Catálogo de Productos */}
-        <section aria-label="Catálogo de productos" className="mb-20">
+        <section aria-label="Catálogo de productos" className="mb-20 scroll-mt-24"> {/* Añadido scroll-mt-24 */}
           <div className="text-center mb-12">
             <motion.h2
               className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-4"
@@ -306,6 +327,7 @@ const Products: React.FC = () => {
             ))}
           </motion.div>
         </section>
+
         {/* Call to Action final */}
         <motion.section 
           className="text-center py-12 mb-12 rounded-xl bg-white/70 backdrop-blur-sm"
@@ -333,4 +355,5 @@ const Products: React.FC = () => {
     </div>
   );
 };
+
 export default Products;

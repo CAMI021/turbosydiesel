@@ -1,13 +1,26 @@
-
 import { useParams } from "react-router-dom";
 import { products } from "../data/products";
-
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
+import { useState } from "react";
 
 const ProductDetails = () => {
   const { categoryKey, productId } = useParams();
   const category = products[categoryKey as keyof typeof products];
   const product = category?.products.find(p => p.id === productId);
+
+  // Estado para la imagen seleccionada
+  const [selectedImage, setSelectedImage] = useState<string>(
+    product?.images[0] || "/img/placeholder-product.jpg"
+  );
+
+  // Número de WhatsApp (reemplaza con el tuyo)
+  const whatsappNumber = "+5491112345678"; // Formato internacional
+  const whatsappMessage = `Hola, estoy interesado en el producto ${product?.name}`;
+
+  const handleWhatsAppClick = () => {
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(url, '_blank');
+  };
 
   if (!product) {
     return (
@@ -26,36 +39,57 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="min-h-screen text-gray-800">
-      {/* Header section */}
-      <section className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center mb-16 rounded-2xl overflow-hidden" style={{ backgroundImage: `url('/products.jpg')` }}>
-        {/* Overlay */}
+    <div className="flex flex-col min-h-screen bg-gray-50 text-gray-800">
+      {/* Header moderno con imagen de fondo profesional */}
+      <header
+        className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center rounded-2xl overflow-hidden"
+        style={{
+          backgroundImage: "url('/products.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* Overlay oscuro con gradiente */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-        <div className="relative z-10 text-center text-white max-w-4xl px-6">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{product.name}</h1>
-          <p className="text-base md:text-lg text-gray-100 mb-6">{product.shortDesc}</p>
-        </div>
-      </section>
 
-      <main className="container mx-auto px-4 sm:px-6 max-w-7xl">
+        {/* Contenido centrado */}
+        <div className="relative z-10 text-center text-white max-w-4xl px-6 pt-20"> {/* Agregado pt-20 para ajustar el espacio superior */}
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+            {product.name}
+          </h1>
+          <p className="text-base md:text-lg text-gray-100 leading-relaxed max-w-2xl mx-auto">
+            {product.shortDesc}
+          </p>
+          <div className="h-1 bg-[#e3001b] mx-auto mt-6 rounded-full shadow-lg w-20" />
+        </div>
+      </header>
+
+      <main className="container mx-auto px-4 sm:px-6 max-w-7xl mt-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-6">
+            {/* Imagen principal grande */}
             <div className="bg-white rounded-2xl shadow-md overflow-hidden">
               <div className="relative h-96">
                 <img 
-                  src={product.images[0]} 
+                  src={selectedImage} 
                   alt={product.name} 
                   className="w-full h-full object-contain"
                   onError={(e) => { e.currentTarget.src = "/img/placeholder-product.jpg"; }}
                 />
               </div>
+
+              {/* Thumbnails pequeños */}
               <div className="flex justify-center gap-4 p-4">
-                {product.images.slice(1).map((img, index) => (
+                {product.images.map((img, index) => (
                   <img 
                     key={index}
                     src={img}
                     alt={`${product.name} - ${index + 1}`}
-                    className="w-24 h-24 object-cover cursor-pointer hover:scale-105 transition-transform"
+                    className={`w-24 h-24 object-cover cursor-pointer transition-transform hover:scale-105 ${
+                      selectedImage === img ? "ring-2 ring-[#e3001b]" : ""
+                    }`}
+                    onClick={() => setSelectedImage(img)}
                   />
                 ))}
               </div>
@@ -95,6 +129,17 @@ const ProductDetails = () => {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Botón de Contacto por WhatsApp al final */}
+        <div className="mt-12 mb-8 flex justify-center">
+          <button
+            onClick={handleWhatsAppClick}
+            className="flex items-center gap-3 bg-[#25D366] hover:bg-[#128C7E] text-white font-bold py-4 px-8 rounded-full shadow-lg transform transition-all duration-200 hover:scale-105"
+          >
+            <Phone className="w-6 h-6" />
+            <span>Preguntar por WhatsApp</span>
+          </button>
         </div>
       </main>
     </div>
