@@ -72,7 +72,7 @@ const Navbar = () => {
       {/* ===== TOP BAR: Contacto + Redes + Wompi ===== */}
       <div
         className={`transition-all duration-500 ease-in-out overflow-hidden bg-gradient-to-r from-gray-50 to-white shadow-sm border-b border-gray-100 ${
-          showTopBar ? "max-h-20 opacity-100 py-3" : "max-h-0 opacity-0"
+          showTopBar ? "max-h-48 opacity-100 py-3 sm:py-3" : "max-h-0 opacity-0"
         }`}
       >
         <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-3">
@@ -94,8 +94,8 @@ const Navbar = () => {
           </div>
 
           {/* Right: Social Icons + Wompi Button */}
-          <div className="flex items-center gap-3">
-            <div className="flex gap-2">
+          <div className="flex flex-col items-center w-full sm:flex-row sm:items-center gap-3 sm:gap-3 sm:w-auto mt-2 sm:mt-0">
+            <div className="flex gap-2 w-full sm:w-auto justify-center sm:justify-start">
               <a
                 href="https://facebook.com"
                 aria-label="Facebook"
@@ -116,16 +116,18 @@ const Navbar = () => {
               </a>
             </div>
 
-            {/* Wompi Button */}
+            {/* Wompi Button - CORREGIDO PARA QUE NO SE CORTE EN MÓVILES */}
             <a
-              href="https://www.wompi.co"
+              href="https://checkout.wompi.co/l/VPOS_Apws23"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 text-white text-xs sm:text-sm font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:from-red-700 hover:to-red-800 border border-red-500/20"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:from-red-600 hover:to-red-700 border border-red-500/20"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
+              <img 
+                src="/Wompi_ContraccionPrincipal.png" 
+                alt="Wompi Logo" 
+                className="w-7 h-7 object-contain" 
+              />
               Pago Seguro
             </a>
           </div>

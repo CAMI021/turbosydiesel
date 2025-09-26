@@ -119,7 +119,7 @@ const EquipmentCategory: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-gray-50 py-20">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         {/* Encabezado de categoría */}
         <motion.div
@@ -128,27 +128,9 @@ const EquipmentCategory: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-8">
             {categoryName}
           </h1>
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-            Explora nuestra gama completa de equipos especializados para{" "}
-            {categoryKey === "hartridge"
-              ? "pruebas y calibración de sistemas diesel"
-              : categoryKey === "ultrasonidos"
-                ? "limpieza y diagnóstico con tecnología ultrasónica"
-                : categoryKey === "balanceadoras"
-                  ? "equilibrio dinámico de componentes rotativos"
-                  : categoryKey === "dpf"
-                    ? "limpieza y regeneración de filtros de partículas diesel"
-                    : categoryKey === "millennium"
-                      ? "diagnóstico avanzado para vehículos comerciales y pesados"
-                      : categoryKey === "sand-blasters"
-                        ? "limpieza profunda y preparación de superficies metálicas"
-                        : categoryKey === "luxometro"
-                          ? "verificación de iluminación de faros y sistemas de iluminación"
-                          : "soluciones especializadas"}
-          </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <span className="bg-[#e3001b]/10 text-[#e3001b] px-4 py-2 rounded-full font-medium">
@@ -163,9 +145,9 @@ const EquipmentCategory: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Grid de equipos */}
+        {/* Grid de equipos centrado */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="flex flex-wrap justify-center gap-8"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -177,20 +159,21 @@ const EquipmentCategory: React.FC = () => {
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => handleEquipmentClick(equipment.id)}
-              className="bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl cursor-pointer border border-gray-100 hover:border-[#e3001b]/30"
+              className="w-full sm:w-80 lg:w-96 bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl cursor-pointer border border-gray-100 hover:border-[#e3001b]/30"
               role="button"
               tabIndex={0}
               aria-label={`Ver detalles de ${equipment.name}`}
               onKeyDown={(e) => handleKeyDown(e, equipment.id)}
             >
-              <div className="relative h-56 overflow-hidden">
+              <div className="relative h-56 overflow-hidden bg-white">
                 <img
                   src={equipment.images[0]} // Mostrar primera imagen del array
                   alt={equipment.name}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  className="w-full h-full object-contain object-center transition-transform duration-500 hover:scale-105"
                   loading="lazy"
                   onError={(e) => {
                     e.currentTarget.src = "/img/placeholder-equipment.jpg";
+                    e.currentTarget.parentElement?.classList.add('bg-gray-100');
                   }}
                 />
                 <div className="absolute top-4 right-4 bg-[#e3001b] text-white px-3 py-1 rounded-full text-sm font-medium">

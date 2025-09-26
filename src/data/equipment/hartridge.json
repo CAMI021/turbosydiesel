@@ -158,21 +158,6 @@
       "Diagnóstico básico en talleres"
     ],
     "technicalSheetPdf": "/pdfs/testmaster-2-hh700.pdf"
-  },
-  {
-    "id": "master",
-    "name": "Master",
-    "images": ["/equipos/master.jpg"],
-    "description": "Equipo de pruebas general para aplicaciones múltiples en inyección diesel.",
-    "specifications": [
-      "Versátil y adaptable",
-      "Diseño robusto",
-      "Compatibilidad con varios sistemas"
-    ],
-    "applications": [
-      "Pruebas de inyectores",
-      "Pruebas de bombas diesel"
-    ],
-    "technicalSheetPdf": "/pdfs/master.pdf"
   }
+  
 ]

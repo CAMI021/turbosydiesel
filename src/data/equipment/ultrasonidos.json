@@ -17,7 +17,7 @@
       "Limpieza de válvulas y piezas metálicas",
       "Preparación de superficies antes de reparación"
     ],
-    "technicalSheetPdf": "/pdfs/ultrasonido-6lts.pdf"
+    "technicalSheetPdf": "/pdfs/ultasonido_6litros[1].pdf"
   },
   {
     "id": "ultrasonido-2lts",
@@ -37,12 +37,12 @@
       "Limpieza de herramientas",
       "Preparación de piezas para reparación"
     ],
-    "technicalSheetPdf": "/pdfs/ultrasonido-2lts.pdf"
+    "technicalSheetPdf": "/pdfs/ultasonido_2litros[1].pdf"
   },
   {
     "id": "ultrasonido-120l",
     "name": "Equipo Ultrasonido 120L",
-    "images": ["/equipos/ultrasonido-120l.jpg"],
+    "images": ["/equipos/ultrasonido-120lts.jpg"],
     "description": "Equipo industrial de limpieza ultrasónica de gran capacidad para piezas grandes y pesadas. Ideal para talleres especializados.",
     "specifications": [
       "Capacidad: 120 litros",
@@ -57,6 +57,6 @@
       "Limpieza de piezas industriales",
       "Preparación de superficies para soldadura"
     ],
-    "technicalSheetPdf": "/pdfs/ultrasonido-120l.pdf"
+    "technicalSheetPdf": "/pdfs/ultrasonido-120l(1).pdf"
   }
 ]
