@@ -1,22 +1,24 @@
 [
-    {
-      "id": "nhd-6108",
-      "name": "NHD-6108 Luxómetro Comprobador de Luces",
-      "images": ["/equipos/nhd-6108.jpg"],
-      "description": "Medidor de intensidad luminosa para verificar iluminación de faros y sistemas de iluminación automotriz según estándares internacionales.",
-      "specifications": [
-        "Rango de medición: 0-100,000 lux",
-        "Precisión: ±2%",
-        "Pantalla LCD retroiluminada",
-        "Almacenamiento de datos",
-        "Compatibilidad con estándares ECE y SAE"
-      ],
-      "applications": [
-        "Verificación de faros delanteros",
-        "Medición de intensidad de luces",
-        "Cumplimiento de normativas de iluminación",
-        "Diagnóstico de sistemas de iluminación"
-      ],
-      "technicalSheetPdf": "/pdfs/nhd-6108.pdf"
-    }
-  ]
+  {
+    "id": "nhd-6108",
+    "name": "NHD-6108",
+    "images": ["/equipos/08.jpg"],
+    "description": "Sistema avanzado para comprobación de luces con tecnología CMOS y DSP de alta velocidad. Realiza pruebas automáticas y precisas de parámetros de luces de carretera y cruce en 40 segundos (25 segundos para dos faros sincronizados), incorporando alineación de imagen para eliminar interferencias y pantalla LCD para ajustes rápidos. Ideal para estaciones de inspección profesionales.",
+    "specifications": [
+      "Tecnología CMOS y DSP de alta velocidad para pruebas automáticas y precisas",
+      "Tiempo de inspección: 40 segundos (luces individuales), 25 segundos (dos faros sincronizados)",
+      "Sistema de alineación de imagen que elimina interferencias externas",
+      "Movimiento horizontal estable mediante conversión de frecuencia",
+      "Pantalla LCD para visualización clara de resultados y ajustes",
+      "Múltiples modos de inspección (standalone/red) con conectividad en red",
+      "Función de ajuste e inspección en línea para máxima flexibilidad"
+    ],
+    "applications": [
+      "Verificación de faros delanteros",
+      "Medición de intensidad de luces",
+      "Cumplimiento de normativas de iluminación",
+      "Diagnóstico de sistemas de iluminación"
+    ],
+    "technicalSheetPdf": "/pdfs/nhd-6108.pdf"
+  }
+]

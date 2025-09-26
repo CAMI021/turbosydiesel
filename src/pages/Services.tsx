@@ -5,11 +5,14 @@ import {
   FaCog, 
   FaTools, 
   FaCheckCircle,
-  FaCertificate,
   FaGasPump,
   FaTachometerAlt,
   FaSearch,
-  FaFlask
+  FaFlask,
+  FaLaptop,
+  FaFilter,
+  FaTint,
+  FaCogs
 } from "react-icons/fa";
 
 const Services = () => {
@@ -23,6 +26,10 @@ const Services = () => {
       description: "Reparación especializada de sistemas diesel y turbos con tecnología de última generación. Nuestros técnicos certificados diagnostican y resuelven problemas complejos con precisión.",
       features: [
         "Diagnóstico avanzado con equipos de última generación",
+        "Solución para alto consumo de combustible",
+        "Corrección de problemas de poca fuerza",
+        "Reparación de exceso de humo",
+        "Preparación para revisión tecnomecánica",
         "Reparación de inyectores, bombas y sistemas de alimentación",
         "Análisis de fallos con reporte detallado",
         "Garantía extendida de 12 meses en todas las reparaciones"
@@ -38,7 +45,11 @@ const Services = () => {
         "Planes de mantenimiento personalizados",
         "Limpieza y calibración de sistemas",
         "Revisión periódica de componentes críticos",
-        "Optimización de rendimiento y eficiencia"
+        "Optimización de rendimiento y eficiencia",
+        "Mantenimiento por kilometraje programado",
+        "Servicio especializado para flotas",
+        "Asesoría en montaje de laboratorios",
+        "Capacitación técnica en sistemas diesel"
       ],
       image: "/mantenimiento.png"
     },
@@ -51,36 +62,13 @@ const Services = () => {
         "Instalación de turbos y sistemas de alimentación",
         "Adaptación de sistemas a diferentes tipos de motor",
         "Configuración electrónica avanzada",
-        "Soporte post-instalación completo"
+        "Soporte post-instalación completo",
+        "Sistemas de filtración RACOR",
+        "Adaptación de filtros separadores de agua",
+        "Venta de bancos de prueba especializados",
+        "Servicio a domicilio disponible"
       ],
       image: "/instalacion.png"
-    }
-  ];
-
-  const certifications = [
-    {
-      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
-      title: "Delphi Diesel Excellence",
-      description: "Servicio Autorizado",
-      image: "/cert-delphi.png"
-    },
-    {
-      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
-      title: "Bosch Diesel Center",
-      description: "Servicio Autorizado",
-      image: "/cert-bosch.jpg"
-    },
-    {
-      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
-      title: "Zexel, Stanadyne, Doowan",
-      description: "Servicio Autorizado",
-      image: "/cert-zexel.png"
-    },
-    {
-      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
-      title: "HOLSET Turbos",
-      description: "Servicio Autorizado",
-      image: "/cert-holset.png"
     }
   ];
 
@@ -114,6 +102,26 @@ const Services = () => {
       icon: <FaFlask className="text-[#e3001b]" />,
       title: "Análisis de Combustible",
       description: "Lavado, diálisis de tanques y medición de opacidad"
+    },
+    {
+      icon: <FaLaptop className="text-[#e3001b]" />,
+      title: "Servicio de Escáner",
+      description: "Diagnóstico avanzado con equipos especializados"
+    },
+    {
+      icon: <FaFilter className="text-[#e3001b]" />,
+      title: "Sistemas de Filtración RACOR",
+      description: "Instalación y mantenimiento de sistemas RACOR"
+    },
+    {
+      icon: <FaTint className="text-[#e3001b]" />,
+      title: "Adaptación de Filtros Separadores de Agua",
+      description: "Soluciones para separación de agua en combustible"
+    },
+    {
+      icon: <FaCogs className="text-[#e3001b]" />,
+      title: "Venta de Bancos de Prueba",
+      description: "Equipos especializados para diagnóstico y reparación"
     }
   ];
 
@@ -213,55 +221,6 @@ const Services = () => {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Certifications */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-[#e3001b]">Certificaciones Oficiales</h2>
-            <p className="text-gray-600">
-              Autorizados por las principales marcas del mercado
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {certifications.map((cert, index) => (
-              <div 
-                key={index}
-                className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm text-center"
-              >
-                <div className="flex justify-center mb-4">
-                  <div className="bg-[#e3001b]/10 p-3 rounded-full">
-                    {cert.icon}
-                  </div>
-                </div>
-                
-                <div className="mb-4 h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
-                  <img 
-                    src={cert.image} 
-                    alt={`Certificación ${cert.title}`}
-                    className="w-full h-full object-contain"
-                    onError={(e) => {
-                      const imgElement = e.currentTarget as HTMLImageElement;
-                      imgElement.style.display = 'none';
-                      const nextSibling = imgElement.nextElementSibling;
-                      if (nextSibling) {
-                        (nextSibling as HTMLElement).style.display = 'flex';
-                      }
-                    }}
-                  />
-                  <div className="hidden items-center justify-center text-gray-400 text-sm">
-                    Imagen de certificación
-                  </div>
-                </div>
-                
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{cert.title}</h3>
-                <p className="text-gray-600 text-sm">{cert.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

@@ -22,6 +22,9 @@ const ProductDetails = () => {
     window.open(url, '_blank');
   };
 
+  // Verificar si el producto debe mostrar el PDF (solo ISO4113)
+  const shouldShowPdf = product?.id === "iso4113" && product?.technicalSheetPdf;
+
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -118,16 +121,19 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-2xl shadow-md p-6">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">Descargar ficha técnica</h2>
-              <a 
-                href={product.technicalSheetPdf}
-                download
-                className="text-[#e3001b] hover:underline flex items-center"
-              >
-                Descargar PDF <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
-            </div>
+            {/* Mostrar sección de PDF solo para productos ISO4113 */}
+            {shouldShowPdf && (
+              <div className="bg-white rounded-2xl shadow-md p-6">
+                <h2 className="text-2xl font-bold text-gray-800 mb-4">Descargar ficha técnica</h2>
+                <a 
+                  href={product.technicalSheetPdf}
+                  download
+                  className="text-[#e3001b] hover:underline flex items-center"
+                >
+                  Descargar PDF <ArrowRight className="ml-2 w-4 h-4" />
+                </a>
+              </div>
+            )}
           </div>
         </div>
 

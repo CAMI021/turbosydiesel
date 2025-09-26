@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Star, MessageCircle, CheckCircle, MapPin } from "lucide-react";
+import { MessageCircle, CheckCircle, MapPin, X } from "lucide-react";
 import { useState, useEffect } from 'react';
+import { FaCertificate } from "react-icons/fa";
 
 interface Testimonial {
   name: string;
@@ -11,12 +12,19 @@ interface Testimonial {
   role?: string;
 }
 
+interface CertificationDetails {
+  title: string;
+  description: string;
+  highlights: string[];
+  details: string;
+}
+
 const App = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedCertification, setSelectedCertification] = useState<string | null>(null);
   const images = [
     '/videohome.gif',
     '/image1.jpg',
-    '/image2.jpg',
     '/image3.png'
   ];
 
@@ -28,6 +36,7 @@ const App = () => {
     return () => clearInterval(interval);
   }, [images]);
 
+  // Mantenemos testimonials aunque no se use actualmente (por si se necesita después)
   const testimonials: Testimonial[] = [
     {
       name: "Ivan Aldana Martinez",
@@ -52,11 +61,103 @@ const App = () => {
     }
   ];
 
+  const certificationDetails: Record<string, CertificationDetails> = {
+    "HOLSET Turbos": {
+      title: "Servicio Autorizado Holset en Colombia",
+      description: "Con más de 40 años de experiencia en el país, ofrecemos soluciones confiables en ya que somos especialistas en ventas y servicio de turbocargadores con el respaldo directo de fábrica.",
+      highlights: [
+        "Distribuidores autorizados de Turbos Holset (Cummins Turbo Technologies)",
+        "Turbocargadores y repuestos 100% originales",
+        "Laboratorio con equipos de última generación para diagnóstico y calibración",
+        "Reparaciones por kilometraje para mayor vida útil"
+      ],
+      details: "Nuestra trayectoria garantiza confianza, calidad y un servicio especializado reconocido en el sector automotriz, industrial y de transporte. Contamos con soporte técnico y garantía directa de fábrica, asegurando el máximo rendimiento y durabilidad de sus turbocargadores."
+    },
+    "Bosch Diesel Center": {
+      title: "Servicio Autorizado Bosch Diesel Center",
+      description: "Con más de dos décadas de trayectoria en el país, somos autorizados Bosch Diesel Center para sistemas electrónicos Diesel.",
+      highlights: [
+        "Sistemas Common Rail, Unidades EUI/UPS, Bombas VP37/VP44",
+        "Repuestos genuinos Bosch con respaldo de la marca",
+        "Bancos de pruebas exclusivos Bosch",
+        "Asesoría técnica y capacitación especializada"
+      ],
+      details: "Nuestra experiencia, junto al respaldo directo de fábrica, nos permite ofrecer soluciones confiables y tecnología de última generación para el sector automotor liviano y pesado, industrial, agrícola y generación. Elegir repuestos Bosch es sinónimo de calidad, seguridad y confianza."
+    },
+    "Delphi Diesel Excellence": {
+      title: "Delphi Diesel Excellence",
+      description: "Servicio Autorizado Delphi Diesel Excellence con experiencia comprobada en reparación confiable y garantía de fábrica.",
+      highlights: [
+        "Más de 40 años en Colombia",
+        "Repuestos originales y soporte técnico especializado",
+        "Equipos de prueba oficiales para sistemas Common Rail",
+        "Software directo de fábrica para codificación"
+      ],
+      details: "Somos su aliado de confianza en sistemas de inyección DELPHI DIESEL, asegurando la máxima durabilidad para su inversión. Contamos con la tecnología necesaria para garantizar el correcto funcionamiento de sus sistemas de inyección electrónica y mecánica."
+    },
+    "Zexel, Stanadyne, Doowan": {
+      title: "Zexel, Stanadyne, Doowan",
+      description: "Especialistas en sistemas de inyección para marcas premium con soporte técnico especializado.",
+      highlights: [
+        "Reparación y servicio para sistemas Zexel",
+        "Componentes Stanadyne originales",
+        "Tecnología Doowan de última generación",
+        "Diagnóstico avanzado y calibración precisa"
+      ],
+      details: "Trabajamos con estas marcas reconocidas mundialmente. Nuestro laboratorio está equipado con tecnología específica para cada sistema, garantizando reparaciones de la más alta calidad. Contamos con soporte técnico especializado para estos sistemas de inyección."
+    }
+  };
+
+  const certifications = [
+    {
+      id: "holset",
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      title: "HOLSET Turbos",
+      description: "Servicio Autorizado",
+      image: "/cert-holset.png"
+    },
+    {
+      id: "bosch",
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      title: "Bosch Diesel Center",
+      description: "Servicio Autorizado",
+      image: "/cert-bosch.jpg"
+    },
+    {
+      id: "delphi",
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      title: "Delphi Diesel Excellence",
+      description: "Servicio Autorizado",
+      image: "/cert-delphi.png"
+    },
+    {
+      id: "zexel",
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      title: "Zexel, Stanadyne, Doowan",
+      description: "Especialistas en sistemas de inyección",
+      image: "/cert-zexel.png"
+    }
+  ];
+
   // Función para navegar al catálogo (simulada para el ejemplo)
   const handleViewCatalog = () => {
     // En tu aplicación real, esto funcionará con react-router-dom
     window.location.href = '/products';
   };
+
+  // Función helper para obtener los detalles de certificación de forma segura
+  const getCertificationDetails = (certId: string | null): CertificationDetails | null => {
+    if (!certId) return null;
+    const cert = certifications.find(c => c.id === certId);
+    if (!cert) return null;
+    return certificationDetails[cert.title] || null;
+  };
+
+  const selectedCertDetails = getCertificationDetails(selectedCertification);
+  const selectedCert = selectedCertification ? certifications.find(c => c.id === selectedCertification) : null;
+
+  // Suprimir warnings para variables no utilizadas (temporal)
+  console.log({ testimonials, handleViewCatalog }); // Se puede remover en producción
 
   return (
     <div className="no-horizontal-scroll bg-[#f4f4f4]">
@@ -217,7 +318,7 @@ const App = () => {
 
           {/* SEGUNDO CARRUSEL - MODIFICADO (ahora estático con título) */}
           <div className="mt-16">
-            <h3 className="text-2xl font-bold text-center text-black mb-8">Estamos asociados con:</h3>
+            <h3 className="text-2xl font-bold text-center text-black mb-8">Empresas del grupo:</h3>
             <div className="flex justify-center gap-2">
               {/* Primera imagen */}
               <div className="w-80 h-20 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100">
@@ -241,143 +342,155 @@ const App = () => {
         </div>
       </section>
 
+      {/* Sección de Certificaciones Oficiales - Reemplaza a Sistemas de Inyección */}
       <section className="full-width py-16 bg-gray-50">
         <div className="container-wide">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
-            className="text-3xl font-bold text-center text-black mb-2"
-          >
-            Lo que dicen nuestros clientes
-          </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
-            viewport={{ once: true }} 
-            transition={{ delay: 0.2 }} 
-            className="text-center text-gray-600 max-w-2xl mx-auto mb-8"
-          >
-            Confía en nosotros como lo han hecho cientos de clientes satisfechos
-          </motion.p>
-          
-          <motion.div 
-            className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.25,
-                  delayChildren: 0.2
-                }
-              }
-            }}
-          >
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                variants={{
-                  hidden: { 
-                    opacity: 0, 
-                    y: 30,
-                    scale: 0.95,
-                    filter: "blur(5px)"
-                  },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0,
-                    scale: 1,
-                    filter: "blur(0px)",
-                    transition: {
-                      duration: 0.6,
-                      ease: [0.22, 1, 0.36, 1]
-                    }
-                  }
-                }}
-                className="bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#e3001b]/5 to-transparent" />
-                <div className="relative z-10">
-                  <div className="flex items-center mb-3">
-                    <div className="bg-gray-200 border-2 border-dashed rounded-xl w-10 h-10 flex items-center justify-center text-gray-400 mr-3">
-                      <img src={testimonial.avatar} alt={testimonial.name} className="w-full h-full object-cover rounded-xl" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-sm">{testimonial.name}</h4>
-                      <p className="text-xs text-gray-500">{testimonial.role}</p>
-                    </div>
-                  </div>
-                  <div className="flex text-yellow-400 mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star 
-                        key={i} 
-                        className={`w-3 h-3 ${i < testimonial.rating ? 'fill-current' : 'stroke-current'}`} 
-                      />
-                    ))}
-                  </div>
-                  <p className="text-gray-600 italic text-sm line-clamp-3">
-                    "{testimonial.content}"
-                  </p>
-                  <div className="mt-3 flex justify-end">
-                    <div className="bg-[#e3001b]/10 text-[#e3001b] text-xs font-semibold px-2 py-0.5 rounded-full">
-                      Cliente satisfecho
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="full-width bg-gradient-to-r from-gray-900 to-black py-20 flex items-center relative overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <motion.div 
-            animate={{ scale: [1, 1.05, 1], opacity: [0.1, 0.2, 0.1] }} 
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} 
-            className="absolute top-1/2 left-1/2 w-96 h-96 bg-white rounded-full -translate-x-1/2 -translate-y-1/2 opacity-10" 
-          />
-        </div>
-        <div className="container-wide relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
-              className="relative"
+              className="text-3xl font-bold mb-4 text-[#e3001b]"
             >
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-white/10">
-                <img src="/injector.png" alt="Inyectores electrónicos diesel" className="w-full h-auto object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-60"></div>
-              </div>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
+              Certificaciones Oficiales
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
               transition={{ delay: 0.2 }} 
-              className="text-white"
+              className="text-gray-600"
             >
-              <h2 className="text-4xl font-bold mb-6">Sistemas de Inyección</h2>
-              <ul className="space-y-4 mb-8">
-                {["Common Rail", "Unit Pump System (UPS)", "Bomba en línea (line pump)", "Mira nuestro catálogo entero para más"].map((item, index) => (
-                  <li key={index} className="flex items-center">
-                    <span className="w-3 h-3 bg-[#e3001b] rounded-full mr-3"></span> {item}
-                  </li>
-                ))}
-              </ul>
-              <Button 
-                onClick={handleViewCatalog}
-                className="bg-[#e3001b] text-white hover:bg-[#b00000] px-6 py-3 rounded-full font-bold text-lg min-w-[200px] cursor-pointer"
+              Autorizados por las principales marcas del mercado
+            </motion.p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {certifications.map((cert, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} 
+                transition={{ delay: index * 0.1 }}
+                className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm text-center cursor-pointer"
+                onClick={() => setSelectedCertification(cert.id)}
               >
-                Ver catálogo completo
-              </Button>
-            </motion.div>
+                <div className="flex justify-center mb-4">
+                  <div className="bg-[#e3001b]/10 p-3 rounded-full">
+                    {cert.icon}
+                  </div>
+                </div>
+                
+                <div className="mb-4 h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={cert.image} 
+                    alt={`Certificación ${cert.title}`}
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      const imgElement = e.currentTarget as HTMLImageElement;
+                      imgElement.style.display = 'none';
+                      const nextSibling = imgElement.nextElementSibling;
+                      if (nextSibling) {
+                        (nextSibling as HTMLElement).style.display = 'flex';
+                      }
+                    }}
+                  />
+                  <div className="hidden items-center justify-center text-gray-400 text-sm">
+                    Imagen de certificación
+                  </div>
+                </div>
+                
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{cert.title}</h3>
+                <p className="text-gray-600 text-sm">{cert.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* Modal de Detalles de Certificación */}
+      {selectedCertification && selectedCertDetails && selectedCert && (
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedCertification(null)}
+        >
+          <motion.div 
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative"
+            onClick={e => e.stopPropagation()}
+          >
+            <button 
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 z-10"
+              onClick={() => setSelectedCertification(null)}
+            >
+              <X className="h-6 w-6" />
+            </button>
+            
+            <div className="p-6 md:p-8">
+              <div className="flex items-center mb-6">
+                <div className="bg-[#e3001b]/10 p-3 rounded-lg mr-4">
+                  <FaCertificate className="text-[#e3001b] text-2xl" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#e3001b]">
+                  {selectedCertDetails.title}
+                </h3>
+              </div>
+              
+              <div className="grid md:grid-cols-3 gap-6">
+                <div className="md:col-span-2">
+                  <p className="text-gray-700 mb-4">
+                    {selectedCertDetails.description}
+                  </p>
+                  
+                  <p className="text-gray-600 italic mb-6">
+                    {selectedCertDetails.details}
+                  </p>
+                  
+                  <h4 className="font-bold text-gray-900 mb-3">Principales beneficios:</h4>
+                  <ul className="space-y-2">
+                    {selectedCertDetails.highlights.map((highlight: string, idx: number) => (
+                      <li key={idx} className="flex items-start">
+                        <span className="text-[#e3001b] mr-2">•</span>
+                        <span className="text-gray-700">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="bg-gray-50 rounded-xl p-5 border border-gray-200">
+                  <div className="h-40 mb-4 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden">
+                    <img 
+                      src={selectedCert.image} 
+                      alt={`Certificación ${selectedCert.title}`}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <h4 className="font-bold text-lg text-gray-900 mb-2">
+                    {selectedCert.title}
+                  </h4>
+                  <p className="text-gray-600 mb-4">
+                    {selectedCert.description}
+                  </p>
+                  <Button 
+                    className="bg-[#e3001b] text-white hover:bg-[#b00000] w-full"
+                    onClick={() => {
+                      window.open('https://wa.me/573185141579', '_blank');
+                      setSelectedCertification(null);
+                    }}
+                  >
+                    Consultar más información
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
 
       <section className="full-width py-20 bg-gradient-to-r from-[#e3001b] to-[#b00000] text-white text-center relative overflow-hidden">
         <div className="container-wide">
@@ -412,7 +525,7 @@ const App = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <a 
-                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA      " 
+                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
@@ -420,30 +533,13 @@ const App = () => {
                 <MapPin className="inline mr-2 h-5 w-5" /> Ver ubicación
               </a>
               <a 
-                href="https://wa.me/573185141579      " 
+                href="https://wa.me/573185141579" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
               >
                 <MessageCircle className="inline mr-2 h-5 w-5" /> Escribir al WhatsApp
               </a>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              transition={{ delay: 0.7 }} 
-              className="mt-8 flex justify-center"
-            >
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.8555787914743!2d-74.10359652454618!3d4.619842342352263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f995d7ec17ded%3A0x91d29e1da34260fc!2sDiesel%20y%20Turbos%20SAS!5e0!3m2!1ses-419!2sco!4v1758565470155!5m2!1ses-419!2sco" 
-                width="1000" 
-                height="400" 
-                style={{ border: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
             </motion.div>
             
             <motion.div 

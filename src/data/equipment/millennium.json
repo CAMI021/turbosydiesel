@@ -1,22 +1,93 @@
 [
-    {
-      "id": "millennium-100",
-      "name": "Estación de Diagnóstico Millennium 100",
-      "images": ["/equipos/millennium-100.jpg"],
-      "description": "Estación de diagnóstico avanzado para vehículos comerciales y pesados, con soporte multilenguaje y actualizaciones en tiempo real.",
-      "specifications": [
-        "Compatibilidad: Vehículos comerciales y pesados",
-        "Interfaz: Pantalla táctil de 12\"",
-        "Soporte multilenguaje",
-        "Actualizaciones OTA (Over-The-Air)",
-        "Conexión Bluetooth y WiFi"
-      ],
-      "applications": [
-        "Diagnóstico de sistemas electrónicos",
-        "Lectura y borrado de códigos de falla",
-        "Calibración de sistemas",
-        "Actualización de software"
-      ],
-      "technicalSheetPdf": "/pdfs/millennium-100.pdf"
-    }
-  ]
+  {
+    "id": "mk209",
+    "name": "MK209",
+    "images": ["/equipos/mk209.jpg"],
+    "description": "Probador portátil para inyectores Common Rail que permite pruebas integrales de inyectores electrónicos de múltiples marcas, con control de frecuencia y operación mediante pantalla táctil.",
+    "specifications": [
+      "Compatibilidad: Bosch, Denso, Delphi, Siemens y Carter",
+      "Presión máxima: 2000 Bar",
+      "Pantalla táctil de 12\"",
+      "Alimentación trifásica 220V",
+      "Depósito de combustible: 15 L"
+    ],
+    "applications": [
+      "Pruebas de volumen de inyección en ralentí, media velocidad y carga completa",
+      "Configuración de curvas de corriente y tiempo de inyección",
+      "Diagnóstico de sistemas de inyección electrónica"
+    ],
+    "technicalSheetPdf": "/pdfs/mk209.pdf"
+  },
+  {
+    "id": "mk215e",
+    "name": "MK-215E",
+    "images": ["/equipos/mk215e.jpg"],
+    "description": "Banco de pruebas para bombas e inyectores de Common Rail con generación de códigos y precisión industrial para múltiples marcas.",
+    "specifications": [
+      "Presión máxima opcional: 2700 Bar",
+      "Precisión de presión: ±5 Bar",
+      "Generación de códigos Bosch (6-10 dígitos), Denso QR, Delphi C2i/C3i",
+      "Compatibilidad con bombas Bosch, Denso, Delphi y CAT 320D"
+    ],
+    "applications": [
+      "Pruebas de resistencia e inductancia de válvulas solenoide",
+      "Generación de códigos para sistemas piezoeléctricos",
+      "Verificación de tiempo de respuesta BIP"
+    ],
+    "technicalSheetPdf": "/pdfs/mk215e.pdf"
+  },
+  {
+    "id": "mk800",
+    "name": "MK800",
+    "images": ["/equipos/mk800.jpg"],
+    "description": "Banco de prueba automático para inyectores Common Rail y HEUI, con regulación de presión y sensores de alta precisión.",
+    "specifications": [
+      "Presión máxima: 2700 Bar",
+      "Regulación automática (±0.5 MPa en alta presión)",
+      "Compatibilidad: Sistemas HEUI (C7/C9, Ford 6.0L/7.3L)",
+      "Sensor de flujo alemán original"
+    ],
+    "applications": [
+      "Pruebas de sellado y volumen de combustible",
+      "Análisis de elevación de válvulas y corriente",
+      "Calibración de sistemas piezoeléctricos y HEUI"
+    ],
+    "technicalSheetPdf": "/pdfs/mk800.pdf"
+  },
+  {
+    "id": "mk919",
+    "name": "MK919",
+    "images": ["/equipos/mk919.jpg"],
+    "description": "Equipo multifuncional para pruebas simultáneas de inyectores, bombas y sistemas HEUI/EUI con tanques duales de combustible.",
+    "specifications": [
+      "Pruebas simultáneas de hasta 6 inyectores Common Rail",
+      "Tanques duales diésel/aceite con sistema de refrigeración",
+      "Compatibilidad con sistemas VP37/VP44 y HEUI Navistar/CAT",
+      "Generación automática de códigos Bosch, Denso y Siemens"
+    ],
+    "applications": [
+      "Diagnóstico de inyectores HPI Q60 X15 y sistemas EUP",
+      "Pruebas de tiempo de respuesta BIP y resistencia de válvulas",
+      "Calibración de bombas CP1-CP5 y sistemas Denso HP0-HP6"
+    ],
+    "technicalSheetPdf": "/pdfs/mk919.pdf"
+  },
+  {
+    "id": "mk980",
+    "name": "MK980",
+    "images": ["/equipos/mk980.jpg"],
+    "description": "Banco de prueba robusto para bombas de inyección diesel con mediciones precisas de flujo y estabilización térmica.",
+    "specifications": [
+      "Rango de velocidad: 0-4000 RPM",
+      "Presión de alimentación: 0-4 MPa (alta)",
+      "Capacidad del tanque: 100 L",
+      "Filtración de aceite: 5µ"
+    ],
+    "applications": [
+      "Pruebas de bombas para maquinaria pesada",
+      "Calibración de parámetros de flujo y temperatura",
+      "Diagnóstico de sistemas de inyección industrial"
+    ],
+    "technicalSheetPdf": "/pdfs/mk980.pdf"
+  }
+]

@@ -14,6 +14,7 @@ export const products = {
         ],
         "technicalSheetPdf": "/pdfs/Filtros500-900-1000.pdf",
         "shortDesc": "",
+        "description": "Filtros de alta eficiencia para sistemas de combustible diésel",
         "technicalSpecs": [
           { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan condiciones exigentes" },
           { "label": "Función", "value": "Filtración eficaz para mantener la pureza del combustible y proteger el motor" },
@@ -41,6 +42,7 @@ export const products = {
         ],
         "technicalSheetPdf": "/pdfs/common-rail-specs.pdf",
         "shortDesc": "Inyectores Common Rail",
+        "description": "Inyectores de alta precisión para sistemas Common Rail",
         "technicalSpecs": [
           { "label": "Diseño", "value": "Construcción robusta para una larga vida útil en condiciones exigentes" },
           { "label": "Funcionalidad", "value": "Optimizado para un flujo constante y preciso de combustible" },
@@ -61,6 +63,7 @@ export const products = {
         ],
         "technicalSheetPdf": "/pdfs/common-rail-pump-specs.pdf",
         "shortDesc": "Bombas Common Rail",
+        "description": "Bombas de alta presión para sistemas Common Rail",
         "technicalSpecs": [
           { "label": "Construcción", "value": "Materiales duraderos y resistentes a la corrosión" },
           { "label": "Rendimiento", "value": "Diseño eficiente para un funcionamiento continuo y estable" },
@@ -88,6 +91,7 @@ export const products = {
         ],
         "technicalSheetPdf": "/pdfs/eui-specs.pdf",
         "shortDesc": "Inyectores EUI",
+        "description": "Inyectores electrónicos para sistemas EUI",
         "technicalSpecs": [
           { "label": "Diseño", "value": "Construcción sólida para resistir el uso continuo y prolongado" },
           { "label": "Función", "value": "Optimizado para un flujo constante y controlado de combustible" },
@@ -114,6 +118,7 @@ export const products = {
         ],
         "technicalSheetPdf": "/pdfs/pld-specs.pdf",
         "shortDesc": "Bombas PLD",
+        "description": "Bombas de línea directa para sistemas convencionales",
         "technicalSpecs": [
           { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan el uso intensivo" },
           { "label": "Rendimiento", "value": "Diseñado para un funcionamiento continuo y estable en diversas condiciones" },
@@ -140,6 +145,7 @@ export const products = {
         ],
         "technicalSheetPdf": "/pdfs/heui-specs.pdf",
         "shortDesc": "Inyectores HEUI",
+        "description": "Inyectores hidráulicos electrónicos para sistemas HEUI",
         "technicalSpecs": [
           { "label": "Diseño", "value": "Construcción robusta para larga durabilidad en condiciones exigentes" },
           { "label": "Funcionalidad", "value": "Optimizado para un flujo constante y controlado de combustible" },
@@ -161,11 +167,12 @@ export const products = {
         "name": "Bomba e inyectores",
         "brand": "Delphi",
         "images": [
-          "/productos/conventional/conventional-main.jpg",
-          "/productos/conventional/conventional1.jpg"
+          "/productos/inyectores/conventional-main.jpg",
+          "/productos/inyectores/conventional1.jpg"
         ],
         "technicalSheetPdf": "/pdfs/conventional-specs.pdf",
         "shortDesc": "Bomba e inyectores",
+        "description": "Sistemas tradicionales de inyección diésel",
         "technicalSpecs": [
           { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan el uso intensivo" },
           { "label": "Rendimiento", "value": "Diseñado para un funcionamiento constante y estable en diversas condiciones" },
@@ -193,6 +200,7 @@ export const products = {
         ],
         "technicalSheetPdf": "/pdfs/holset-hx50-specs.pdf",
         "shortDesc": "Turbos Holset",
+        "description": "Turboalimentadores de alto rendimiento",
         "technicalSpecs": [
           { "label": "Diseño", "value": "Construcción robusta para resistir condiciones exigentes y prolongar la vida útil" },
           { "label": "Funcionalidad", "value": "Optimizado para mejorar el flujo de aire y la eficiencia del motor" },
@@ -201,6 +209,35 @@ export const products = {
         ],
         "mainFeatures": [
           "Los turbos Holset incrementan la potencia y eficiencia del motor al forzar más aire en la cámara de combustión. Diseñados para resistir altas temperaturas y presiones, ofrecen una respuesta rápida y un rendimiento consistente en condiciones exigentes."
+        ]
+      }
+    ]
+  },
+  // 👇 CATEGORÍA CORREGIDA - SOLO LÍQUIDO ISO4113
+  "liquido-de-calibracion": {
+    "title": "Líquidos de Calibración",
+    "description": "Líquidos de calibración ISO4113 para sistemas de inyección diésel",
+    "products": [
+      {
+        "id": "iso4113",
+        "name": "Líquidos de calibración ISO4113",
+        "brand": "CalibraTech",
+        "images": [
+          "/productos/iso4113-main.jpg",
+          "/productos/iso4113-1.jpg"
+        ],
+        "technicalSheetPdf": "/pdfs/iso4113-specs.pdf",
+        "shortDesc": "Líquido de calibración ISO4113 para sistemas Common Rail y HEUI",
+        "description": "Líquido especializado para calibración de sistemas de inyección según norma ISO4113",
+        "technicalSpecs": [
+          { "label": "Norma", "value": "ISO 4113:2021" },
+          { "label": "Composición", "value": "Fluido hidráulico sintético con aditivos anti-desgaste" },
+          { "label": "Viscosidad", "value": "ISO VG 10 (a 40°C)" },
+          { "label": "Rango de temperatura", "value": "-20°C a +85°C" },
+          { "label": "Compatibilidad", "value": "Sistemas Common Rail, HEUI, EUI y PLD" }
+        ],
+        "mainFeatures": [
+          "Líquido de calibración certificado según norma ISO 4113, diseñado para verificar y ajustar la precisión de inyectores y bombas de alta presión. Garantiza mediciones exactas y prolonga la vida útil de los componentes mediante su fórmula anti-corrosiva."
         ]
       }
     ]

@@ -76,8 +76,8 @@ const products: Product[] = [
     description: "Bombas de alta precisión para sistemas PLD de inyección diesel",
   },
   {
-    slug: "calibration-fluid",
-    categoryKey: "calibration-fluid",
+    slug: "liquido-de-calibracion", // ← CORREGIDO
+    categoryKey: "liquido-de-calibracion", // ← CORREGIDO
     name: "Líquido de Calibración",
     img: "/productos/calibration-fluid-main.jpg",
     description: "Líquidos especializados para la calibración precisa de sistemas de inyección diesel",
