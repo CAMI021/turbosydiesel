@@ -22,13 +22,14 @@ const equipmentCategories: EquipmentCategory[] = [
     description:
       "Equipos profesionales de prueba y calibración para sistemas de inyección diesel de última generación, con tecnología de precisión milimétrica.",
   },
-  {
-    slug: "millennium",
-    categoryKey: "millennium",
-    name: "Bancos de prueba", // Cambio de nombre
-    img: "/equipos/millennium-catalogo.jpg",
-    description: "Fichas pendientes",
-  },
+  // COMENTADO TEMPORALMENTE - Descomentar cuando esté listo
+  // {
+  //   slug: "millennium",
+  //   categoryKey: "millennium",
+  //   name: "Bancos de prueba", // Cambio de nombre
+  //   img: "/equipos/millennium-catalogo.jpg",
+  //   description: "Fichas pendientes",
+  // },
   {
     slug: "ultrasonidos",
     categoryKey: "ultrasonidos",
