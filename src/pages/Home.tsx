@@ -16,32 +16,42 @@ interface CertificationDetails {
   };
 }
 
+// Definimos interfaces para tipar correctamente las variables
+interface Certification {
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  image: string;
+}
+
+interface Brand {
+  id: string;
+  image: string;
+}
+
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCertification, setSelectedCertification] = useState<string | null>(null);
   const [showAllBrands, setShowAllBrands] = useState(false);
-  const [timeRemaining, setTimeRemaining] = useState(9000); // Inicializamos con 9000 ms para el GIF/video
+  const [timeRemaining, setTimeRemaining] = useState(9000);
   const [isImageFixed, setIsImageFixed] = useState(false);
   const mediaItems = [
-    '/videohome1.mp4', // Cambiado a video
+    '/videohome1.mp4',
     '/image2.jpg',
     '/image1.jpg',
     '/image3.png'
   ];
 
-  // Este efecto se encarga de inicializar el tiempo restante cuando cambia el índice
   useEffect(() => {
-    // Determinar el tiempo inicial basado en el índice actual
     const initialTime = currentIndex === 0 ? 9000 : 6000;
     setTimeRemaining(initialTime);
   }, [currentIndex]);
 
-  // Este efecto maneja el temporizador para cambiar de imagen/video
   useEffect(() => {
-    if (isImageFixed) return; // Si la imagen/video está fija, no hacer nada
+    if (isImageFixed) return;
     
     const timer = setTimeout(() => {
-      // Solo avanzar si no está fija
       if (!isImageFixed) {
         setCurrentIndex(prevIndex => (prevIndex + 1) % mediaItems.length);
       }
@@ -52,15 +62,12 @@ const Home = () => {
 
   const handleImageClick = (index: number) => {
     if (index === currentIndex && !isImageFixed) {
-      // Si es la imagen/video 2 (índice 1), redirigir a WhatsApp
       if (index === 1) {
         window.open('https://wa.me/573185141579', '_blank');
       } else {
-        // Para otras imágenes/videos, agregar 5 segundos al tiempo restante
         setTimeRemaining(prev => prev + 5000);
         setIsImageFixed(true);
         
-        // Limpiar el estado de fijación después de 5 segundos adicionales
         const timer = setTimeout(() => {
           setIsImageFixed(false);
         }, 5000);
@@ -71,26 +78,114 @@ const Home = () => {
   };
 
   const certificationDetails: Record<string, CertificationDetails> = {
-    // ... (El resto del código sigue igual)
+    "Bosch": {
+      title: "Certificación Bosch",
+      description: "Servicio autorizado para sistemas de inyección diesel Bosch",
+      highlights: [
+        "Técnicos certificados por Bosch",
+        "Equipo especializado para diagnóstico",
+        "Repuestos originales Bosch",
+        "Garantía extendida en reparaciones"
+      ],
+      details: "Nuestro taller cuenta con la certificación oficial de Bosch para la reparación y mantenimiento de sistemas de inyección diesel, garantizando la máxima calidad en cada servicio.",
+      equipment: {
+        image: "/bosch-test-bench.jpg",
+        caption: "Banco de pruebas Bosch",
+        description: "Equipo especializado para diagnóstico y calibración de componentes Bosch"
+      }
+    },
+    "Delphi": {
+      title: "Certificación Delphi",
+      description: "Servicio autorizado para sistemas de inyección diesel Delphi",
+      highlights: [
+        "Técnicos certificados por Delphi",
+        "Herramientas especializadas",
+        "Repuestos originales Delphi",
+        "Diagnóstico preciso"
+      ],
+      details: "Contamos con la certificación oficial de Delphi, lo que nos permite ofrecer servicios de reparación y mantenimiento con estándares de calidad reconocidos internacionalmente.",
+      equipment: {
+        image: "/delphi-test-bench.jpg",
+        caption: "Banco de pruebas Delphi",
+        description: "Equipo especializado para diagnóstico y calibración de componentes Delphi"
+      }
+    },
+    "Denso": {
+      title: "Certificación Denso",
+      description: "Servicio autorizado para sistemas de inyección diesel Denso",
+      highlights: [
+        "Técnicos certificados por Denso",
+        "Tecnología de punta",
+        "Repuestos originales Denso",
+        "Servicio integral"
+      ],
+      details: "Nuestro centro de servicio cuenta con la certificación oficial de Denso, garantizando que todos nuestros procesos cumplan con los estándares de calidad exigidos por la marca.",
+      equipment: {
+        image: "/denso-test-bench.jpg",
+        caption: "Banco de pruebas Denso",
+        description: "Equipo especializado para diagnóstico y calibración de componentes Denso"
+      }
+    }
   };
 
-  const certifications = [
-    // ... (El resto del código sigue igual)
+  // Definimos los tipos explícitamente para evitar errores de TypeScript
+  const certifications: Certification[] = [
+    {
+      id: "bosch",
+      title: "Bosch",
+      description: "Servicio autorizado para sistemas de inyección diesel Bosch",
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      image: "/cert-bosch.jpg"
+    },
+    {
+      id: "delphi",
+      title: "Delphi",
+      description: "Servicio autorizado para sistemas de inyección diesel Delphi",
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      image: "/cert-delphi.jpg"
+    },
+    {
+      id: "denso",
+      title: "Denso",
+      description: "Servicio autorizado para sistemas de inyección diesel Denso",
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      image: "/cert-denso.jpg"
+    }
   ];
 
-  const allBrands = [
-    // ... (El resto del código sigue igual)
+  // Definimos los tipos explícitamente para evitar errores de TypeScript
+  const allBrands: Brand[] = [
+    { id: "bosch", image: "/brand-bosch.jpg" },
+    { id: "delphi", image: "/brand-delphi.jpg" },
+    { id: "denso", image: "/brand-denso.jpg" },
+    { id: "continental", image: "/brand-continental.jpg" },
+    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" },
+    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" },
+    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" },
+    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" },
+    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" },
+    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" }
   ];
 
   const getCertificationDetails = (certId: string | null): CertificationDetails | null => {
     if (!certId) return null;
-    const cert = certifications.find(c => c.id === certId);
-    if (!cert) return null;
-    return certificationDetails[cert.title] || null;
+    
+    const certMap: Record<string, string> = {
+      "bosch": "Bosch",
+      "delphi": "Delphi",
+      "denso": "Denso"
+    };
+    
+    const certName = certMap[certId];
+    if (!certName) return null;
+    
+    return certificationDetails[certName] || null;
   };
 
   const selectedCertDetails = getCertificationDetails(selectedCertification);
-  const selectedCert = selectedCertification ? certifications.find(c => c.id === selectedCertification) : null;
+  const selectedCert = selectedCertification 
+    ? certifications.find(c => c.id === selectedCertification) 
+    : null;
 
   return (
     <div className="no-horizontal-scroll bg-[#f4f4f4]">
@@ -128,9 +223,8 @@ const Home = () => {
                 key={index}
                 onClick={() => {
                   setCurrentIndex(index);
-                  // Establecer el tiempo restante adecuado para la imagen/video seleccionada
                   const time = index === 0 ? 9000 : 6000;
-                  setTimeRemaining(time + 5000); // +5 segundos por el clic
+                  setTimeRemaining(time + 5000);
                   setIsImageFixed(true);
                 }}
                 className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-500'}`}
@@ -212,7 +306,6 @@ const Home = () => {
             </motion.p>
           </div>
 
-          {/* CAMBIO PRINCIPAL: grid-cols-5 para pantallas grandes */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {certifications.map((cert, index) => (
               <motion.div
@@ -430,7 +523,6 @@ const Home = () => {
                     ))}
                   </ul>
 
-                  {/* Banco de pruebas para Delphi */}
                   {selectedCertDetails.equipment && (
                     <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
                       <h5 className="font-bold text-gray-900 mb-2 text-center">{selectedCertDetails.equipment.caption}</h5>
