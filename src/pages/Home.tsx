@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, CheckCircle, MapPin, X } from "lucide-react";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaCertificate } from "react-icons/fa";
 
 interface CertificationDetails {
@@ -16,49 +16,46 @@ interface CertificationDetails {
   };
 }
 
-// Definimos interfaces para tipar correctamente las variables
-interface Certification {
-  id: string;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  image: string;
-}
-
-interface Brand {
-  id: string;
-  image: string;
-}
-
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCertification, setSelectedCertification] = useState<string | null>(null);
   const [showAllBrands, setShowAllBrands] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(9000);
   const [isImageFixed, setIsImageFixed] = useState(false);
-  const mediaItems = [
+  const videoRef = useRef<HTMLVideoElement>(null);
+  
+  const images = [
     '/videohome1.mp4',
     '/image2.jpg',
     '/image1.jpg',
     '/image3.png'
   ];
 
+  // Este efecto se encarga de inicializar el tiempo restante cuando cambia el índice
   useEffect(() => {
     const initialTime = currentIndex === 0 ? 9000 : 6000;
     setTimeRemaining(initialTime);
   }, [currentIndex]);
 
+  // Este efecto maneja el temporizador para cambiar de imagen
   useEffect(() => {
     if (isImageFixed) return;
     
     const timer = setTimeout(() => {
       if (!isImageFixed) {
-        setCurrentIndex(prevIndex => (prevIndex + 1) % mediaItems.length);
+        setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
       }
     }, timeRemaining);
 
     return () => clearTimeout(timer);
   }, [currentIndex, timeRemaining, isImageFixed]);
+
+  // Efecto para reproducir el video cuando está visible
+  useEffect(() => {
+    if (currentIndex === 0 && videoRef.current) {
+      videoRef.current.play().catch(err => console.log("Error playing video:", err));
+    }
+  }, [currentIndex]);
 
   const handleImageClick = (index: number) => {
     if (index === currentIndex && !isImageFixed) {
@@ -78,114 +75,142 @@ const Home = () => {
   };
 
   const certificationDetails: Record<string, CertificationDetails> = {
-    "Bosch": {
-      title: "Certificación Bosch",
-      description: "Servicio autorizado para sistemas de inyección diesel Bosch",
+    "Bosch Diesel Center": {
+      title: "Servicio Autorizado Bosch Diesel Center",
+      description: "Con más de dos décadas de trayectoria en el país, somos autorizados Bosch Diesel Center para sistemas electrónicos Diesel.",
       highlights: [
-        "Técnicos certificados por Bosch",
-        "Equipo especializado para diagnóstico",
-        "Repuestos originales Bosch",
-        "Garantía extendida en reparaciones"
+        "Pruebas de sistemas diésel y reparación de componentes de primera calidad",
+        "Mantenimiento y reparación expertos de todos los sistemas y marcas diésel",
+        "Soluciones de reparación a medida para talleres, clientes comerciales y operadores de flotas",
+        "Todo el trabajo realizado por especialistas en diésel altamente calificados y experimentados",
+        "Repuestos Bosch con calidad de equipo original",
+        "Diagnóstico y pruebas del sistema con la tecnología de pruebas de Bosch más moderna",
+        "Garantía de piezas + mano de obra"
       ],
-      details: "Nuestro taller cuenta con la certificación oficial de Bosch para la reparación y mantenimiento de sistemas de inyección diesel, garantizando la máxima calidad en cada servicio.",
+      details: "En un Bosch Diesel Center, puede estar seguro de soluciones confiables y tecnología de última generación para el sector automotor liviano y pesado, industrial, agrícola y generación. Nuestra experiencia, junto al respaldo directo de fábrica, nos permite ofrecer servicios de calidad, seguridad y confianza en cada reparación.",
       equipment: {
-        image: "/bosch-test-bench.jpg",
-        caption: "Banco de pruebas Bosch",
-        description: "Equipo especializado para diagnóstico y calibración de componentes Bosch"
+        image: "/equipos/boscheps.png",
+        caption: "Banco de Pruebas BOSCH EPS815 KMA",
+        description:
+          "Diseñado para probar la nueva generación de sistemas de inyección electrónica, el banco de pruebas BOSCH EPS815 KMA ofrece excelentes informes y elimina muchas imperfecciones tradicionales, como errores humanos, todo lo cual conduce a una calibración precisa. Esto se puede traducir en un rendimiento óptimo del motor y un mayor ahorro para los usuarios de equipos."
       }
     },
-    "Delphi": {
-      title: "Certificación Delphi",
-      description: "Servicio autorizado para sistemas de inyección diesel Delphi",
+    "Delphi Diesel Excellence": {
+      title: "Delphi Diesel Excellence",
+      description: "Servicio Autorizado Delphi Diesel Excellence con experiencia comprobada en reparación confiable y garantía de fábrica.",
       highlights: [
-        "Técnicos certificados por Delphi",
-        "Herramientas especializadas",
-        "Repuestos originales Delphi",
-        "Diagnóstico preciso"
+        "Reparación y diagnóstico de sistemas de inyección de combustible diésel para vehículos ligeros, medianos y pesados",
+        "Bombas e inyectores Common Rail",
+        "Inyectores unitarios electrónicos, bombas unitarias electrónicas",
+        "Filtros diesel, boquillas e inyectores, y bombas rotativas y piezas",
+        "Más de 40 años en Colombia",
+        "Repuestos originales y soporte técnico especializado",
+        "Equipos de prueba oficiales para sistemas Common Rail y EUI"
       ],
-      details: "Contamos con la certificación oficial de Delphi, lo que nos permite ofrecer servicios de reparación y mantenimiento con estándares de calidad reconocidos internacionalmente.",
+      details: "Delphi Diesel Systems fabrica sistemas de inyección de combustible diésel para una amplia gama de vehículos. Somos su aliado de confianza en sistemas de inyección DELPHI DIESEL, asegurando la máxima durabilidad para su inversión. Contamos con la tecnología necesaria para garantizar el correcto funcionamiento de sus sistemas de inyección electrónica y mecánica.",
       equipment: {
-        image: "/delphi-test-bench.jpg",
-        caption: "Banco de pruebas Delphi",
-        description: "Equipo especializado para diagnóstico y calibración de componentes Delphi"
+        image: "/equipos/avm2.jpg",
+        caption: "Banco de Pruebas AVM2-PC",
+        description: "Nuestro banco de pruebas AVM2-PC permite codificar inyectores Common Rail y EUI. Es una plataforma avanzada y potente para el diagnóstico de bombas de combustible e inyectores. Cuando se utiliza con cualquiera de nuestras soluciones de aplicación, proporciona evaluaciones detalladas y eficientes del estado de los inyectores y bombas."
       }
     },
-    "Denso": {
-      title: "Certificación Denso",
-      description: "Servicio autorizado para sistemas de inyección diesel Denso",
+    "Hartridge": {
+      title: "Distribuidor y Servicio Autorizado Hartridge",
+      description: "Especialistas en equipos de prueba y diagnóstico para sistemas de inyección diesel de alta precisión.",
       highlights: [
-        "Técnicos certificados por Denso",
-        "Tecnología de punta",
-        "Repuestos originales Denso",
-        "Servicio integral"
+        "Distribuidores autorizados de equipos Hartridge en Colombia",
+        "Diagnóstico avanzado y calibración precisa de sistemas diesel",
+        "Soporte técnico especializado y garantía directa de fábrica",
+        "Tecnología de vanguardia para pruebas de inyección diesel"
       ],
-      details: "Nuestro centro de servicio cuenta con la certificación oficial de Denso, garantizando que todos nuestros procesos cumplan con los estándares de calidad exigidos por la marca.",
-      equipment: {
-        image: "/denso-test-bench.jpg",
-        caption: "Banco de pruebas Denso",
-        description: "Equipo especializado para diagnóstico y calibración de componentes Denso"
-      }
+      details: "Hartridge es reconocida mundialmente por sus equipos de prueba y diagnóstico de alta precisión para sistemas de inyección diesel. Como distribuidores autorizados, ofrecemos equipos Hartridge junto con servicios técnicos especializados. Contamos con personal altamente calificado y tecnología de punta para garantizar resultados precisos y confiables en todas las pruebas y calibraciones de sistemas diesel."
+    },
+    "HOLSET Turbos": {
+      title: "Distribuidor y Servicio Autorizado Holset en Colombia",
+      description: "Con más de 40 años de experiencia en el país, ofrecemos soluciones confiables en ya que somos especialistas en ventas y servicio de turbocargadores con el respaldo directo de fábrica.",
+      highlights: [
+        "Distribuidores autorizados de Turbos Holset (Cummins Turbo Technologies)",
+        "Turbocargadores y repuestos 100% originales",
+        "Laboratorio con equipos de última generación para diagnóstico y calibración",
+        "Reparaciones por kilometraje para mayor vida útil"
+      ],
+      details: "Nuestra trayectoria garantiza confianza, calidad y un servicio especializado reconocido en el sector automotriz, industrial y de transporte. Contamos con soporte técnico y garantía directa de fábrica, asegurando el máximo rendimiento y durabilidad de sus turbocargadores."
+    },
+    "Zexel, Stanadyne, Doowan": {
+      title: "Zexel, Stanadyne, Doowan",
+      description: "Especialistas en sistemas de inyección para marcas premium con soporte técnico especializado.",
+      highlights: [
+        "Reparación y servicio para sistemas Zexel",
+        "Componentes Stanadyne originales",
+        "Tecnología Doowan de última generación",
+        "Diagnóstico avanzado y calibración precisa"
+      ],
+      details: "Trabajamos con estas marcas reconocidas mundialmente. Nuestro laboratorio está equipado con tecnología específica para cada sistema, garantizando reparaciones de la más alta calidad. Contamos con soporte técnico especializado para estos sistemas de inyección."
     }
   };
 
-  // Definimos los tipos explícitamente para evitar errores de TypeScript
-  const certifications: Certification[] = [
+  const certifications = [
     {
       id: "bosch",
-      title: "Bosch",
-      description: "Servicio autorizado para sistemas de inyección diesel Bosch",
       icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      title: "Bosch Diesel Center",
+      description: "Servicio Autorizado",
       image: "/cert-bosch.jpg"
     },
     {
       id: "delphi",
-      title: "Delphi",
-      description: "Servicio autorizado para sistemas de inyección diesel Delphi",
       icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
-      image: "/cert-delphi.jpg"
+      title: "Delphi Diesel Excellence",
+      description: "Servicio Autorizado",
+      image: "/cert-delphi.png"
     },
     {
-      id: "denso",
-      title: "Denso",
-      description: "Servicio autorizado para sistemas de inyección diesel Denso",
+      id: "hartridge",
       icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
-      image: "/cert-denso.jpg"
+      title: "Hartridge",
+      description: "Servicio Autorizado",
+      image: "/marcas/hartridge.png"
+    },
+    {
+      id: "holset",
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      title: "HOLSET Turbos",
+      description: "Distribuidor y Servicio Autorizado",
+      image: "/cert-holset.png"
+    },
+    {
+      id: "zexel",
+      icon: <FaCertificate className="text-[#e3001b] text-2xl" />,
+      title: "Zexel, Stanadyne, Doowan",
+      description: "Especialistas en sistemas de inyección",
+      image: "/cert-zexel.png"
     }
   ];
 
-  // Definimos los tipos explícitamente para evitar errores de TypeScript
-  const allBrands: Brand[] = [
-    { id: "bosch", image: "/brand-bosch.jpg" },
-    { id: "delphi", image: "/brand-delphi.jpg" },
-    { id: "denso", image: "/brand-denso.jpg" },
-    { id: "continental", image: "/brand-continental.jpg" },
-    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" },
-    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" },
-    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" },
-    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" },
-    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" },
-    { id: "mitsubishi", image: "/brand-mitsubishi.jpg" }
+  const allBrands = [
+    { id: 1, image: "/product-1.jpg" },
+    { id: 2, image: "/product-2.jpg" },
+    { id: 3, image: "/product-3.jpg" },
+    { id: 4, image: "/product-4.jpg" },
+    { id: 5, image: "/product-5.jpg" },
+    { id: 6, image: "/product-6.jpg" },
+    { id: 7, image: "/product-7.jpg" },
+    { id: 8, image: "/product-8.jpg" },
+    { id: 9, image: "/product-9.jpg" },
+    { id: 10, image: "/product-10.jpg" },
+    { id: 11, image: "/product-11.jpg" },
+    { id: 12, image: "/product-12.jpg" }
   ];
 
   const getCertificationDetails = (certId: string | null): CertificationDetails | null => {
     if (!certId) return null;
-    
-    const certMap: Record<string, string> = {
-      "bosch": "Bosch",
-      "delphi": "Delphi",
-      "denso": "Denso"
-    };
-    
-    const certName = certMap[certId];
-    if (!certName) return null;
-    
-    return certificationDetails[certName] || null;
+    const cert = certifications.find(c => c.id === certId);
+    if (!cert) return null;
+    return certificationDetails[cert.title] || null;
   };
 
   const selectedCertDetails = getCertificationDetails(selectedCertification);
-  const selectedCert = selectedCertification 
-    ? certifications.find(c => c.id === selectedCertification) 
-    : null;
+  const selectedCert = selectedCertification ? certifications.find(c => c.id === selectedCertification) : null;
 
   return (
     <div className="no-horizontal-scroll bg-[#f4f4f4]">
@@ -193,7 +218,7 @@ const Home = () => {
       <section className="full-width relative bg-black text-white h-screen flex items-center justify-center overflow-hidden">
         <div className="container-wide">
           <div className="absolute inset-0 z-0">
-            {mediaItems.map((src, index) => (
+            {images.map((src, index) => (
               <motion.div
                 key={index}
                 className={`w-full h-full absolute inset-0 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
@@ -204,21 +229,22 @@ const Home = () => {
               >
                 {index === 0 ? (
                   <video
+                    ref={videoRef}
                     src={src}
+                    className="w-full h-full object-cover"
                     autoPlay
-                    loop
                     muted
+                    loop
                     playsInline
-                    className={`w-full h-full object-cover`}
                   />
                 ) : (
-                  <img src={src} alt={`Background ${index}`} className={`w-full h-full ${index === 0 ? 'object-cover' : 'object-contain'}`} loading="eager" />
+                  <img src={src} alt={`Background ${index}`} className="w-full h-full object-contain" loading="eager" />
                 )}
               </motion.div>
             ))}
           </div>
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-            {mediaItems.map((_, index) => (
+            {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => {
@@ -601,6 +627,7 @@ const Home = () => {
               >
                 <MapPin className="inline mr-2 h-5 w-5" /> Ver ubicación
               </a>
+              
               <a
                 href="https://wa.me/573185141579"
                 target="_blank"
