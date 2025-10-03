@@ -20,7 +20,7 @@ const Navbar = () => {
   }, [lastScrollY]);
 
   // Define un tipo para las claves de routeMap
-  type RouteKeys = "Inicio" | "Sobre Nosotros" | "Servicios" | "Productos" | "Equipos" | "Descargas";
+  type RouteKeys = "Inicio" | "Sobre Nosotros" | "Servicios" | "Productos" | "Equipos" | "Documentación";
 
   const routeMap: Record<RouteKeys, string> = {
     "Inicio": "/",
@@ -28,18 +28,18 @@ const Navbar = () => {
     "Servicios": "/services",
     "Productos": "/products",
     "Equipos": "/equipos",
-    "Descargas": "/downloads",
+    "Documentación": "/downloads",
   };
 
-  // Submenús para Productos basado en el código de Products.tsx
+  // Submenús para Productos con el ORDEN CORREGIDO según tu especificación
   const productSubmenu = [
-    { name: "Filtros", path: "/products/filters" },
-    { name: "Turboalimentadores", path: "/products/turbochargers" },
+    { name: "Sistemas de inyección Common Rail", path: "/products/common-rail-systems" },
+    { name: "Sistemas de inyección convencionales", path: "/products/conventional-injection-systems" },
     { name: "Inyectores EUI", path: "/products/eui-injectors" },
     { name: "Inyectores HEUI", path: "/products/heui-injectors" },
-    { name: "Sistemas Convencionales", path: "/products/conventional-injection-systems" },
-    { name: "Common Rail", path: "/products/common-rail-systems" },
+    { name: "Turboalimentadores", path: "/products/turbochargers" },
     { name: "Bombas PLD", path: "/products/pld-pumps" },
+    { name: "Filtros", path: "/products/filters" },
     { name: "Líquido de Calibración", path: "/products/calibration-fluid" }
   ];
 
@@ -60,7 +60,7 @@ const Navbar = () => {
     { title: "Servicios", submenu: [] }, // Sin submenú como solicitaste
     { title: "Productos", submenu: productSubmenu },
     { title: "Equipos", submenu: equipmentSubmenu },
-    { title: "Descargas", submenu: [] },
+    { title: "Documentación", submenu: [] },
   ];
 
   const toggleMobileMenu = () => {
@@ -97,7 +97,7 @@ const Navbar = () => {
           <div className="flex flex-col items-center w-full sm:flex-row sm:items-center gap-3 sm:gap-3 sm:w-auto mt-2 sm:mt-0">
             <div className="flex gap-2 w-full sm:w-auto justify-center sm:justify-start">
               <a
-                href="https://facebook.com"
+                href="https://facebook.com    "
                 aria-label="Facebook"
                 className="text-gray-600 hover:text-red-600 transition-all duration-300 p-2 rounded-full hover:bg-gray-100 transform hover:scale-110"
               >
@@ -106,7 +106,7 @@ const Navbar = () => {
                 </svg>
               </a>
               <a
-                href="https://instagram.com"
+                href="https://instagram.com    "
                 aria-label="Instagram"
                 className="text-gray-600 hover:text-red-600 transition-all duration-300 p-2 rounded-full hover:bg-gray-100 transform hover:scale-110"
               >
@@ -118,7 +118,7 @@ const Navbar = () => {
 
             {/* Wompi Button - CORREGIDO PARA QUE NO SE CORTE EN MÓVILES */}
             <a
-              href="https://checkout.wompi.co/l/VPOS_Apws23"
+              href="https://checkout.wompi.co/l/VPOS_Apws23    "
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 bg-gradient-to-r from-red-600 to-red-700 text-white text-sm font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:from-red-600 hover:to-red-700 border border-red-500/20"

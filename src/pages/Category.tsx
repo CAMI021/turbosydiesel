@@ -1,3 +1,4 @@
+// category.tsx
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { useParams, useNavigate } from "react-router-dom";
@@ -12,11 +13,18 @@ interface Product {
   brand: string;
 }
 
+interface Category {
+  title: string;
+  description: string;
+  products: Product[];
+  brands?: string[];
+  mainBrands?: string[];
+}
+
 const Category: React.FC = () => {
   const { categoryKey } = useParams<{ categoryKey: string }>();
   const navigate = useNavigate();
 
-  // Validación explícita para manejar categoryKey undefined
   if (!categoryKey) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -33,8 +41,8 @@ const Category: React.FC = () => {
     );
   }
 
-  // Solución: usar bracket notation con type assertion o verificar la existencia de la key
-  const category = products[categoryKey as keyof typeof products];
+  const category = products[categoryKey as keyof typeof products] as Category | undefined;
+  
   if (!category) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -58,9 +66,9 @@ const Category: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
-        {/* Encabezado de categoría */}
+        {/* Encabezado de categoría - COMPACTO */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -68,24 +76,92 @@ const Category: React.FC = () => {
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
             {category.title}
           </h1>
-          <p className="text-gray-600 max-w-3xl mx-auto text-lg">
+          <p className="text-gray-600 max-w-3xl mx-auto text-lg mb-6">
             {category.description}
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <span className="bg-[#e3001b]/10 text-[#e3001b] px-4 py-2 rounded-full font-medium">
-              Tecnología Profesional
-            </span>
-            <span className="bg-[#e3001b]/10 text-[#e3001b] px-4 py-2 rounded-full font-medium">
-              Soporte Técnico Incluido
-            </span>
-            <span className="bg-[#e3001b]/10 text-[#e3001b] px-4 py-2 rounded-full font-medium">
-              Documentación Completa
-            </span>
-          </div>
+          {/* MARCAS - ESTILO UNIFORME SIN TONOS ROJOS */}
+          {((category.mainBrands && category.mainBrands.length > 0) || (category.brands && category.brands.length > 0)) && (
+            <div className="mt-8 max-w-6xl mx-auto space-y-4">
+              
+              {/* MARCAS PRINCIPALES - ESTILO UNIFICADO */}
+              {category.mainBrands && category.mainBrands.length > 0 && (
+                <div className="bg-white rounded-xl shadow-md p-5 border border-gray-200">
+                  <div className="flex flex-col md:flex-row md:items-center gap-6 h-full">
+                    {/* Left: Brands - LOGOS EN HORIZONTAL */}
+                    <div className="md:w-1/3 lg:w-1/4 flex-shrink-0 flex flex-col justify-center">
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.293 9 11.622 5.176-1.329 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                          </svg>
+                        </div>
+                        <span className="text-xs font-semibold text-gray-700 whitespace-nowrap">Especialistas en:</span>
+                      </div>
+                      
+                      <div className="flex flex-row items-center justify-center md:justify-start gap-6 flex-wrap">
+                        {category.mainBrands.map((brand) => (
+                          <div key={brand} className="relative group flex-shrink-0">
+                            <img 
+                              src={`/marcas/${brand}.png`} 
+                              alt={brand} 
+                              className={`h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-110`}
+                              loading="lazy"
+                              onError={(e) => {
+                                e.currentTarget.src = "/img/placeholder-brand.png";
+                              }}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Right: Descripciones específicas por categoría - OCUPA MÁS ESPACIO HORIZONTAL */}
+                    {categoryKey === 'turbochargers' && (
+                      <div className="md:flex-1 min-w-0 flex flex-col justify-center">
+                        <p className="text-gray-600 leading-relaxed">
+                          <span className="font-semibold text-gray-800">Holset</span> es líder en turbocargadores para motores diésel, diseñados y fabricados por Cummins Turbo Technologies. Somos distribuidores autorizados de la gama de productos Holset, ofreciendo soluciones integrales para el máximo rendimiento y la durabilidad de su motor.
+                        </p>
+                      </div>
+                    )}
+
+                    {categoryKey === 'common-rail-systems' && (
+                      <div className="md:flex-1 min-w-0 flex flex-col justify-center">
+                        <p className="text-gray-600 leading-relaxed">
+                          Somos distribuidores autorizados de sistemas de inyección. Ofrecemos la tecnología Bosch (líder en Common Rail) y las soluciones avanzadas de Delphi. Garantizamos productos originales y soporte técnico especializado para la máxima eficiencia de su motor.
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* MARCAS SECUNDARIAS */}
+              {category.brands && category.brands.length > 0 && (
+                <div className="bg-gray-50 rounded-xl shadow-sm p-5 border border-gray-200">
+                  <div className="flex flex-wrap items-center justify-center gap-5">
+                    <span className="text-sm font-medium text-gray-600">También vendemos otras marcas:</span>
+                    {category.brands.map((brand) => (
+                      <div key={brand} className="group">
+                        <img 
+                          src={`/marcas/${brand}.png`} 
+                          alt={brand} 
+                          className="h-12 object-contain opacity-50 group-hover:opacity-100 transition-all duration-300"
+                          loading="lazy"
+                          onError={(e) => {
+                            e.currentTarget.src = "/img/placeholder-brand.png";
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </motion.div>
 
-        {/* Grid de productos centrado */}
+        {/* GRID DE PRODUCTOS - AHORA CON MÁS PROTAGONISMO */}
         <motion.div
           className="flex flex-wrap justify-center gap-8"
           initial="hidden"
@@ -127,9 +203,7 @@ const Category: React.FC = () => {
                     e.currentTarget.parentElement?.classList.add('bg-gray-100');
                   }}
                 />
-                <div className="absolute top-4 right-4 bg-[#e3001b] text-white px-3 py-1 rounded-full text-sm font-medium">
-                  Profesional
-                </div>
+
               </div>
 
               <div className="p-6">

@@ -26,26 +26,6 @@ const About = () => {
         </div>
       </header>
 
-      {/* Sección de logotipos autorizados con diseño mimetizado */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl p-7 border border-gray-100">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center">
-              <span className="w-2 h-10 bg-red-600 rounded-r-lg mr-4"></span>
-              Certificados oficiales
-            </h2>
-            <div className="text-center">
-              <img
-                src="/authorized-services-logos.png"
-                alt="Logotipos de marcas autorizadas: Bosch, Delphi, Holset, Stanadyne, Doowan, Zexel"
-                className="mx-auto max-w-full h-auto max-h-40 object-contain opacity-90"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Contenido principal */}
       <main className="flex-1 py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -62,7 +42,7 @@ const About = () => {
                 <h2 className="text-2xl font-bold text-gray-900">MISIÓN</h2>
               </div>
               <p className="text-gray-700 leading-relaxed pl-12">
-                Representaciones Diésel y Turbos SAS es una empresa importadora y distribuidora a nivel nacional de repuestos para sistemas de inyección diésel, Turbo alimentadores, Filtración, Equipos de pruebas y herramientas, así mismo presta servicios de reparación y mantenimiento para estos productos, soportada con personal con cultura de calidad, calificada y con gran vocación de servicio. Nos apropiamos de los problemas de los clientes para lograr la mejor solución ofreciendo servicios diferenciales.
+                Representaciones Diésel y Turbos SAS es una empresa importadora y distribuidora a nivel nacional de repuestos para sistemas de inyección diésel, Turbo alimentadores, Filtración, Equipos de pruebas y herramientas, así mismo, presta servicios de reparación y mantenimiento para estos productos, soportada con personal con cultura de calidad, calificada y con gran vocación de servicio. Nos apropiamos de los problemas de los clientes para lograr la mejor solución ofreciendo servicios diferenciales.
               </p>
             </div>
 
@@ -77,7 +57,7 @@ const About = () => {
                 <h2 className="text-2xl font-bold text-gray-900">VISIÓN</h2>
               </div>
               <p className="text-gray-700 leading-relaxed pl-12">
-                Para el año 2030 estaremos posicionados en el mercado como la primera opción del cliente en ventas y servicios para sistemas de inyección diésel, equipos y herramientas. Ofreciendo un servicio técnico especializado y desarrollando una ventaja competitiva en calidad, infraestructura, tecnología y talento humano. Buscando continuo crecimiento, y perdurables en el tiempo.
+                Estaremos posicionados en el mercado como la primera opción del cliente en ventas y servicios para sistemas de inyección diésel, equipos y herramientas. Ofreciendo un servicio técnico especializado y desarrollando una ventaja competitiva en calidad, infraestructura, tecnología y talento humano. Buscando continuo crecimiento, y perdurables en el tiempo.
               </p>
             </div>
 
@@ -160,7 +140,7 @@ const About = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900">Taller:</h4>
-                    <p className="text-gray-600 text-sm">318 514 580</p>
+                    <p className="text-gray-600 text-sm">318 514 1580 <span className="text-xs">(Teléfono / WhatsApp)</span></p>
                   </div>
                 </div>
 
@@ -172,7 +152,7 @@ const About = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900">Ventas:</h4>
-                    <p className="text-gray-600 text-sm">318 514 1582</p>
+                    <p className="text-gray-600 text-sm">318 514 1582 <span className="text-xs">(Teléfono / WhatsApp)</span></p>
                   </div>
                 </div>
 
@@ -184,7 +164,7 @@ const About = () => {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900">Servicios:</h4>
-                    <p className="text-gray-600 text-sm">servicio@dieselyturbos@gmail.com</p>
+                    <p className="text-gray-600 text-sm">servicio@dieselyturbos.com</p>
                   </div>
                 </div>
 

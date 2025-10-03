@@ -18,27 +18,29 @@ interface Product {
 
 // Datos de marcas (miniaturas)
 const brands: Brand[] = [
+  { name: "Bosch", img: "/marcas/Bosch.png" },
   { name: "Delphi", img: "/marcas/delphi.png" },
   { name: "Holset", img: "/marcas/holset.png" },
   { name: "Racor", img: "/marcas/racor.png" },
   { name: "Hartridge", img: "/marcas/hartridge.png" },
+  
 ];
 
-// Datos de productos (solo componentes y repuestos) - ORDENADO
+// Datos de productos (solo componentes y repuestos) - REORDENADO SEGÚN SOLICITUD
 const products: Product[] = [
   {
-    slug: "filtros",
-    categoryKey: "filters",
-    name: "Filtros",
-    img: "/productos/filtros_racor.jpg",
-    description: "Filtros de combustible y aceite con tecnología de separación de agua avanzada.",
+    slug: "common-rail-systems",
+    categoryKey: "common-rail-systems",
+    name: "Sistemas de inyección Common Rail",
+    img: "/productos/common-rail.jpg",
+    description: "Sistemas de inyección diesel de alta precisión con tecnología Common Rail",
   },
   {
-    slug: "turbochargers",
-    categoryKey: "turbochargers",
-    name: "Turboalimentadores",
-    img: "/productos/turbo_holset.jpg",
-    description: "Turbos de alto rendimiento con durabilidad comprobada en condiciones extremas",
+    slug: "conventional-injection-systems",
+    categoryKey: "conventional-injection-systems",
+    name: "Sistemas de inyección convencionales",
+    img: "/productos/sistemas_convencionales.jpg",
+    description: "Sistemas de inyección tradicionales para motores diesel",
   },
   {
     slug: "eui-injectors",
@@ -55,18 +57,11 @@ const products: Product[] = [
     description: "Inyectores HEUI para motores de alta presión y rendimiento",
   },
   {
-    slug: "conventional-injection-systems",
-    categoryKey: "conventional-injection-systems",
-    name: "Sistemas de inyección convencionales",
-    img: "/productos/sistemas_convencionales.jpg",
-    description: "Sistemas de inyección tradicionales para motores diesel",
-  },
-  {
-    slug: "common-rail-systems",
-    categoryKey: "common-rail-systems",
-    name: "Sistemas de inyección Common Rail",
-    img: "/productos/common-rail.jpg",
-    description: "Sistemas de inyección diesel de alta precisión con tecnología Common Rail",
+    slug: "turbochargers",
+    categoryKey: "turbochargers",
+    name: "Turboalimentadores",
+    img: "/productos/turbo_holset.jpg",
+    description: "Turbos de alto rendimiento con durabilidad comprobada en condiciones extremas",
   },
   {
     slug: "pld-pumps",
@@ -76,8 +71,16 @@ const products: Product[] = [
     description: "Bombas de alta precisión para sistemas PLD de inyección diesel",
   },
   {
-    slug: "liquido-de-calibracion", // ← CORREGIDO
-    categoryKey: "liquido-de-calibracion", // ← CORREGIDO
+    slug: "filtros",
+    categoryKey: "filters",
+    name: "Filtros",
+    img: "/productos/filtros_racor.jpg",
+    description: "Filtros de combustible y aceite con tecnología de separación de agua avanzada.",
+  },
+  // Líquido de calibración al final (no mencionado en el orden, pero presente en datos)
+  {
+    slug: "liquido-de-calibracion",
+    categoryKey: "liquido-de-calibracion",
     name: "Líquido de Calibración",
     img: "/productos/calibration-fluid-main.jpg",
     description: "Líquidos especializados para la calibración precisa de sistemas de inyección diesel",
@@ -181,7 +184,7 @@ const Products: React.FC = () => {
         </div>
       </section>
 
-      {/* Sección de Marcas (logos) - AHORA OCUPA TODO EL ANCHO DE LA PANTALLA */}
+      {/* Sección de Marcas (logos) - CORREGIDO PARA QUE BOSCH NO BAJE */}
       {brands.length > 0 && (
         <section 
           className="w-full relative overflow-hidden py-6"
@@ -189,9 +192,9 @@ const Products: React.FC = () => {
         >
           {/* Degradado lateral oscuro en los bordes (OCUPA TODO EL ANCHO) */}
           <div className="absolute inset-0 bg-gradient-to-r from-gray-900/8 via-white to-gray-900/8" />
-          <div className="max-w-4xl mx-auto relative z-10">
+          <div className="max-w-5xl mx-auto relative z-10"> {/* AUMENTADO DE max-w-4xl A max-w-5xl */}
             <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-6"
+              className="grid grid-cols-2 md:grid-cols-5 gap-6" /* CAMBIADO DE md:grid-cols-4 A md:grid-cols-5 */
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}

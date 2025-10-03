@@ -13,6 +13,13 @@ const DownloadsPage = () => {
       link: '/pdfs/GS-I-007 Instructivo Condiciones De Garantia Sistemas De Inyeccion.pdf' 
     },
     { 
+      name: 'Autorización de tratamiento de Datos personales', 
+      size: '104.2kB', 
+      type: 'PDF', 
+      link: '/pdfs/GCA-F-024   Formato Autorizacion Tratamiento de Datos.pdf' 
+    },
+
+    { 
       name: 'Condiciones de Garantía sobre Repuestos de Sistema de Inyección', 
       size: '245.2 kB ', 
       type: 'PDF', 
@@ -21,7 +28,7 @@ const DownloadsPage = () => {
   ];
 
   const categories = [
-    { name: "Todos los Documentos", count: 3 },
+    { name: "Todos los Documentos", count: 4 },
     
     { name: "Garantías", count: 3 }
   ];

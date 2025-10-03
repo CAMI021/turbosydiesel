@@ -3,10 +3,32 @@ import { products } from "../data/products";
 import { ArrowRight, Phone } from "lucide-react";
 import { useState } from "react";
 
+// Definición de tipos para mejorar la seguridad de TypeScript
+interface TechnicalSpec {
+  label: string;
+  value: string;
+}
+
+interface Product {
+  id: string;
+  name: string;
+  shortDesc: string;
+  images: string[];
+  mainFeatures: string[];
+  technicalSpecs: TechnicalSpec[];
+  technicalSheetPdf: string | string[];
+}
+
+interface Category {
+  title: string;
+  description: string;
+  products: Product[];
+}
+
 const ProductDetails = () => {
   const { categoryKey, productId } = useParams();
-  const category = products[categoryKey as keyof typeof products];
-  const product = category?.products.find(p => p.id === productId);
+  const category = categoryKey ? products[categoryKey as keyof typeof products] as Category | undefined : undefined;
+  const product = category?.products?.find((p: Product) => p.id === productId);
 
   // Estado para la imagen seleccionada
   const [selectedImage, setSelectedImage] = useState<string>(
@@ -22,8 +44,10 @@ const ProductDetails = () => {
     window.open(url, '_blank');
   };
 
-  // Verificar si el producto debe mostrar el PDF (solo ISO4113)
-  const shouldShowPdf = product?.id === "iso4113" && product?.technicalSheetPdf;
+  // Verificar si el producto tiene fichas técnicas
+  const hasTechnicalSheets = product?.technicalSheetPdf && 
+    (typeof product.technicalSheetPdf === 'string' || 
+     (Array.isArray(product.technicalSheetPdf) && product.technicalSheetPdf.length > 0));
 
   if (!product) {
     return (
@@ -84,7 +108,7 @@ const ProductDetails = () => {
 
               {/* Thumbnails pequeños */}
               <div className="flex justify-center gap-4 p-4">
-                {product.images.map((img, index) => (
+                {product.images.map((img: string, index: number) => (
                   <img 
                     key={index}
                     src={img}
@@ -101,7 +125,7 @@ const ProductDetails = () => {
             <div className="bg-white rounded-2xl shadow-md p-6">
               <h2 className="text-2xl font-bold text-gray-800 mb-4">Características principales</h2>
               <ul className="list-disc pl-5 space-y-2">
-                {product.mainFeatures.map((feature, index) => (
+                {product.mainFeatures.map((feature: string, index: number) => (
                   <li key={index} className="text-gray-700">{feature}</li>
                 ))}
               </ul>
@@ -112,7 +136,7 @@ const ProductDetails = () => {
             <div className="bg-white rounded-2xl shadow-md p-6">
               <h2 className="text-2xl font-bold text-gray-800 mb-4">Especificaciones técnicas</h2>
               <div className="grid grid-cols-2 gap-4">
-                {product.technicalSpecs.map((spec, index) => (
+                {product.technicalSpecs.map((spec: TechnicalSpec, index: number) => (
                   <div key={index} className="flex flex-col">
                     <span className="text-gray-500 font-medium">{spec.label}</span>
                     <span className="text-gray-800">{spec.value}</span>
@@ -121,17 +145,30 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            {/* Mostrar sección de PDF solo para productos ISO4113 */}
-            {shouldShowPdf && (
+            {/* Mostrar sección de PDF si el producto tiene fichas técnicas */}
+            {hasTechnicalSheets && (
               <div className="bg-white rounded-2xl shadow-md p-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Descargar ficha técnica</h2>
-                <a 
-                  href={product.technicalSheetPdf}
-                  download
-                  className="text-[#e3001b] hover:underline flex items-center"
-                >
-                  Descargar PDF <ArrowRight className="ml-2 w-4 h-4" />
-                </a>
+                {Array.isArray(product.technicalSheetPdf) ? (
+                  product.technicalSheetPdf.map((pdf: string, index: number) => (
+                    <a 
+                      key={index}
+                      href={pdf}
+                      download
+                      className="text-[#e3001b] hover:underline flex items-center mb-2"
+                    >
+                      Descargar ficha técnica {index + 1} <ArrowRight className="ml-2 w-4 h-4" />
+                    </a>
+                  ))
+                ) : (
+                  <a 
+                    href={product.technicalSheetPdf}
+                    download
+                    className="text-[#e3001b] hover:underline flex items-center"
+                  >
+                    Descargar PDF <ArrowRight className="ml-2 w-4 h-4" />
+                  </a>
+                )}
               </div>
             )}
           </div>

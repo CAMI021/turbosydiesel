@@ -1,3 +1,4 @@
+// src/App.tsx
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -11,8 +12,9 @@ import ProductDetails from "./pages/ProductDetails";
 import Equipment from "./pages/Equipment";
 import EquipmentCategory from "./pages/EquipmentCategory";
 import EquipmentDetails from "./pages/EquipmentDetails";
-// Nuevo componente de contacto
-import Contact from "./pages/Contact"; // Añadido el import del componente de contacto
+// Componentes de contacto
+import Contact from "./pages/Contact";
+import ContactSimple from "./pages/Contactsimple"; // Importamos el nuevo componente simple
 
 // IMPORTAMOS LOS COMPONENTES DE LAYOUT AL FINAL (¡CRUCIAL PARA VITE!)
 import Navbar from "./components/Navbar";
@@ -39,7 +41,8 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/about", element: <About /> },
       { path: "/services", element: <Services /> },
-      { path: "/contact", element: <Contact /> }, // Nueva ruta añadida aquí
+      { path: "/contact", element: <Contact /> },
+      { path: "/contact-simple", element: <ContactSimple /> }, // Nueva ruta para el formulario simple
       { path: "/downloads", element: <Downloads /> },
       { path: "/payments", element: <Payments /> },
       

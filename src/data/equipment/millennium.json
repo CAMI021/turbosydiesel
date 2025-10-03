@@ -89,5 +89,27 @@
       "Diagnóstico de sistemas de inyección industrial"
     ],
     "technicalSheetPdf": "/pdfs/mk980.pdf"
+  },
+  {
+    "id": "cambox",
+    "name": "CAMBOX",
+    "images": ["/equipos/cambox.jpg"],
+    "description": "Cambox de Reparación y Prueba para Bombas Electrónicas Unitarias (EUPs) e Inyectores Electrónicos Unitarios (EUIS) de marcas como Volvo, Mercedes, Cummins, entre otras.",
+    "specifications": [
+      "Componentes principales: Oil collector, Cam, Cam box assembly, Adapter",
+      "Detección de todos los modelos EUI/EUP disponibles en el mercado",
+      "Compatibilidad con Siemens piezoelectric EUI",
+      "Compatibilidad con Delphi E3 EUI",
+      "Soporta motores Cummins X15, Q60",
+      "Mide el tiempo de respuesta de inyección del nozzle",
+      "Control remoto y actualización de datos en línea"
+    ],
+    "applications": [
+      "Pruebas y diagnóstico de bombas EUP y sistemas EUI",
+      "Reparación y calibración de componentes unitarios electrónicos",
+      "Medición precisa del tiempo de respuesta de inyección",
+      "Aplicaciones en motores pesados de Volvo, Mercedes, Cummins"
+    ],
+    "technicalSheetPdf": "/pdfs/cambox.pdf"
   }
 ]

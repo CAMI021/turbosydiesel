@@ -1,22 +1,62 @@
 [
-    {
-      "id": "sand-blast-100",
-      "name": "Sand Blaster Industrial",
-      "images": ["/equipos/sand-blast.jpg"],
-      "description": "Sistema de chorro de arena industrial para limpieza profunda, desgaste controlado y preparación de superficies en componentes metálicos.",
-      "specifications": [
-        "Presión de trabajo: 6-10 bar",
-        "Capacidad de tanque: 100 kg",
-        "Sistema de reciclaje de arena",
-        "Control digital de presión",
-        "Cámara de chorro con visor de seguridad"
-      ],
-      "applications": [
-        "Limpieza de superficies metálicas",
-        "Preparación de superficies para pintura",
-        "Eliminación de óxido y pintura antigua",
-        "Tratamiento de piezas para reparación"
-      ],
-      "technicalSheetPdf": "/pdfs/sand-blast.pdf"
-    }
-  ]
+  {
+    "id": "sand-blast-9060",
+    "name": "Sand Blaster 9060",
+    "images": ["/equipos/sand-blast.jpg"],
+    "description": "Cabina de chorro de arena con diseño compacto y eficiente para limpieza y preparación de superficies metálicas en entornos industriales.",
+    "specifications": [
+      "Puerta frontal para fácil acceso",
+      "Sistema de control de presión ajustable",
+      "Iluminación LED integrada",
+      "Filtración de polvo con bolsa de tela",
+      "Bajo nivel de ruido durante operación"
+    ],
+    "applications": [
+      "Limpieza de piezas metálicas",
+      "Eliminación de óxido y residuos",
+      "Preparación previa a pintura o recubrimiento",
+      "Mantenimiento y restauración de componentes"
+    ],
+    "technicalSheetPdf": "/pdfs/sand-blast-9060.pdf"
+  },
+  {
+    "id": "sand-blast-9080",
+    "name": "Sand Blaster 9080",
+    "images": ["/equipos/sand-blast.jpg"],
+    "description": "Equipo de chorro de arena de mayor capacidad, ideal para el tratamiento de piezas medianas y grandes con alta eficiencia y control.",
+    "specifications": [
+      "Amplia cabina de trabajo",
+      "Puerta frontal de gran tamaño",
+      "Sistema de ventilación eficiente",
+      "Control preciso del flujo de abrasivo",
+      "Operación limpia y silenciosa"
+    ],
+    "applications": [
+      "Chorreado de piezas industriales",
+      "Decapado de superficies",
+      "Preparación superficial para soldadura",
+      "Tratamiento previo a galvanizado"
+    ],
+    "technicalSheetPdf": "/pdfs/sand-blast-9080.pdf"
+  },
+  {
+    "id": "sand-blast-6050",
+    "name": "Sand Blaster 6050",
+    "images": ["/equipos/sand-blast.jpg"],
+    "description": "Unidad compacta de chorro de arena diseñada para aplicaciones pequeñas y precisas, perfecta para talleres y trabajos detallados.",
+    "specifications": [
+      "Diseño pequeño y ergonómico",
+      "Fácil manejo y mantenimiento",
+      "Sistema anti-polvo integrado",
+      "Iluminación interna LED",
+      "Ideal para piezas de tamaño reducido"
+    ],
+    "applications": [
+      "Limpieza de piezas pequeñas",
+      "Restauración de componentes delicados",
+      "Acabado superficial fino",
+      "Uso en laboratorios o talleres especializados"
+    ],
+    "technicalSheetPdf": "/pdfs/sand-blast-6050.pdf"
+  }
+]

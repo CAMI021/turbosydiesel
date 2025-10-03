@@ -1,8 +1,28 @@
-// Contact.tsx
-import React, { useState } from 'react';
+// src/components/Contact.tsx
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
+
+// 🔑 Configuración con Gmail en EmailJS (copiado de tu ContactSimple que funciona)
+const EMAILJS_PUBLIC_KEY = '_glOK3OQFHUeXoSxA'; // tu public key
+const EMAILJS_SERVICE_ID = 'service_pq1jlp8';   // tu service ID
+const EMAILJS_TEMPLATE_ID = 'template_571hqtm'; // tu template ID
+
+// Inicializar EmailJS una sola vez al cargar el módulo (CORRECCIÓN PRINCIPAL)
+emailjs.init(EMAILJS_PUBLIC_KEY);
+
+// Define el tipo para tu formData
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+}
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const location = useLocation();
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
@@ -11,32 +31,51 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  
+
+  // Obtener el email de los parámetros de la URL al cargar el componente
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const emailParam = searchParams.get('email');
+
+    if (emailParam) {
+      setFormData(prev => ({ ...prev, email: emailParam }));
+    }
+  }, [location]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
-    
+
     try {
-      // En un entorno real, aquí llamarías a tu API backend
-      // Este es un ejemplo simulado
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // Simulación de envío exitoso
+      // Prepara los parámetros para enviar al template
+      // Las claves deben coincidir con los IDs de los inputs en tu template de EmailJS
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+      };
+
+      // Envia el correo usando tu Service ID y Template ID
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
       setSubmitStatus('success');
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-      
-      // Redirigir a WhatsApp después de enviar el formulario
-      // setTimeout(() => {
-      //   window.open('https://wa.me/573114782000?text=Hola,%20he%20enviado%20un%20formulario%20de%20contacto%20en%20su%20sitio%20web', '_blank');
-      // }, 2000);
-      
+      // Reiniciar el formulario excepto el email si vino por URL
+      setFormData(prev => ({ name: '', email: prev.email, phone: '', subject: '', message: '' }));
+
     } catch (error) {
+      console.error('Error al enviar el correo:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -46,7 +85,7 @@ const Contact = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50 text-gray-800">
       {/* Header */}
-      <header 
+      <header
         className="relative w-full h-[45vh] min-h-[350px] flex items-center justify-center rounded-2xl overflow-hidden"
         style={{
           backgroundImage: "url('/contact.jpg')",
@@ -85,7 +124,7 @@ const Contact = () => {
                 </h2>
                 <p className="text-amber-100 mt-1">Completa el formulario y te responderemos pronto</p>
               </div>
-              
+
               <div className="p-6">
                 {submitStatus === 'success' ? (
                   <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
@@ -128,7 +167,7 @@ const Contact = () => {
                           />
                         </div>
                       </div>
-                      
+
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
                           Correo electrónico <span className="text-red-500">*</span>
@@ -136,8 +175,8 @@ const Contact = () => {
                         <div className="relative">
                           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <svg className="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2V5.884z" />
+                              <path d="M7 9a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9z" />
                             </svg>
                           </div>
                           <input
@@ -153,7 +192,7 @@ const Contact = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div>
                         <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -163,7 +202,7 @@ const Contact = () => {
                           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <svg className="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                               <path d="M2 3a1 1 0 011-1h2.68a1 1 0 01.949.659l1.55 4.65a1 1 0 01-.416 1.073L6.35 10.5a1 1 0 01-.949.659l-1.55 1.55A2 2 0 004.6 15.4l1.549 4.647a1 1 0 01-.659 1.252 1 1 0 01-1.252-.66L3 5a1 1 0 01-1-1z" />
-                              <path d="M14.06 15.4c.758 0 1.41-.492 1.618-1.17l1.073-3.22a2 2 0 00-.434-1.948l-.943-.943a1 1 0 00-1.393 0l-2.46 2.46a1 1 0 00-.276.659v2.68a1 1 0 001 1h2.68a1 1 0 00.659-.276l2.46-2.46a1 1 0 000-1.393l-.943-.943a2 2 0 00-1.948-.434l-3.22 1.073A1.99 1.99 0 0112 13.35v-2.68a1 1 0 00-.276-.659l-3.998-3.998A1 1 0 006.35 5h-2.68a1 1 0 00-1 1v2.68a2 2 0 00.659 1.618l3.22 1.073a1 1 0 001.393 0l.943-.943a1 1 0 011.393 0l2.46 2.46c.208.208.477.327.758.327h2.68a1 1 0 001-1v-2.68a2 2 0 00-1.17-1.842l-1.073-3.22a1 1 0 00-1.393-0.659 1 1 0 00-.659 1.393l1.073 3.22a2 2 0 01.434 1.948l-.943.943a1 1 0 000 1.393l2.46 2.46c.28.28.648.439 1.03.439h2.68a1 1 0 001-1v-2.68a2 2 0 00-1.618-1.948z" />
+                              <path d="M14.06 15.4c.758 0 1.41-.492 1.618-1.17l1.073-3.22a2 2 0 00-.434-1.948l-.943-.943a1 1 0 00-1.393 0l-2.46 2.46a1 1 0 00-.276.659v2.68a1 1 0 001 1h2.68a1 1 0 00.659-.276l2.46-2.46a1 1 0 000-1.393l-.943-.943a2 2 0 01.434 1.948l-1.073 3.22a1 1 0 01-.659 1.252 1 1 0 01-1.252-.66L12 13.35v-2.68a1 1 0 00-.276-.659l-3.998-3.998A1 1 0 006.35 5h-2.68a1 1 0 00-1 1v2.68a2 2 0 00-1.17 1.842l-1.073-3.22a1 1 0 00-1.393-0.659 1 1 0 00-.659 1.393l1.073 3.22a2 2 0 01.434 1.948l-.943.943a1 1 0 000 1.393l2.46 2.46c.28.28.648.439 1.03.439h2.68a1 1 0 001-1v-2.68a2 2 0 00-1.618-1.948z" />
                             </svg>
                           </div>
                           <input
@@ -177,8 +216,8 @@ const Contact = () => {
                           />
                         </div>
                       </div>
-                      
-                      <div>
+
+                      <div className="relative">
                         <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1.5">
                           Asunto <span className="text-red-500">*</span>
                         </label>
@@ -188,7 +227,7 @@ const Contact = () => {
                           required
                           value={formData.subject}
                           onChange={handleChange}
-                          className="w-full px-4 py-2.5 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 appearance-none bg-white"
+                          className="w-full px-4 py-2.5 pr-10 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 appearance-none bg-white"
                         >
                           <option value="" disabled>Selecciona un asunto</option>
                           <option value="consulta_tecnica">Consulta Técnica</option>
@@ -204,7 +243,7 @@ const Contact = () => {
                         </div>
                       </div>
                     </div>
-                    
+
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1.5">
                         Mensaje <span className="text-red-500">*</span>
@@ -220,7 +259,7 @@ const Contact = () => {
                         placeholder="Describe tu consulta o necesidad..."
                       ></textarea>
                     </div>
-                    
+
                     {submitStatus === 'error' && (
                       <div className="bg-red-50 border border-red-200 rounded-xl p-4">
                         <div className="flex">
@@ -237,7 +276,7 @@ const Contact = () => {
                         </div>
                       </div>
                     )}
-                    
+
                     <div className="pt-2">
                       <button
                         type="submit"
@@ -263,7 +302,7 @@ const Contact = () => {
                           </>
                         )}
                       </button>
-                      
+
                       <p className="mt-3 text-xs text-gray-500 text-center sm:text-left">
                         Los campos marcados con <span className="text-red-500">*</span> son obligatorios
                       </p>
@@ -273,7 +312,7 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          
+
           {/* Información de contacto */}
           <div>
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden sticky top-8">
@@ -286,7 +325,7 @@ const Contact = () => {
                   Datos de Contacto
                 </h3>
               </div>
-              
+
               <div className="p-5 space-y-5">
                 <div className="flex items-start">
                   <div className="bg-red-100 p-2.5 rounded-lg mr-3">
@@ -341,7 +380,7 @@ const Contact = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Botón de WhatsApp */}
                 <div className="mt-6 pt-6 border-t border-gray-200">
                   <a
@@ -353,13 +392,12 @@ const Contact = () => {
                     <span className="flex items-center justify-center">
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.765-1.653-2.062-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.357-.01-.539-.01-.181 0-.498.074-.759.372-.26.297-1.009.981-1.009 2.414 0 1.433 1.038 2.824 1.187 2.997.148.173 2.108 3.249 5.069 4.48.708.297 1.228.469 1.665.623.712.251 1.343.116 1.85.09.507-.026 1.569-.642 1.791-.717.222-.074.471-.148.422-.272-.048-.125-.197-.47-.395-.767z"/>
-                        <path d="M12 2C6.486 2 2 6.486 2 12c0 1.996.566 3.854 1.535 5.432L2.01 22.999l5.568-1.465c1.46.858 3.173 1.312 4.984 1.312 5.514 0 10-4.486 10-10S17.514 2 12 2zm0 18c-4.365 0-7.9-3.536-7.9-7.9 0-1.333.337-2.588.92-3.707l-.925-3.493 3.489-.923c1.123.585 2.378.923 3.712.923 4.364 0 7.9-3.535 7.9-7.9 0-4.365-3.536-7.9-7.9-7.9-4.365 0-7.9 3.535-7.9 7.9 0 1.334.338 2.589.92 3.708-.585 1.122-.92 2.377-.92 3.708 0 4.365 3.535 7.9 7.9 7.9z"/>
                       </svg>
                       Escribir por WhatsApp
                     </span>
                   </a>
                 </div>
-                
+
                 {/* Mapa */}
                 <div className="mt-6 pt-6 border-t border-gray-200">
                   <h4 className="font-bold text-gray-900 mb-3 flex items-center">
@@ -371,7 +409,7 @@ const Contact = () => {
                   </h4>
                   <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden bg-gray-100">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.649922332027!2d-74.07132848528407!3d4.641616243351573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f99a2f7b9c8b3%3A0x5e8b6b5b4b5b4b5b!2sCl.%2012a%20%2339-21%2C%20Bogot%C3%A1!5e0!3m2!1ses!2sco!4v1627757083537!5m2!1ses!2sco"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.8555787914743!2d-74.10359652454618!3d4.619842342352263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f995d7ec17ded%3A0x91d29e1da34260fc!2sDiesel%20y%20Turbos%20SAS!5e0!3m2!1ses-419!2sco!4v1759499198236!5m2!1ses-419!2sco"
                       width="100%"
                       height="200"
                       style={{ border: 0 }}

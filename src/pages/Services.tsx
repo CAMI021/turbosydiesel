@@ -16,23 +16,23 @@ import {
 } from "react-icons/fa";
 
 const Services = () => {
-  const [activeService, setActiveService] = useState("Reparación");
+  const [activeService, setActiveService] = useState("Diagnóstico y Reparación");
 
   const services = [
     {
       id: "reparacion",
-      title: "Reparación",
+      title: "Diagnóstico y Reparación",
       icon: <FaWrench className="text-4xl" />,
-      description: "Reparación especializada de sistemas diesel y turbos con tecnología de última generación. Nuestros técnicos certificados diagnostican y resuelven problemas complejos con precisión.",
+      description: "Diagnóstico especializado y reparación de Motores Diesel, Sistemas de Inyección y Turboalimentadores con tecnología de última generación. Nuestros técnicos certificados realizan análisis detallados para identificar y resolver problemas complejos con precisión, garantizando un rendimiento óptimo de tu motor.",
       features: [
         "Diagnóstico avanzado con equipos de última generación",
+        "Análisis especializado de motores diesel para identificar fallas",
         "Solución para alto consumo de combustible",
         "Corrección de problemas de poca fuerza",
-        "Reparación de exceso de humo",
+        "Medición y corrección de opacidad",
         "Preparación para revisión tecnomecánica",
-        "Reparación de inyectores, bombas y sistemas de alimentación",
+        "Reparación de inyectores, bombas, turbos y sistemas de alimentación",
         "Análisis de fallos con reporte detallado",
-        "Garantía extendida de 12 meses en todas las reparaciones"
       ],
       image: "/reparacion.png"
     },
@@ -40,7 +40,7 @@ const Services = () => {
       id: "mantenimiento",
       title: "Mantenimiento",
       icon: <FaCog className="text-4xl" />,
-      description: "Programas de mantenimiento preventivo y correctivo para maximizar la vida útil de tus sistemas diesel y turbos, evitando fallas costosas y mejorando el rendimiento.",
+      description: "Programas de mantenimiento preventivo y correctivo para maximizar la vida útil de sus sistemas diesel y turbos, evitando fallas costosas y mejorando el rendimiento.",
       features: [
         "Planes de mantenimiento personalizados",
         "Limpieza y calibración de sistemas",
@@ -76,17 +76,17 @@ const Services = () => {
     {
       icon: <FaWrench className="text-[#e3001b]" />,
       title: "Sistemas de Inyección",
-      description: "Diesel convencionales, Common Rail, EUI, PLD"
+      description: "Electrónicos: PLD, Cummins, Caterpillar, Common Rail, EUI, HEUI, PLD y Diesel\nConvencionales"
     },
     {
       icon: <FaTools className="text-[#e3001b]" />,
       title: "Bombas Mecánicas y Electrónicas",
-      description: "Tic s, RE 30/36 y Covec VP44"
+      description: "Mecánicas: Lineales, Rotativas, Unitarias y PT Eléctronicas: Tic s, RE 30/36, PLD, Covec y VP44"
     },
     {
       icon: <FaTachometerAlt className="text-[#e3001b]" />,
       title: "Turbos",
-      description: "Reparación de todas las marcas"
+      description: "Reparación especializada de turbos de todas las marcas.\n Balanceo electrónico, ajuste y limpieza de sus componentes por ultrasonido y sandblasting. "
     },
     {
       icon: <FaSearch className="text-[#e3001b]" />,
@@ -96,12 +96,12 @@ const Services = () => {
     {
       icon: <FaGasPump className="text-[#e3001b]" />,
       title: "Inyectores",
-      description: "Convencionales y electrónicos STH, EUI, HEUI, Common Rail"
+      description: "Convencionales y electrónicos STH, EUI, HEUI, Common Rail, Cummins y ISX"
     },
     {
       icon: <FaFlask className="text-[#e3001b]" />,
-      title: "Análisis de Combustible",
-      description: "Lavado, diálisis de tanques y medición de opacidad"
+      title: "Análisis de Muestras de Combustible",
+      description: "Análisis microbial, Porcentaje de Biodiésel, Porcentaje de Cetano"
     },
     {
       icon: <FaLaptop className="text-[#e3001b]" />,
@@ -116,12 +116,12 @@ const Services = () => {
     {
       icon: <FaTint className="text-[#e3001b]" />,
       title: "Adaptación de Filtros Separadores de Agua",
-      description: "Soluciones para separación de agua en combustible"
+      description: "Aumenta la vida útil de los sistemas de inyección. Diferentes tamaños según el caballaje del motor."
     },
     {
       icon: <FaCogs className="text-[#e3001b]" />,
-      title: "Venta de Bancos de Prueba",
-      description: "Equipos especializados para diagnóstico y reparación"
+      title: "Diálisis de Tanques para Motores diesel",
+      description: "Mantenimiento de Tanques y Venta de Equipos Portatiles para Dialissis"
     }
   ];
 
@@ -208,15 +208,13 @@ const Services = () => {
             
             <div>
               <h2 className="text-3xl font-bold mb-6 text-[#e3001b]">{currentService.title}</h2>
-              <p className="text-gray-700 text-lg mb-8 leading-relaxed">
-                {currentService.description}
-              </p>
-              
+              <div dangerouslySetInnerHTML={{ __html: currentService.description }} />
+              <div className="mt-6"> {/* Espacio entre descripción y características */}</div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                 {currentService.features.map((feature, index) => (
                   <div key={index} className="flex items-start">
                     <FaCheckCircle className="text-[#e3001b] mt-1 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
+                    <div dangerouslySetInnerHTML={{ __html: feature }} />
                   </div>
                 ))}
               </div>
@@ -247,7 +245,8 @@ const Services = () => {
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">{service.title}</h3>
                 </div>
-                <p className="text-gray-600 ml-12">{service.description}</p>
+                {/* CAMBIO CLAVE: Agregado whitespace-pre-line aquí */}
+                <p className="text-gray-600 ml-12 whitespace-pre-line">{service.description}</p>
               </div>
             ))}
           </div>

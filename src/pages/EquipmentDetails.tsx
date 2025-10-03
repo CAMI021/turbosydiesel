@@ -1,3 +1,4 @@
+// Equipment.tsx
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowRight, Phone } from "lucide-react";
@@ -24,14 +25,14 @@ const EquipmentDetails: React.FC = () => {
   // Número de WhatsApp (reemplaza con el tuyo)
   const whatsappNumber = "+5491112345678"; // Formato internacional
 
-  // Mapeo de categoryKey a nombre visual
+  // Mapeo de categoryKey a nombre visual - ACTUALIZADO CON LOS NUEVOS NOMBRES
   const getCategoryName = (key: string): string => {
     const map: Record<string, string> = {
-      hartridge: "Hartridge",
+      hartridge: "Equipos Hartridge",
       ultrasonidos: "Ultrasonidos",
       balanceadoras: "Balanceadoras",
-      dpf: "DPF",
-      millennium: "Millennium",
+      dpf: "Filtrado de partículas diesel",
+      millennium: "Bancos de prueba",
       "sand-blasters": "Sand Blasters (Equipos de limpieza por arena a presión)",
       luxometro: "Luxómetros",
     };
@@ -48,8 +49,10 @@ const EquipmentDetails: React.FC = () => {
     // Cargar datos del equipo desde el JSON específico
     import(`../data/equipment/${categoryKey}.json`)
       .then((module) => {
-        const equipments: Equipment[] = module.default;
-        const found = equipments.find((eq) => eq.id === equipmentId);
+        const data: any = module.default;
+        const equipments = Array.isArray(data) ? data : data.equipments;
+        
+        const found = equipments.find((eq: Equipment) => eq.id === equipmentId);
 
         if (found) {
           setEquipment(found);

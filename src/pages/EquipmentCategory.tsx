@@ -1,3 +1,4 @@
+// src/pages/EquipmentCategory.tsx
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useParams, useNavigate } from "react-router-dom";
@@ -5,10 +6,16 @@ import { useParams, useNavigate } from "react-router-dom";
 interface Equipment {
   id: string;
   name: string;
-  images: string[]; // Ahora es un array de imágenes
+  images: string[];
   description: string;
   specifications: string[];
   applications: string[];
+  technicalSheetPdf?: string;
+}
+
+interface CategoryData {
+  categoryDescription?: string;
+  equipments: Equipment[];
 }
 
 const EquipmentCategory: React.FC = () => {
@@ -16,6 +23,7 @@ const EquipmentCategory: React.FC = () => {
   const navigate = useNavigate();
   const [equipments, setEquipments] = useState<Equipment[]>([]);
   const [categoryName, setCategoryName] = useState("");
+  const [categoryDescription, setCategoryDescription] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -26,13 +34,13 @@ const EquipmentCategory: React.FC = () => {
       return;
     }
 
-    // Mapeo de categoryKey a nombre visual (estructura exacta)
+    // Mapeo de categoryKey a nombre visual - ACTUALIZADO CON LOS NUEVOS NOMBRES
     const categoryNames: Record<string, string> = {
-      hartridge: "Hartridge",
+      hartridge: "Equipos Hartridge",
       ultrasonidos: "Ultrasonidos",
       balanceadoras: "Balanceadoras",
-      dpf: "DPF",
-      millennium: "Millennium",
+      dpf: "Filtrado de partículas diesel",
+      millennium: "Bancos de prueba",
       "sand-blasters": "Sand Blasters (Equipos de limpieza por arena a presión)",
       luxometro: "Luxómetros",
     };
@@ -43,8 +51,17 @@ const EquipmentCategory: React.FC = () => {
     // Cargar datos específicos
     import(`../data/equipment/${categoryKey}.json`)
       .then((module) => {
-        const equipments: Equipment[] = module.default;
-        setEquipments(equipments);
+        const data: CategoryData = module.default;
+        
+        // Manejar tanto el formato antiguo (array) como el nuevo (objeto con .equipments)
+        if (Array.isArray(data)) {
+          setEquipments(data);
+          setCategoryDescription(null);
+        } else {
+          setCategoryDescription(data.categoryDescription || null);
+          setEquipments(data.equipments || []);
+        }
+        
         setLoading(false);
       })
       .catch((err) => {
@@ -119,30 +136,57 @@ const EquipmentCategory: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-20">
+    <div className="min-h-screen bg-gray-50 pt-40 pb-20">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         {/* Encabezado de categoría */}
         <motion.div
-          className="text-center mb-16"
+          className={`${categoryKey === 'hartridge' ? '' : 'text-center'} mb-12`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-8">
-            {categoryName}
-          </h1>
+          {categoryKey === 'hartridge' ? (
+            // NUEVO DISEÑO PARA HARRIDGE - SIEMPRE VISIBLE
+            <div className="bg-white rounded-xl shadow-md p-5 border border-gray-200">
+              <div className="flex flex-col md:flex-row md:items-center gap-6 h-full">
+                {/* Logo */}
+                <div className="md:w-1/3 lg:w-1/4 flex-shrink-0 flex justify-center md:justify-start">
+                  <div className="relative group">
+                    <div className="absolute -inset-4 bg-[#e3001b]/5 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity" />
+                    <div className="relative bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
+                      <img 
+                        src="/marcas/hartridge.png" 
+                        alt="Logo de Equipos Hartridge" 
+                        className="h-20 w-auto object-contain"
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </div>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <span className="bg-[#e3001b]/10 text-[#e3001b] px-4 py-2 rounded-full font-medium">
-              Tecnología Profesional
-            </span>
-            <span className="bg-[#e3001b]/10 text-[#e3001b] px-4 py-2 rounded-full font-medium">
-              Soporte Técnico Incluido
-            </span>
-            <span className="bg-[#e3001b]/10 text-[#e3001b] px-4 py-2 rounded-full font-medium">
-              Documentación Completa
-            </span>
-          </div>
+                {/* Texto descriptivo */}
+                <div className="md:flex-1 min-w-0 flex flex-col justify-center">
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    Hartridge, Empresa fundada en 1930 fabricante de Equipos de prueba para sistemas de inyección Diesel para las fábricas y los Servicios autorizados de los fabricantes DELPHI, STANADYNE, DENSO, CONTINENTAL, CATERPILLAR, YANMAR, CUMMINS y otros.
+                  </p>
+                  <p className="text-gray-600 leading-relaxed">
+                    Nosotros somos Distribuidores para Colombia, Brindamos soporte técnico en instalación de los equipos, asesoría en la compra y capacitación. Garantía según condiciones de fábrica, tenemos en stock Inventario de repuestos de consumo.
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
+              {categoryName}
+            </h1>
+          )}
+
+          {/* Descripción genérica para otras categorías */}
+          {categoryKey !== 'hartridge' && categoryDescription && (
+            <p className="text-gray-600 max-w-3xl mx-auto text-lg mb-6">
+              {categoryDescription}
+            </p>
+          )}
         </motion.div>
 
         {/* Grid de equipos centrado */}
@@ -167,7 +211,7 @@ const EquipmentCategory: React.FC = () => {
             >
               <div className="relative h-56 overflow-hidden bg-white">
                 <img
-                  src={equipment.images[0]} // Mostrar primera imagen del array
+                  src={equipment.images[0]}
                   alt={equipment.name}
                   className="w-full h-full object-contain object-center transition-transform duration-500 hover:scale-105"
                   loading="lazy"
@@ -219,7 +263,7 @@ const EquipmentCategory: React.FC = () => {
 
         {/* Mensaje si no hay equipos */}
         {equipments.length === 0 && (
-          <div className="text-center py-12 bg-white rounded-xl shadow-md">
+          <div className="text-center py-12 bg-white rounded-xl shadow-md mt-12">
             <p className="text-gray-600 text-lg">
               Actualmente no hay equipos disponibles en esta categoría. Por favor,
               contacte con nuestro equipo técnico para más información.

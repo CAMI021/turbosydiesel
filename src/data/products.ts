@@ -1,4 +1,32 @@
 export const products = {
+  "companyServices": {
+    "title": "Servicios y Capacitación",
+    "description": "Ofrecemos soluciones integrales para técnicos y flotas diesel",
+    "services": [
+      {
+        "id": "capacitacion",
+        "name": "Capacitación Técnica",
+        "description": "Brindamos capacitación especializada para técnicos diesel en sistemas de inyección, turboalimentación y filtración, con enfoque práctico y actualizado a las últimas tecnologías.",
+        "mainFeatures": [
+          "Capacitación técnica especializada para profesionales del sector diesel, cubriendo sistemas Common Rail, HEUI, EUI, PLD, turbos y filtración avanzada. Incluye talleres prácticos y soporte post-capacitación."
+        ],
+        "technicalSpecs": []
+      },
+      {
+        "id": "mantenimiento",
+        "name": "Mantenimiento Preventivo y Correctivo",
+        "description": "Servicio integral de mantenimiento para motores diesel y sus sistemas críticos.",
+        "mainFeatures": [
+          "Ofrecemos mantenimiento preventivo y correctivo del motor, sistema de inyección y turboalimentador. Incluye cambio de aceite, reemplazo o reparación de componentes según rutinas del fabricante y hoja de vida detallada por vehículo para historial de intervenciones."
+        ],
+        "technicalSpecs": [
+          { "label": "Alcance", "value": "Motor, sistema de inyección, turboalimentador y filtración" },
+          { "label": "Documentación", "value": "Hoja de vida por vehículo con registro de todos los trabajos realizados" },
+          { "label": "Componentes", "value": "Cambio o reparación según manual de servicio y rutinas de mantenimiento" }
+        ]
+      }
+    ]
+  },
   "filters": {
     "title": "Filtros",
     "description": "Filtros de combustible",
@@ -16,20 +44,89 @@ export const products = {
         "shortDesc": "",
         "description": "Filtros de alta eficiencia para sistemas de combustible diésel",
         "technicalSpecs": [
-          { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan condiciones exigentes" },
-          { "label": "Función", "value": "Filtración eficaz para mantener la pureza del combustible y proteger el motor" },
-          { "label": "Diseño", "value": "Práctico y ergonómico, diseñado para facilitar la instalación y el mantenimiento" },
-          { "label": "Adaptabilidad", "value": "Compatible con una amplia variedad de sistemas y motores diésel" }
+          { "label": "Separación de agua", "value": "Elimina hasta el 99% del agua presente en el combustible" },
+          { "label": "Grados de filtración", "value": "Disponible en 2, 10 y 30 micrones según elemento filtrante" },
+          { "label": "Aplicación", "value": "Diseñado para distintos tamaños de motores según caballaje" },
+          { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan condiciones exigentes" }
         ],
         "mainFeatures": [
-          "Los Filtros Serie Turbina eliminan partículas y contaminantes del combustible protegiendo el motor y asegurando un rendimiento óptimo. Su construcción robusta y materiales duraderos los hacen ideales para aplicaciones exigentes, con diseño ergonómico para fácil instalación y mantenimiento."
+          "Ofrecemos soluciones de filtración especializada para alargar la vida de los motores Diesel usando los filtros separadores de agua tipo RACOR que separan 99%el agua del combustible y ofrecen una filtración de 2, 10 y 30 micrones según el elemento filtrante que se use. Hay diferentes opciones para los tamaños de motores según su caballaje."
+        ]
+      },
+      {
+        "id": "pacha-doble",
+        "name": "Filtro Pacha Doble",
+        "brand": "Racor",
+        "images": [
+          "/productos/filtros/pacha-doble1.jpg"
+        ],
+        "technicalSheetPdf": "/pdfs/pacha-doble-specs.pdf",
+        "shortDesc": "",
+        "description": "Filtros de doble etapa para máxima eficiencia en sistemas de combustible diésel",
+        "technicalSpecs": [
+          { "label": "Etapa 1", "value": "Filtración primaria para partículas grandes y separación de agua (hasta 99%)" },
+          { "label": "Etapa 2", "value": "Filtración fina para partículas microscópicas (5-10 micras)" },
+          { "label": "Construcción", "value": "Carcaza reforzada y materiales de alta resistencia" },
+          { "label": "Capacidad", "value": "Mayor vida útil gracias a su diseño de doble etapa" }
+        ],
+        "mainFeatures": [
+          "Filtro de doble etapa que combina separación de agua (99%) con filtración fina (5-10 micras), ideal para aplicaciones exigentes en vehículos pesados e industriales. Diseñado para maximizar la protección del motor y prolongar la vida útil del sistema de inyección."
+        ]
+      },
+      {
+        "id": "pacha-triple",
+        "name": "Filtro Pacha Triple",
+        "brand": "Racor",
+        "images": [
+          "/productos/filtros/pacha-triple1.jpg"
+        ],
+        "technicalSheetPdf": "/pdfs/pacha-triple-specs.pdf",
+        "shortDesc": "",
+        "description": "Filtros de triple etapa para purificación avanzada de combustible diésel",
+        "technicalSpecs": [
+          { "label": "Etapa 1", "value": "Separación de agua y partículas grandes (>30 micras)" },
+          { "label": "Etapa 2", "value": "Filtración media para partículas intermedias (10-30 micras)" },
+          { "label": "Etapa 3", "value": "Filtración ultrafina para partículas microscópicas (<5 micras)" },
+          { "label": "Drenaje", "value": "Sistema automático de drenaje de agua integrado" }
+        ],
+        "mainFeatures": [
+          "Sistema de triple etapa que elimina agua, partículas grandes y microscópicas (<5 micras), garantizando combustible excepcionalmente limpio. Incluye drenaje automático de agua y es ideal para motores de alta precisión como Common Rail."
+        ]
+      },
+      {
+        "id": "kits-adaptacion",
+        "name": "Kits de Adaptación de Filtros",
+        "brand": "Racor",
+        "images": [
+          "/productos/filtros/kit-adaptacion-generic.jpg"
+        ],
+        "technicalSheetPdf": "/pdfs/Kit Filtro Separador  VW Amarok.pdf",
+        "shortDesc": "Kits listos para instalar en vehículos diesel",
+        "description": "Kits de filtración especializados para instalación directa en vehículos diesel populares",
+        "technicalSpecs": [
+          { "label": "Compatibilidad", "value": "CHEVROLET LUV DIMAX, TOYOTA HILUX, TOYOTA PRADO, FORD RANGER, RENAULT ALASKAN, MITSUBISHI L200, MAZDA BT50, HYUNDAI STARIA y otros" },
+          { "label": "Incluye", "value": "Soporte, mangueras, abrazaderas y filtros listos para instalar" },
+          { "label": "Filtración", "value": "Opción de 2, 10 o 30 micras con separación de agua integrada" },
+          { "label": "Instalación", "value": "Diseño plug-and-play para fácil montaje sin modificaciones mayores" }
+        ],
+        "mainFeatures": [
+          "Amplia gama de kits de filtración listos para instalar en vehículos diesel comunes. Cada kit incluye todo lo necesario para una instalación rápida y segura, con opciones de filtración de 2, 10 o 30 micras y separación de agua, adaptado a las necesidades específicas de cada modelo."
         ]
       }
     ]
   },
   "common-rail-systems": {
     "title": "Sistemas de inyección Common Rail",
-    "description": "Sistemas Common Rail",
+    "description": "Sistemas Common Rail de última generación",
+    "mainBrands": ["bosch", "delphi"],
+    "brands": [
+      "denso",
+      "continental",
+      "caterpillar",
+      "cummins",
+      "yanmar",
+      "perkins"
+    ],
     "products": [
       {
         "id": "common-rail-injectors",
@@ -37,8 +134,7 @@ export const products = {
         "brand": "Delphi",
         "images": [
           "/productos/inyectores/common-rail-main.jpg",
-          "/productos/inyectores/common-rail1.jpg",
-          "/productos/inyectores/common-rail2.jpg"
+          "/productos/inyectores/common-rail1.jpg"
         ],
         "technicalSheetPdf": "/pdfs/common-rail-specs.pdf",
         "shortDesc": "Inyectores Common Rail",
@@ -50,7 +146,7 @@ export const products = {
           { "label": "Materiales", "value": "Componentes de alta calidad resistentes al desgaste continuo" }
         ],
         "mainFeatures": [
-          "Los inyectores Common Rail proporcionan distribución precisa y controlada del combustible en sistemas de alta presión, mejorando la eficiencia del motor y reduciendo emisiones. Su construcción robusta y precisión en el control garantizan un rendimiento óptimo en todo momento."
+          "Inyectores de alta precisión que mejoran la eficiencia del motor y reducen emisiones mediante control exacto de la inyección en sistemas Common Rail. Ideales para aplicaciones donde se requiere máxima fiabilidad y rendimiento."
         ]
       },
       {
@@ -71,7 +167,7 @@ export const products = {
           { "label": "Seguridad", "value": "Mecanismos de protección integrados contra sobrecargas" }
         ],
         "mainFeatures": [
-          "Las bombas Common Rail suministran combustible a alta presión de manera constante y precisa, esenciales para el funcionamiento óptimo de los sistemas de inyección. Diseñadas para durabilidad y eficiencia, soportan condiciones exigentes y garantizan un rendimiento estable en motores modernos."
+          "Bombas de alta presión esenciales para el correcto funcionamiento de los sistemas Common Rail. Diseñadas para durabilidad, estabilidad y entrega constante de combustible bajo presiones extremas."
         ]
       }
     ]
@@ -99,7 +195,7 @@ export const products = {
           { "label": "Materiales", "value": "Componentes de alta resistencia al desgaste y la corrosión" }
         ],
         "mainFeatures": [
-          "Los inyectores EUI ofrecen control preciso de la inyección mediante tecnología electrónica, mejorando la eficiencia y reduciendo emisiones. Su diseño robusto y materiales de alta calidad los hacen ideales para aplicaciones industriales y vehículos comerciales."
+          "Inyectores electrónicos que ofrecen control preciso de la inyección, mejorando la eficiencia y reduciendo emisiones en motores industriales y comerciales. Su robustez los hace ideales para entornos exigentes."
         ]
       }
     ]
@@ -126,7 +222,7 @@ export const products = {
           { "label": "Seguridad", "value": "Protección integrada contra fluctuaciones de presión y sobrecargas" }
         ],
         "mainFeatures": [
-          "Las bombas PLD proporcionan suministro constante y preciso de combustible en sistemas convencionales. Diseñadas para durabilidad y eficiencia, soportan condiciones exigentes y garantizan un rendimiento estable en motores diésel."
+          "Bombas de línea directa confiables para sistemas diésel convencionales. Ofrecen suministro constante de combustible y son fáciles de mantener, ideales para flotas con equipos de generación anterior."
         ]
       }
     ]
@@ -153,7 +249,7 @@ export const products = {
           { "label": "Materiales", "value": "Componentes de alta resistencia al desgaste y la temperatura" }
         ],
         "mainFeatures": [
-          "Los inyectores HEUI combinan control electrónico con acción hidráulica para inyección precisa y eficiente. Su construcción robusta y materiales de alta resistencia los hacen ideales para aplicaciones pesadas y prolongan la vida útil del motor."
+          "Inyectores que combinan control electrónico con acción hidráulica para una inyección precisa y eficiente. Ideales para motores pesados donde se requiere alta fiabilidad y respuesta dinámica."
         ]
       }
     ]
@@ -180,18 +276,26 @@ export const products = {
           { "label": "Seguridad", "value": "Mecanismos de protección integrados contra fluctuaciones y sobrecargas" }
         ],
         "mainFeatures": [
-          "Los sistemas convencionales de bomba e inyectores proporcionan suministro confiable de combustible en motores diésel. Su robustez y facilidad de mantenimiento los hacen ideales para aplicaciones tradicionales y sistemas antiguos."
+          "Sistemas de inyección diésel tradicionales, robustos y de fácil mantenimiento. Ideales para equipos antiguos o aplicaciones donde se prioriza la simplicidad y disponibilidad de repuestos."
         ]
       }
     ]
   },
   "turbochargers": {
     "title": "Turboalimentadores",
-    "description": "Turboalimentadores",
+    "description": "Turboalimentadores de alto rendimiento",
+    "mainBrands": ["holset", "cummins"],
+    "brands": [
+      "garrett",
+      "borgwarner",
+      "cz",
+      "mitsubishi",
+      "toyota"
+    ],
     "products": [
       {
         "id": "holset",
-        "name": "Turbos Holset",
+        "name": "Turbocargadores",
         "brand": "Holset",
         "images": [
           "/productos/turbo/turbo1.png",
@@ -199,21 +303,20 @@ export const products = {
           "/productos/turbo/turbo3.png"
         ],
         "technicalSheetPdf": "/pdfs/holset-hx50-specs.pdf",
-        "shortDesc": "Turbos Holset",
+        "shortDesc": "Turbos",
         "description": "Turboalimentadores de alto rendimiento",
         "technicalSpecs": [
-          { "label": "Diseño", "value": "Construcción robusta para resistir condiciones exigentes y prolongar la vida útil" },
-          { "label": "Funcionalidad", "value": "Optimizado para mejorar el flujo de aire y la eficiencia del motor" },
-          { "label": "Durabilidad", "value": "Materiales de alta resistencia al desgaste y temperaturas extremas" },
-          { "label": "Adaptabilidad", "value": "Compatible con diversos tipos de motores y aplicaciones industriales" }
+          { "label": "Origen", "value": "Disponibles en versión original y homologada" },
+          { "label": "Marcas", "value": "Holset, Cummins, Garrett, BorgWarner, CZ, Mitsubishi, Toyota" },
+          { "label": "Servicios", "value": "Incluye instalación, garantía y asesoría técnica" },
+          { "label": "Adaptabilidad", "value": "Opciones ajustadas al presupuesto y necesidades del cliente" }
         ],
         "mainFeatures": [
-          "Los turbos Holset incrementan la potencia y eficiencia del motor al forzar más aire en la cámara de combustión. Diseñados para resistir altas temperaturas y presiones, ofrecen una respuesta rápida y un rendimiento consistente en condiciones exigentes."
+          "Amplia gama de turbos originales y homologados de marcas líderes. Ofrecemos servicio de instalación profesional, soporte de garantía y soluciones adaptadas al presupuesto del cliente, asegurando el mejor rendimiento y durabilidad."
         ]
       }
     ]
   },
-  // 👇 CATEGORÍA CORREGIDA - SOLO LÍQUIDO ISO4113
   "liquido-de-calibracion": {
     "title": "Líquidos de Calibración",
     "description": "Líquidos de calibración ISO4113 para sistemas de inyección diésel",
@@ -226,7 +329,7 @@ export const products = {
           "/productos/iso4113-main.jpg",
           "/productos/iso4113-1.jpg"
         ],
-        "technicalSheetPdf": "/pdfs/iso4113-specs.pdf",
+        "technicalSheetPdf": ["/pdfs/iso4113-specs.pdf", "/pdfs/iso4113-specs-especial.pdf"],
         "shortDesc": "Líquido de calibración ISO4113 para sistemas Common Rail y HEUI",
         "description": "Líquido especializado para calibración de sistemas de inyección según norma ISO4113",
         "technicalSpecs": [
