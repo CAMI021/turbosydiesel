@@ -25,6 +25,7 @@ const Home = () => {
   const [timeRemaining, setTimeRemaining] = useState(9000);
   const [isImageFixed, setIsImageFixed] = useState(false);
   const [equipmentIndex, setEquipmentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   const images = [
@@ -33,6 +34,23 @@ const Home = () => {
     '/image1.jpg',
     '/image3.png'
   ];
+
+  // Detectar si es dispositivo móvil
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Obtener el número de imágenes visibles según el dispositivo
+  const getVisibleImageCount = () => {
+    return isMobile ? 3 : images.length;
+  };
 
   // Este efecto se encarga de inicializar el tiempo restante cuando cambia el índice
   useEffect(() => {
@@ -46,12 +64,13 @@ const Home = () => {
     
     const timer = setTimeout(() => {
       if (!isImageFixed) {
-        setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
+        const visibleCount = getVisibleImageCount();
+        setCurrentIndex(prevIndex => (prevIndex + 1) % visibleCount);
       }
     }, timeRemaining);
 
     return () => clearTimeout(timer);
-  }, [currentIndex, timeRemaining, isImageFixed]);
+  }, [currentIndex, timeRemaining, isImageFixed, isMobile]);
 
   // Efecto para reproducir el video cuando está visible
   useEffect(() => {
@@ -87,7 +106,7 @@ const Home = () => {
   const handleImageClick = (index: number) => {
     if (index === currentIndex && !isImageFixed) {
       if (index === 1) {
-        window.open('https://wa.me/573185141579    ', '_blank');
+        window.open('https://wa.me/573185141579      ', '_blank');
       } else {
         setTimeRemaining(prev => prev + 5000);
         setIsImageFixed(true);
@@ -254,58 +273,98 @@ const Home = () => {
 
   return (
     <div className="no-horizontal-scroll bg-[#f4f4f4]">
-      {/* Hero Section */}
-      <section className="full-width relative bg-black text-white h-screen flex items-center justify-center overflow-hidden">
-        <div className="container-wide">
+      {/* Hero Section - CORREGIDO: Añadido padding-top más grande para evitar que la navbar tape el contenido */}
+      <section className="full-width relative bg-black text-white min-h-screen flex flex-col overflow-hidden pt-24 md:pt-0">
+        <div className="container-wide flex-1 flex items-center justify-center">
           <div className="absolute inset-0 z-0">
-            {images.map((src, index) => (
-              <motion.div
-                key={index}
-                className={`w-full h-full absolute inset-0 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
-                animate={{ opacity: index === currentIndex ? 1 : 0 }}
-                transition={{ duration: 0.5 }}
-                onClick={() => handleImageClick(index)}
-                style={{ cursor: index === currentIndex ? 'pointer' : 'default' }}
-              >
-                {index === 0 ? (
-                  <div className="relative w-full h-full">
-                    {/* Capa de fondo difuminada */}
-                    <div className="absolute inset-0 overflow-hidden">
-                      <div className="absolute inset-[-50%] w-[200%] h-[200%]">
-                        <video
-                          src={src}
-                          className="w-full h-full object-cover blur-xl scale-[1.1]"
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                        />
+            {images.map((src, index) => {
+              // En móviles, no mostrar la cuarta imagen (índice 3)
+              if (isMobile && index === 3) return null;
+              
+              return (
+                <motion.div
+                  key={index}
+                  className={`w-full h-full absolute inset-0 ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
+                  animate={{ opacity: index === currentIndex ? 1 : 0 }}
+                  transition={{ duration: 0.5 }}
+                  onClick={() => handleImageClick(index)}
+                  style={{ cursor: index === currentIndex ? 'pointer' : 'default' }}
+                >
+                  {index === 0 ? (
+                    <div className="relative w-full h-full">
+                      {/* Capa de fondo difuminada */}
+                      <div className="absolute inset-0 overflow-hidden">
+                        <div className="absolute inset-[-50%] w-[200%] h-[200%]">
+                          <video
+                            src={src}
+                            className="w-full h-full object-cover blur-xl scale-[1.1]"
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                          />
+                        </div>
+                      </div>
+                      {/* Video principal */}
+                      <video
+                        ref={videoRef}
+                        src={src}
+                        className="relative w-full h-full object-contain"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      />
+                    </div>
+                  ) : isMobile && index === 1 ? (
+                    // Contenido de texto para la segunda imagen en móviles
+                    <div className="w-full h-full bg-black flex flex-col justify-center items-center p-6 text-white">
+                      <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">Capacitación Técnicos Diesel</h2>
+                      <p className="text-xl md:text-2xl text-center max-w-3xl">
+                        Aprende de los mejores. Instructores expertos y contenido actualizado para el mercado actual.
+                      </p>
+                    </div>
+                  ) : isMobile && index === 2 ? (
+                    // Contenido de texto para la tercera imagen en móviles
+                    <div className="w-full h-full bg-black flex flex-col justify-center items-center p-6 text-white">
+                      <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">Eficiencia en Cada Componente:</h2>
+                      <div className="grid grid-cols-2 gap-4 md:gap-6 w-full max-w-2xl">
+                        <div className="bg-gray-800 p-3 md:p-4 rounded-lg flex items-center justify-center text-xl md:text-2xl font-medium">
+                          Bombas
+                        </div>
+                        <div className="bg-gray-800 p-3 md:p-4 rounded-lg flex items-center justify-center text-xl md:text-2xl font-medium">
+                          Inyectores
+                        </div>
+                        <div className="bg-gray-800 p-3 md:p-4 rounded-lg flex items-center justify-center text-xl md:text-2xl font-medium">
+                          Turbos
+                        </div>
+                        <div className="bg-gray-800 p-3 md:p-4 rounded-lg flex items-center justify-center text-xl md:text-2xl font-medium">
+                          Filtros
+                        </div>
+                        <div className="bg-gray-800 p-3 md:p-4 rounded-lg flex items-center justify-center text-xl md:text-2xl font-medium">
+                          Equipos
+                        </div>
+                        <div className="bg-gray-800 p-3 md:p-4 rounded-lg flex items-center justify-center text-xl md:text-2xl font-medium">
+                          AFS
+                        </div>
                       </div>
                     </div>
-                    {/* Video principal */}
-                    <video
-                      ref={videoRef}
-                      src={src}
-                      className="relative w-full h-full object-contain"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                    />
-                  </div>
-                ) : (
-                  <img src={src} alt={`Background ${index}`} className="w-full h-full object-contain" loading="eager" />
-                )}
-              </motion.div>
-            ))}
+                  ) : (
+                    <img src={src} alt={`Background ${index}`} className="w-full h-full object-contain" loading="eager" />
+                  )}
+                </motion.div>
+              );
+            })}
           </div>
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-            {images.map((_, index) => (
+            {Array.from({ length: getVisibleImageCount() }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => {
-                  setCurrentIndex(index);
-                  const time = index === 0 ? 9000 : 6000;
+                  const visibleCount = getVisibleImageCount();
+                  const newIndex = Math.min(index, visibleCount - 1);
+                  setCurrentIndex(newIndex);
+                  const time = newIndex === 0 ? 9000 : 6000;
                   setTimeRemaining(time + 5000);
                   setIsImageFixed(true);
                 }}
@@ -660,7 +719,7 @@ const Home = () => {
                   <Button
                     className="bg-[#e3001b] text-white hover:bg-[#b00000] w-full"
                     onClick={() => {
-                      window.open('https://wa.me/573185141579    ', '_blank');
+                      window.open('https://wa.me/573185141579      ', '_blank');
                       setSelectedCertification(null);
                     }}
                   >
@@ -707,7 +766,7 @@ const Home = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <a
-                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA    "
+                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA      "
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
@@ -716,7 +775,7 @@ const Home = () => {
               </a>
               
               <a
-                href="https://wa.me/573185141579    "
+                href="https://wa.me/573185141579      "
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
