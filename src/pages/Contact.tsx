@@ -5,7 +5,7 @@ import emailjs from '@emailjs/browser';
 
 // 🔑 Configuración con Gmail en EmailJS (copiado de tu ContactSimple que funciona)
 const EMAILJS_PUBLIC_KEY = '_glOK3OQFHUeXoSxA'; // tu public key
-const EMAILJS_SERVICE_ID = 'service_pq1jlp8';   // tu service ID
+const EMAILJS_SERVICE_ID = 'service_hbj5k6a';   // tu service ID
 const EMAILJS_TEMPLATE_ID = 'template_571hqtm'; // tu template ID
 
 // Inicializar EmailJS una sola vez al cargar el módulo (CORRECCIÓN PRINCIPAL)

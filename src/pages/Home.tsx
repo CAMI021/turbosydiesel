@@ -60,15 +60,18 @@ const Home = () => {
     }
   }, [currentIndex]);
 
-  // Efecto para auto-avanzar el carrusel de equipos
+  // Efecto para auto-avanzar el carrusel de equipos - CORREGIDO
   useEffect(() => {
     if (!selectedCertification) return;
     
     const details = getCertificationDetails(selectedCertification);
-    if (!details?.equipment || !Array.isArray(details.equipment)) return;
+    const equipmentArray = getEquipmentArray(details?.equipment);
+    
+    // Si no hay equipos o solo hay uno, no necesitamos el carrusel automático
+    if (equipmentArray.length <= 1) return;
     
     const timer = setInterval(() => {
-      setEquipmentIndex(prev => (prev + 1) % details.equipment.length);
+      setEquipmentIndex(prev => (prev + 1) % equipmentArray.length);
     }, 5000);
 
     return () => clearInterval(timer);
@@ -84,7 +87,7 @@ const Home = () => {
   const handleImageClick = (index: number) => {
     if (index === currentIndex && !isImageFixed) {
       if (index === 1) {
-        window.open('https://wa.me/573185141579', '_blank');
+        window.open('https://wa.me/573185141579  ', '_blank');
       } else {
         setTimeRemaining(prev => prev + 5000);
         setIsImageFixed(true);
@@ -647,7 +650,7 @@ const Home = () => {
                   <Button
                     className="bg-[#e3001b] text-white hover:bg-[#b00000] w-full"
                     onClick={() => {
-                      window.open('https://wa.me/573185141579', '_blank');
+                      window.open('https://wa.me/573185141579  ', '_blank');
                       setSelectedCertification(null);
                     }}
                   >
@@ -694,7 +697,7 @@ const Home = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <a
-                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA"
+                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA  "
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
@@ -703,7 +706,7 @@ const Home = () => {
               </a>
               
               <a
-                href="https://wa.me/573185141579"
+                href="https://wa.me/573185141579  "
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
