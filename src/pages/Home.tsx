@@ -374,7 +374,8 @@ const Home = () => {
           </div>
           {currentIndex === 0 && (
             <motion.div initial="hidden" animate="visible" className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-              <motion.h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight hero-text-shadow font-space-grotesk" variants={{ visible: { transition: { staggerChildren: 0.03 } } }}>
+              {/* CORREGIDO: Reducido el tamaño de la fuente en móviles */}
+              <motion.h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight hero-text-shadow font-space-grotesk" variants={{ visible: { transition: { staggerChildren: 0.03 } } }}>
                 {Array.from("VENTAS Y SERVICIO").map((char, index) => (
                   <motion.span
                     key={index}
@@ -390,7 +391,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.8 }}
-                className="text-xl md:text-2xl max-w-3xl mx-auto text-white mb-10"
+                className="text-lg md:text-xl max-w-3xl mx-auto text-white mb-10"
                 style={{ textShadow: '0 0 35px rgba(0,0,0,0.9)' }}
               >
                 Tecnología Diesel en sus Manos
@@ -399,7 +400,7 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2, duration: 0.8 }}
-                className="mt-12 flex flex-wrap justify-center gap-6 max-w-4xl mx-auto"
+                className="mt-12 flex flex-wrap justify-center gap-4 max-w-4xl mx-auto"
               >
                 {[
                   { icon: "🔧", text: "Venta de Repuestos" },
@@ -412,10 +413,10 @@ const Home = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 2.2 + index * 0.1 }}
-                    className="flex items-center bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20"
+                    className="flex items-center bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20"
                   >
                     <span className="mr-2 text-[#e3001b]">{item.icon}</span>
-                    <span className="text-white">{item.text}</span>
+                    <span className="text-white text-sm md:text-base">{item.text}</span>
                   </motion.div>
                 ))}
               </motion.div>
@@ -432,7 +433,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-3xl font-bold mb-4 text-[#e3001b]"
+              className="text-2xl md:text-3xl font-bold mb-4 text-[#e3001b]"
             >
               Servicios Autorizados de las Siguentes Marcas
             </motion.h2>
@@ -455,16 +456,16 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm text-center cursor-pointer"
+                className="bg-white p-4 md:p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm text-center cursor-pointer"
                 onClick={() => setSelectedCertification(cert.id)}
               >
-                <div className="flex justify-center mb-4">
-                  <div className="bg-[#e3001b]/10 p-3 rounded-full">
+                <div className="flex justify-center mb-3 md:mb-4">
+                  <div className="bg-[#e3001b]/10 p-2 md:p-3 rounded-full">
                     {cert.icon}
                   </div>
                 </div>
 
-                <div className="mb-4 h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
+                <div className="mb-3 md:mb-4 h-24 md:h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
                   <img
                     src={cert.image}
                     alt={`Certificación ${cert.title}`}
@@ -483,8 +484,8 @@ const Home = () => {
                   </div>
                 </div>
 
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{cert.title}</h3>
-                <p className="text-gray-600 text-sm">{cert.description}</p>
+                <h3 className="text-base md:text-lg font-bold text-gray-900 mb-1 md:mb-2">{cert.title}</h3>
+                <p className="text-gray-600 text-xs md:text-sm">{cert.description}</p>
               </motion.div>
             ))}
           </div>
@@ -510,7 +511,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-center text-black mb-4"
+            className="text-2xl md:text-3xl font-bold text-center text-black mb-4"
           >
             Ventas y Servicio para estas marcas y muchas más...
           </motion.h2>
@@ -519,7 +520,7 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-center text-gray-600 max-w-2xl mx-auto mb-12"
+            className="text-center text-gray-600 max-w-2xl mx-auto mb-12 text-sm md:text-base"
           >
             Componentes premium y reparaciones de alta precisión para sistemas diesel
           </motion.p>
@@ -536,7 +537,7 @@ const Home = () => {
                 {Array.from({ length: 23 }, (_, i) => (
                   <motion.div
                     key={i}
-                    className="flex-shrink-0 w-48 h-24 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100"
+                    className="flex-shrink-0 w-40 h-20 md:w-48 md:h-24 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100"
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300, damping: 15 }}
                   >
@@ -552,7 +553,7 @@ const Home = () => {
               <div className="flex justify-center mt-2">
                 <button
                   onClick={() => setShowAllBrands(true)}
-                  className="bg-gray-100 text-gray-700 text-sm px-4 py-1 rounded-lg hover:bg-[#e3001b] hover:text-white transition-colors duration-300 font-medium"
+                  className="bg-gray-100 text-gray-700 text-xs md:text-sm px-3 py-1 rounded-lg hover:bg-[#e3001b] hover:text-white transition-colors duration-300 font-medium"
                 >
                   Ver todas las marcas
                 </button>
@@ -561,11 +562,11 @@ const Home = () => {
           ) : (
             <div className="mb-8">
               <div className="text-center max-w-3xl mx-auto mb-8">
-                <h2 className="text-2xl font-bold mb-2 text-black">Nuestras marcas</h2>
-                <p className="text-gray-600">Trabajamos con las mejores marcas del mercado</p>
+                <h2 className="text-xl md:text-2xl font-bold mb-2 text-black">Nuestras marcas</h2>
+                <p className="text-gray-600 text-sm md:text-base">Trabajamos con las mejores marcas del mercado</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                 {allBrands.map((brand) => (
                   <motion.div
                     key={brand.id}
@@ -573,9 +574,9 @@ const Home = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="bg-white p-6 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm text-center"
+                    className="bg-white p-4 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm text-center"
                   >
-                    <div className="mb-4 h-32 bg-white rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
+                    <div className="mb-3 md:mb-4 h-24 md:h-32 bg-white rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
                       <img
                         src={brand.image}
                         alt={`Marca ${brand.id}`}
@@ -597,10 +598,10 @@ const Home = () => {
                 ))}
               </div>
 
-              <div className="flex justify-center mt-8">
+              <div className="flex justify-center mt-6">
                 <button
                   onClick={() => setShowAllBrands(false)}
-                  className="bg-gray-100 text-gray-700 text-sm px-4 py-1 rounded-lg hover:bg-[#e3001b] hover:text-white transition-colors duration-300 font-medium"
+                  className="bg-gray-100 text-gray-700 text-xs md:text-sm px-3 py-1 rounded-lg hover:bg-[#e3001b] hover:text-white transition-colors duration-300 font-medium"
                 >
                   Ver menos marcas
                 </button>
@@ -608,13 +609,13 @@ const Home = () => {
             </div>
           )}
 
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold text-center text-black mb-8">Empresas del grupo:</h3>
+          <div className="mt-12 md:mt-16">
+            <h3 className="text-xl md:text-2xl font-bold text-center text-black mb-6 md:mb-8">Empresas del grupo:</h3>
             <div className="flex justify-center gap-2">
-              <div className="w-80 h-20 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100">
+              <div className="w-64 h-16 md:w-80 md:h-20 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100">
                 <img src={`/brand-1.jpg`} alt="Asociado 1" className="w-full h-full object-contain" />
               </div>
-              <div className="w-80 h-20 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100">
+              <div className="w-64 h-16 md:w-80 md:h-20 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100">
                 <img src={`/brand-2.jpg`} alt="Asociado 2" className="w-full h-full object-contain" />
               </div>
             </div>
@@ -644,23 +645,23 @@ const Home = () => {
               <X className="h-6 w-6" />
             </button>
 
-            <div className="p-6 md:p-8">
-              <div className="flex items-center mb-6">
-                <div className="bg-[#e3001b]/10 p-3 rounded-lg mr-4">
-                  <FaCertificate className="text-[#e3001b] text-2xl" />
+            <div className="p-4 md:p-6">
+              <div className="flex items-center mb-4 md:mb-6">
+                <div className="bg-[#e3001b]/10 p-2 md:p-3 rounded-lg mr-3 md:mr-4">
+                  <FaCertificate className="text-[#e3001b] text-xl md:text-2xl" />
                 </div>
-                <h3 className="text-2xl font-bold text-[#e3001b]">{selectedCertDetails.title}</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-[#e3001b]">{selectedCertDetails.title}</h3>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 <div className="md:col-span-2">
-                  <p className="text-gray-700 mb-4">{selectedCertDetails.description}</p>
-                  <p className="text-gray-600 italic mb-6">{selectedCertDetails.details}</p>
+                  <p className="text-gray-700 mb-3 md:mb-4 text-sm md:text-base">{selectedCertDetails.description}</p>
+                  <p className="text-gray-600 italic mb-4 md:mb-6 text-xs md:text-sm">{selectedCertDetails.details}</p>
 
-                  <h4 className="font-bold text-gray-900 mb-3">Principales beneficios:</h4>
-                  <ul className="space-y-2">
+                  <h4 className="font-bold text-gray-900 mb-2 md:mb-3 text-sm md:text-base">Principales beneficios:</h4>
+                  <ul className="space-y-1 md:space-y-2">
                     {selectedCertDetails.highlights.map((highlight, idx) => (
-                      <li key={idx} className="flex items-start">
+                      <li key={idx} className="flex items-start text-xs md:text-sm">
                         <span className="text-[#e3001b] mr-2">•</span>
                         <span className="text-gray-700">{highlight}</span>
                       </li>
@@ -668,39 +669,39 @@ const Home = () => {
                   </ul>
 
                   {selectedCertDetails.equipment && (
-                    <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <div className="mt-6 md:mt-8 p-3 md:p-4 bg-gray-50 rounded-lg border border-gray-200">
                       <div className="flex justify-between items-center mb-2">
                         <button 
                           onClick={handlePrevEquipment}
                           className="text-[#e3001b] hover:text-[#b00000] transition-colors"
                         >
-                          <ChevronLeft className="h-5 w-5" />
+                          <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
                         </button>
-                        <h5 className="font-bold text-gray-900 text-center flex-1">
+                        <h5 className="font-bold text-gray-900 text-center flex-1 text-sm md:text-base">
                           {getEquipmentArray(selectedCertDetails.equipment)[equipmentIndex].caption}
                         </h5>
                         <button 
                           onClick={handleNextEquipment}
                           className="text-[#e3001b] hover:text-[#b00000] transition-colors"
                         >
-                          <ChevronRight className="h-5 w-5" />
+                          <ChevronRight className="h-4 w-4 md:h-5 md:w-5" />
                         </button>
                       </div>
-                      <div className="flex justify-center mb-3">
+                      <div className="flex justify-center mb-2 md:mb-3">
                         <img
                           src={getEquipmentArray(selectedCertDetails.equipment)[equipmentIndex].image}
                           alt={getEquipmentArray(selectedCertDetails.equipment)[equipmentIndex].caption}
-                          className="max-w-md max-h-48 object-contain rounded border border-gray-300"
+                          className="max-w-full max-h-32 md:max-h-48 object-contain rounded border border-gray-300"
                         />
                       </div>
-                      <p className="text-gray-700 text-sm text-center">
+                      <p className="text-gray-700 text-xs md:text-sm text-center">
                         {getEquipmentArray(selectedCertDetails.equipment)[equipmentIndex].description}
                       </p>
-                      <div className="flex justify-center mt-2 space-x-1">
+                      <div className="flex justify-center mt-1 md:mt-2 space-x-1">
                         {getEquipmentArray(selectedCertDetails.equipment).map((_, index) => (
                           <div
                             key={index}
-                            className={`w-2 h-2 rounded-full ${
+                            className={`w-1.5 h-1.5 md:w-2 md:h-2 rounded-full ${
                               index === equipmentIndex ? 'bg-[#e3001b]' : 'bg-gray-300'
                             }`}
                           />
@@ -710,14 +711,14 @@ const Home = () => {
                   )}
                 </div>
 
-                <div className="bg-gray-50 rounded-xl p-5 border border-gray-200">
-                  <div className="h-40 mb-4 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden">
+                <div className="bg-gray-50 rounded-xl p-3 md:p-5 border border-gray-200">
+                  <div className="h-28 md:h-40 mb-3 md:mb-4 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden">
                     <img src={selectedCert.image} alt={`Certificación ${selectedCert.title}`} className="w-full h-full object-contain" />
                   </div>
-                  <h4 className="font-bold text-lg text-gray-900 mb-2">{selectedCert.title}</h4>
-                  <p className="text-gray-600 mb-4">{selectedCert.description}</p>
+                  <h4 className="font-bold text-base md:text-lg text-gray-900 mb-1 md:mb-2">{selectedCert.title}</h4>
+                  <p className="text-gray-600 mb-3 md:mb-4 text-xs md:text-sm">{selectedCert.description}</p>
                   <Button
-                    className="bg-[#e3001b] text-white hover:bg-[#b00000] w-full"
+                    className="bg-[#e3001b] text-white hover:bg-[#b00000] w-full text-sm md:text-base py-2 md:py-3"
                     onClick={() => {
                       window.open('https://wa.me/573185141579      ', '_blank');
                       setSelectedCertification(null);
@@ -733,7 +734,7 @@ const Home = () => {
       )}
 
       {/* CTA Final */}
-      <section className="full-width py-20 bg-gradient-to-r from-[#e3001b] to-[#b00000] text-white text-center relative overflow-hidden">
+      <section className="full-width py-12 md:py-20 bg-gradient-to-r from-[#e3001b] to-[#b00000] text-white text-center relative overflow-hidden">
         <div className="container-wide">
           <div className="absolute inset-0 z-0">
             <motion.div
@@ -747,7 +748,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-3xl md:text-4xl font-bold mb-6"
+              className="text-2xl md:text-3xl font-bold mb-4 md:mb-6"
             >
               ¿Necesitas asesoría técnica o un servicio urgente?
             </motion.h2>
@@ -755,7 +756,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-xl mb-8 max-w-2xl mx-auto"
+              className="text-base md:text-xl mb-6 md:mb-8 max-w-2xl mx-auto"
             >
               Nuestros técnicos certificados están disponibles para resolver tus problemas con sistemas diesel
             </motion.p>
@@ -763,24 +764,24 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center"
             >
               <a
                 href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA      "
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
+                className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-base md:text-lg px-6 py-4 md:px-8 md:py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 min-w-[200px] md:min-w-[250px] font-semibold text-center"
               >
-                <MapPin className="inline mr-2 h-5 w-5" /> Ver ubicación
+                <MapPin className="inline mr-1 md:mr-2 h-4 md:h-5 w-4 md:w-5" /> Ver ubicación
               </a>
               
               <a
                 href="https://wa.me/573185141579      "
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
+                className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-base md:text-lg px-6 py-4 md:px-8 md:py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 min-w-[200px] md:min-w-[250px] font-semibold text-center"
               >
-                <MessageCircle className="inline mr-2 h-5 w-5" /> Escribir al WhatsApp
+                <MessageCircle className="inline mr-1 md:mr-2 h-4 md:h-5 w-4 md:w-5" /> Escribir al WhatsApp
               </a>
             </motion.div>
 
@@ -788,11 +789,11 @@ const Home = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="mt-8 flex flex-wrap justify-center gap-4 max-w-2xl mx-auto"
+              className="mt-6 md:mt-8 flex flex-wrap justify-center gap-3 md:gap-4 max-w-2xl mx-auto"
             >
               {["Respuesta rápida en horarios de atención", "Diagnóstico", "Presupuestos"].map((item, index) => (
-                <div key={index} className="flex items-center">
-                  <CheckCircle className="h-5 w-5 text-green-400 mr-2" />
+                <div key={index} className="flex items-center text-sm md:text-base">
+                  <CheckCircle className="h-4 md:h-5 w-4 md:w-5 text-green-400 mr-1 md:mr-2" />
                   <span>{item}</span>
                 </div>
               ))}
