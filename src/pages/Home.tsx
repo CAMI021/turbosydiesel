@@ -87,7 +87,7 @@ const Home = () => {
   const handleImageClick = (index: number) => {
     if (index === currentIndex && !isImageFixed) {
       if (index === 1) {
-        window.open('https://wa.me/573185141579  ', '_blank');
+        window.open('https://wa.me/573185141579', '_blank');
       } else {
         setTimeRemaining(prev => prev + 5000);
         setIsImageFixed(true);
@@ -221,20 +221,11 @@ const Home = () => {
     }
   ];
 
-  const allBrands = [
-    { id: 1, image: "/product-1.jpg" },
-    { id: 2, image: "/product-2.jpg" },
-    { id: 3, image: "/product-3.jpg" },
-    { id: 4, image: "/product-4.jpg" },
-    { id: 5, image: "/product-5.jpg" },
-    { id: 6, image: "/product-6.jpg" },
-    { id: 7, image: "/product-7.jpg" },
-    { id: 8, image: "/product-8.jpg" },
-    { id: 9, image: "/product-9.jpg" },
-    { id: 10, image: "/product-10.jpg" },
-    { id: 11, image: "/product-11.jpg" },
-    { id: 12, image: "/product-12.jpg" }
-  ];
+  // Actualizado para mostrar 23 imágenes en el carrusel
+  const allBrands = Array.from({ length: 23 }, (_, i) => ({
+    id: i + 1,
+    image: `/product-${(i % 23) + 1}.jpg`
+  }));
 
   const getCertificationDetails = (certId: string | null): CertificationDetails | null => {
     if (!certId) return null;
@@ -462,9 +453,12 @@ const Home = () => {
             <>
               <motion.div
                 className="flex gap-1 pb-6"
-                animate={{ x: [0, -1200, 0], transition: { x: { repeat: Infinity, duration: 45, ease: "linear" } } }}
+                animate={{ 
+                  x: [0, -2200, 0], 
+                  transition: { x: { repeat: Infinity, duration: 60, ease: "linear" } } 
+                }}
               >
-                {[...Array(12)].map((_, i) => (
+                {Array.from({ length: 23 }, (_, i) => (
                   <motion.div
                     key={i}
                     className="flex-shrink-0 w-48 h-24 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100"
@@ -650,7 +644,7 @@ const Home = () => {
                   <Button
                     className="bg-[#e3001b] text-white hover:bg-[#b00000] w-full"
                     onClick={() => {
-                      window.open('https://wa.me/573185141579  ', '_blank');
+                      window.open('https://wa.me/573185141579', '_blank');
                       setSelectedCertification(null);
                     }}
                   >
@@ -697,7 +691,7 @@ const Home = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <a
-                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA  "
+                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
@@ -706,7 +700,7 @@ const Home = () => {
               </a>
               
               <a
-                href="https://wa.me/573185141579  "
+                href="https://wa.me/573185141579"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
