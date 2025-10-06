@@ -103,7 +103,7 @@
       "id": "hk1400-expert",
       "name": "HK1400 Expert",
       "images": ["/equipos/hk1400-expert.png"],
-      "description": "Simulador robusto y Cambox flexible y moderno",
+      "description": "Simulador moderno y Cambox robusto y flexible",
       "specifications": [
         "Capacidad de tanque: 15 L",
         "Voltaje: 240 V",
@@ -119,7 +119,7 @@
       "id": "hk1400",
       "name": "HK1400",
       "images": ["/equipos/hk1400.png"],
-      "description": "Simulador robusto y Cambox flexible y moderno",
+      "description": "Simulador moderno y Cambox robusto y flexible",
       "specifications": [
         "Uso/Aplicación: Inyectores y Bombas EUI",
         "Automatización completa",

@@ -139,7 +139,7 @@ export const products = {
         "name": "Kits de Adaptación de Filtros",
         "brand": "Racor",
         "images": [
-          "/productos/filtros/kit-adaptacion-generic.jpg"
+          "/productos/filtros/kit-adaptacion-generic.png"
         ],
         "technicalSheetPdf": "/pdfs/Kit Filtro Separador  VW Amarok.pdf",
         "shortDesc": "Kits listos para instalar en vehículos diesel",

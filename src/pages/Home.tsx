@@ -28,7 +28,7 @@ const Home = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   
   const images = [
-    '/videohome1.mp4',
+    '/asd.mp4',
     '/image2.jpg',
     '/image1.jpg',
     '/image3.png'
@@ -87,7 +87,7 @@ const Home = () => {
   const handleImageClick = (index: number) => {
     if (index === currentIndex && !isImageFixed) {
       if (index === 1) {
-        window.open('https://wa.me/573185141579', '_blank');
+        window.open('https://wa.me/573185141579    ', '_blank');
       } else {
         setTimeRemaining(prev => prev + 5000);
         setIsImageFixed(true);
@@ -179,7 +179,7 @@ const Home = () => {
         "Tecnología Doowan de última generación",
         "Diagnóstico avanzado y calibración precisa"
       ],
-      details: "Trabajamos con estas marcas reconocidas mundialmente. Nuestro laboratorio está equipado con tecnología específica para cada sistema, garantizando reparaciones de la más alta calidad. Contamos con soporte técnico especializado para estos sistemas de inyección."
+      details: "Trabajamos con estas marcas reconocidas mundialmente. Nuestra laboratorio está equipado con tecnología específica para cada sistema, garantizando reparaciones de la más alta calidad. Contamos con soporte técnico especializado para estos sistemas de inyección."
     }
   };
 
@@ -268,15 +268,31 @@ const Home = () => {
                 style={{ cursor: index === currentIndex ? 'pointer' : 'default' }}
               >
                 {index === 0 ? (
-                  <video
-                    ref={videoRef}
-                    src={src}
-                    className="w-full h-full object-contain"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
+                  <div className="relative w-full h-full">
+                    {/* Capa de fondo difuminada */}
+                    <div className="absolute inset-0 overflow-hidden">
+                      <div className="absolute inset-[-50%] w-[200%] h-[200%]">
+                        <video
+                          src={src}
+                          className="w-full h-full object-cover blur-xl scale-[1.1]"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                        />
+                      </div>
+                    </div>
+                    {/* Video principal */}
+                    <video
+                      ref={videoRef}
+                      src={src}
+                      className="relative w-full h-full object-contain"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  </div>
                 ) : (
                   <img src={src} alt={`Background ${index}`} className="w-full h-full object-contain" loading="eager" />
                 )}
@@ -468,7 +484,7 @@ const Home = () => {
                     <img
                       src={`/product-${(i % 12) + 1}.jpg`}
                       alt={`Producto diesel ${i + 1}`}
-                      className="w-full h-full object-cover scale-100"
+                      className="w-full h-full object-contain" // Cambié object-cover por object-contain aquí también
                     />
                   </motion.div>
                 ))}
@@ -644,7 +660,7 @@ const Home = () => {
                   <Button
                     className="bg-[#e3001b] text-white hover:bg-[#b00000] w-full"
                     onClick={() => {
-                      window.open('https://wa.me/573185141579', '_blank');
+                      window.open('https://wa.me/573185141579    ', '_blank');
                       setSelectedCertification(null);
                     }}
                   >
@@ -691,7 +707,7 @@ const Home = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <a
-                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA"
+                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA    "
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
@@ -700,7 +716,7 @@ const Home = () => {
               </a>
               
               <a
-                href="https://wa.me/573185141579"
+                href="https://wa.me/573185141579    "
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-lg px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 text-xl min-w-[250px] font-semibold text-center"
