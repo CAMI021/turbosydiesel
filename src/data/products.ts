@@ -32,17 +32,17 @@ export const products = {
     "description": "Filtros de combustible",
     "products": [
       {
-        "id": "basico",
-        "name": "Filtros Serie Turbina",
+        "id": "500fg",
+        "name": "Filtro 500FG",
         "brand": "Racor",
         "images": [
-          "/productos/filtros/500FG.png",
-          "/productos/filtros/900FG.png",
-          "/productos/filtros/turbina2.jpg"
+          
+          "/productos/filtros/500FG.png"
+
         ],
         "technicalSheetPdf": "/pdfs/Filtros500-900-1000.pdf",
         "shortDesc": "",
-        "description": "Filtros de alta eficiencia para sistemas de combustible diésel",
+        "description": "Filtro de alta eficiencia para sistemas de combustible diésel",
         "technicalSpecs": [
           { "label": "Separación de agua", "value": "Elimina hasta el 99% del agua presente en el combustible" },
           { "label": "Grados de filtración", "value": "Disponible en 2, 10 y 30 micrones según elemento filtrante" },
@@ -50,7 +50,48 @@ export const products = {
           { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan condiciones exigentes" }
         ],
         "mainFeatures": [
-          "Ofrecemos soluciones de filtración especializada para alargar la vida de los motores Diesel usando los filtros separadores de agua tipo RACOR que separan 99%el agua del combustible y ofrecen una filtración de 2, 10 y 30 micrones según el elemento filtrante que se use. Hay diferentes opciones para los tamaños de motores según su caballaje."
+          "Filtro 500FG de alta eficiencia para alargar la vida de los motores Diesel usando los filtros separadores de agua tipo RACOR que separan 99% del agua del combustible y ofrecen una filtración de 2, 10 y 30 micrones según el elemento filtrante que se use. Ideal para aplicaciones de motores diesel según su caballaje."
+        ]
+      },
+      {
+        "id": "900fg",
+        "name": "Filtro 900FG",
+        "brand": "Racor",
+        "images": [
+          "/productos/filtros/900FG.png"
+        ],
+        "technicalSheetPdf": "/pdfs/Filtros500-900-1000.pdf",
+        "shortDesc": "",
+        "description": "Filtro de alta eficiencia para sistemas de combustible diésel",
+        "technicalSpecs": [
+          { "label": "Separación de agua", "value": "Elimina hasta el 99% del agua presente en el combustible" },
+          { "label": "Grados de filtración", "value": "Disponible en 2, 10 y 30 micrones según elemento filtrante" },
+          { "label": "Aplicación", "value": "Diseñado para distintos tamaños de motores según caballaje" },
+          { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan condiciones exigentes" }
+        ],
+        "mainFeatures": [
+          "Filtro 900FG de alta eficiencia para alargar la vida de los motores Diesel usando los filtros separadores de agua tipo RACOR que separan 99% del agua del combustible y ofrecen una filtración de 2, 10 y 30 micrones según el elemento filtrante que se use. Ideal para aplicaciones de motores diesel según su caballaje."
+        ]
+      },
+      {
+        "id": "1000fg",
+        "name": "Filtro 1000FG",
+        "brand": "Racor",
+        "images": [
+          "/productos/filtros/500FG1.png",
+          "/productos/filtros/turbina2.jpg"
+        ],
+        "technicalSheetPdf": "/pdfs/Filtros500-900-1000.pdf",
+        "shortDesc": "",
+        "description": "Filtro de alta eficiencia para sistemas de combustible diésel",
+        "technicalSpecs": [
+          { "label": "Separación de agua", "value": "Elimina hasta el 99% del agua presente en el combustible" },
+          { "label": "Grados de filtración", "value": "Disponible en 2, 10 y 30 micrones según elemento filtrante" },
+          { "label": "Aplicación", "value": "Diseñado para distintos tamaños de motores según caballaje" },
+          { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan condiciones exigentes" }
+        ],
+        "mainFeatures": [
+          "Filtro 1000FG de alta eficiencia para alargar la vida de los motores Diesel usando los filtros separadores de agua tipo RACOR que separan 99% del agua del combustible y ofrecen una filtración de 2, 10 y 30 micrones según el elemento filtrante que se use. Ideal para aplicaciones de motores diesel según su caballaje."
         ]
       },
       {
@@ -136,7 +177,6 @@ export const products = {
           "/productos/inyectores/common-rail-main.jpg",
           "/productos/inyectores/common-rail1.jpg"
         ],
-        "technicalSheetPdf": "/pdfs/common-rail-specs.pdf",
         "shortDesc": "Inyectores Common Rail",
         "description": "Inyectores de alta precisión para sistemas Common Rail",
         "technicalSpecs": [
@@ -157,7 +197,6 @@ export const products = {
           "/productos/inyectores/common-rail-pump-main.jpg",
           "/productos/inyectores/common-rail-pump1.jpg"
         ],
-        "technicalSheetPdf": "/pdfs/common-rail-pump-specs.pdf",
         "shortDesc": "Bombas Common Rail",
         "description": "Bombas de alta presión para sistemas Common Rail",
         "technicalSpecs": [
@@ -185,7 +224,6 @@ export const products = {
           "/productos/inyectores/eui1.jpg",
           "/productos/inyectores/eui2.jpg"
         ],
-        "technicalSheetPdf": "/pdfs/eui-specs.pdf",
         "shortDesc": "Inyectores EUI",
         "description": "Inyectores electrónicos para sistemas EUI",
         "technicalSpecs": [
@@ -212,7 +250,6 @@ export const products = {
           "/productos/bombas/pld-main.jpg",
           "/productos/bombas/pld1.jpg"
         ],
-        "technicalSheetPdf": "/pdfs/pld-specs.pdf",
         "shortDesc": "Bombas PLD",
         "description": "Bombas de línea directa para sistemas convencionales",
         "technicalSpecs": [
@@ -239,7 +276,6 @@ export const products = {
           "/productos/inyectores/heui-main.jpg",
           "/productos/inyectores/heui1.jpg"
         ],
-        "technicalSheetPdf": "/pdfs/heui-specs.pdf",
         "shortDesc": "Inyectores HEUI",
         "description": "Inyectores hidráulicos electrónicos para sistemas HEUI",
         "technicalSpecs": [
@@ -266,7 +302,6 @@ export const products = {
           "/productos/inyectores/conventional-main.jpg",
           "/productos/inyectores/conventional1.jpg"
         ],
-        "technicalSheetPdf": "/pdfs/conventional-specs.pdf",
         "shortDesc": "Bomba e inyectores",
         "description": "Sistemas tradicionales de inyección diésel",
         "technicalSpecs": [
@@ -302,7 +337,6 @@ export const products = {
           "/productos/turbo/turbo2.png",
           "/productos/turbo/turbo3.png"
         ],
-        "technicalSheetPdf": "/pdfs/holset-hx50-specs.pdf",
         "shortDesc": "Turbos",
         "description": "Turboalimentadores de alto rendimiento",
         "technicalSpecs": [

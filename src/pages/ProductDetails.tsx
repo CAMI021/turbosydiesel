@@ -44,8 +44,10 @@ const ProductDetails = () => {
     window.open(url, '_blank');
   };
 
-  // Verificar si el producto tiene fichas técnicas
-  const hasTechnicalSheets = product?.technicalSheetPdf && 
+  // Verificar si el producto tiene fichas técnicas Y si pertenece a las categorías permitidas
+  const allowedCategories = ['filters', 'liquido-de-calibracion'];
+  const shouldShowTechnicalSheet = categoryKey && allowedCategories.includes(categoryKey) && 
+    product?.technicalSheetPdf && 
     (typeof product.technicalSheetPdf === 'string' || 
      (Array.isArray(product.technicalSheetPdf) && product.technicalSheetPdf.length > 0));
 
@@ -81,7 +83,7 @@ const ProductDetails = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
 
         {/* Contenido centrado */}
-        <div className="relative z-10 text-center text-white max-w-4xl px-6 pt-20"> {/* Agregado pt-20 para ajustar el espacio superior */}
+        <div className="relative z-10 text-center text-white max-w-4xl px-6 pt-20">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
             {product.name}
           </h1>
@@ -145,8 +147,8 @@ const ProductDetails = () => {
               </div>
             </div>
 
-            {/* Mostrar sección de PDF si el producto tiene fichas técnicas */}
-            {hasTechnicalSheets && (
+            {/* Mostrar sección de PDF solo para filtros y líquido de calibración */}
+            {shouldShowTechnicalSheet && (
               <div className="bg-white rounded-2xl shadow-md p-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">Descargar ficha técnica</h2>
                 {Array.isArray(product.technicalSheetPdf) ? (

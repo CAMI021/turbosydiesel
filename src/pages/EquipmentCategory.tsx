@@ -220,9 +220,7 @@ const EquipmentCategory: React.FC = () => {
                     e.currentTarget.parentElement?.classList.add('bg-gray-100');
                   }}
                 />
-                <div className="absolute top-4 right-4 bg-[#e3001b] text-white px-3 py-1 rounded-full text-sm font-medium">
-                  Profesional
-                </div>
+
               </div>
 
               <div className="p-6">

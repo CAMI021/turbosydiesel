@@ -103,7 +103,7 @@
       "id": "hk1400-expert",
       "name": "HK1400 Expert",
       "images": ["/equipos/hk1400-expert.png"],
-      "description": "Banco universal para pruebas de inyectores y bombas EUI/EUP.",
+      "description": "Simulador robusto y Cambox flexible y moderno",
       "specifications": [
         "Capacidad de tanque: 15 L",
         "Voltaje: 240 V",
@@ -119,7 +119,7 @@
       "id": "hk1400",
       "name": "HK1400",
       "images": ["/equipos/hk1400.png"],
-      "description": "Banco de pruebas robusto y flexible para aplicaciones EUI/EUP.",
+      "description": "Simulador robusto y Cambox flexible y moderno",
       "specifications": [
         "Uso/Aplicación: Inyectores y Bombas EUI",
         "Automatización completa",

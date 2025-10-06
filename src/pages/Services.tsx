@@ -121,7 +121,7 @@ const Services = () => {
     {
       icon: <FaCogs className="text-[#e3001b]" />,
       title: "Diálisis de Tanques para Motores diesel",
-      description: "Mantenimiento de Tanques y Venta de Equipos Portatiles para Dialissis"
+      description: "Mantenimiento de Tanques y Venta de Equipos Portatiles para Diálisis"
     }
   ];
 

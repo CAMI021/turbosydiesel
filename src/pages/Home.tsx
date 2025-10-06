@@ -1,19 +1,21 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, CheckCircle, MapPin, X } from "lucide-react";
+import { MessageCircle, CheckCircle, MapPin, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect, useRef } from 'react';
 import { FaCertificate } from "react-icons/fa";
+
+interface EquipmentItem {
+  image: string;
+  caption: string;
+  description: string;
+}
 
 interface CertificationDetails {
   title: string;
   description: string;
   highlights: string[];
   details: string;
-  equipment?: {
-    image: string;
-    caption: string;
-    description: string;
-  };
+  equipment?: EquipmentItem | EquipmentItem[];
 }
 
 const Home = () => {
@@ -22,6 +24,7 @@ const Home = () => {
   const [showAllBrands, setShowAllBrands] = useState(false);
   const [timeRemaining, setTimeRemaining] = useState(9000);
   const [isImageFixed, setIsImageFixed] = useState(false);
+  const [equipmentIndex, setEquipmentIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
   
   const images = [
@@ -56,6 +59,27 @@ const Home = () => {
       videoRef.current.play().catch(err => console.log("Error playing video:", err));
     }
   }, [currentIndex]);
+
+  // Efecto para auto-avanzar el carrusel de equipos
+  useEffect(() => {
+    if (!selectedCertification) return;
+    
+    const details = getCertificationDetails(selectedCertification);
+    if (!details?.equipment || !Array.isArray(details.equipment)) return;
+    
+    const timer = setInterval(() => {
+      setEquipmentIndex(prev => (prev + 1) % details.equipment.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [selectedCertification]);
+
+  // Resetear el índice de equipos cuando se abre un modal
+  useEffect(() => {
+    if (selectedCertification) {
+      setEquipmentIndex(0);
+    }
+  }, [selectedCertification]);
 
   const handleImageClick = (index: number) => {
     if (index === currentIndex && !isImageFixed) {
@@ -108,11 +132,18 @@ const Home = () => {
         "Equipos de prueba oficiales para sistemas Common Rail y EUI"
       ],
       details: "Delphi Diesel Systems fabrica sistemas de inyección de combustible diésel para una amplia gama de vehículos. Somos su aliado de confianza en sistemas de inyección DELPHI DIESEL, asegurando la máxima durabilidad para su inversión. Contamos con la tecnología necesaria para garantizar el correcto funcionamiento de sus sistemas de inyección electrónica y mecánica.",
-      equipment: {
-        image: "/equipos/avm2.jpg",
-        caption: "Banco de Pruebas AVM2-PC",
-        description: "Nuestro banco de pruebas AVM2-PC permite codificar inyectores Common Rail y EUI. Es una plataforma avanzada y potente para el diagnóstico de bombas de combustible e inyectores. Cuando se utiliza con cualquiera de nuestras soluciones de aplicación, proporciona evaluaciones detalladas y eficientes del estado de los inyectores y bombas."
-      }
+      equipment: [
+        {
+          image: "/equipos/avm2.jpg",
+          caption: "Banco de Pruebas AVM2-PC",
+          description: "Nuestro banco de pruebas AVM2-PC permite codificar inyectores Common Rail y EUI. Es una plataforma avanzada y potente para el diagnóstico de bombas de combustible e inyectores. Cuando se utiliza con cualquiera de nuestras soluciones de aplicación, proporciona evaluaciones detalladas y eficientes del estado de los inyectores y bombas."
+        },
+        {
+          image: "/equipos/sabre-cri-expert.png",
+          caption: "Banco de Pruebas SABRE CRI Expert",
+          description: "El SABRE CRI Expert es un equipo de última generación para pruebas y diagnóstico de sistemas Common Rail. Ofrece capacidades avanzadas de medición y calibración, garantizando la precisión y el rendimiento óptimo de los sistemas de inyección diesel modernos."
+        }
+      ]
     },
     "Hartridge": {
       title: "Distribuidor y Servicio Autorizado Hartridge",
@@ -212,6 +243,21 @@ const Home = () => {
   const selectedCertDetails = getCertificationDetails(selectedCertification);
   const selectedCert = selectedCertification ? certifications.find(c => c.id === selectedCertification) : null;
 
+  const getEquipmentArray = (equipment: EquipmentItem | EquipmentItem[] | undefined): EquipmentItem[] => {
+    if (!equipment) return [];
+    return Array.isArray(equipment) ? equipment : [equipment];
+  };
+
+  const handlePrevEquipment = () => {
+    const equipmentArray = getEquipmentArray(selectedCertDetails?.equipment);
+    setEquipmentIndex(prev => (prev - 1 + equipmentArray.length) % equipmentArray.length);
+  };
+
+  const handleNextEquipment = () => {
+    const equipmentArray = getEquipmentArray(selectedCertDetails?.equipment);
+    setEquipmentIndex(prev => (prev + 1) % equipmentArray.length);
+  };
+
   return (
     <div className="no-horizontal-scroll bg-[#f4f4f4]">
       {/* Hero Section */}
@@ -231,7 +277,7 @@ const Home = () => {
                   <video
                     ref={videoRef}
                     src={src}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     autoPlay
                     muted
                     loop
@@ -551,15 +597,43 @@ const Home = () => {
 
                   {selectedCertDetails.equipment && (
                     <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                      <h5 className="font-bold text-gray-900 mb-2 text-center">{selectedCertDetails.equipment.caption}</h5>
+                      <div className="flex justify-between items-center mb-2">
+                        <button 
+                          onClick={handlePrevEquipment}
+                          className="text-[#e3001b] hover:text-[#b00000] transition-colors"
+                        >
+                          <ChevronLeft className="h-5 w-5" />
+                        </button>
+                        <h5 className="font-bold text-gray-900 text-center flex-1">
+                          {getEquipmentArray(selectedCertDetails.equipment)[equipmentIndex].caption}
+                        </h5>
+                        <button 
+                          onClick={handleNextEquipment}
+                          className="text-[#e3001b] hover:text-[#b00000] transition-colors"
+                        >
+                          <ChevronRight className="h-5 w-5" />
+                        </button>
+                      </div>
                       <div className="flex justify-center mb-3">
                         <img
-                          src={selectedCertDetails.equipment.image}
-                          alt={selectedCertDetails.equipment.caption}
+                          src={getEquipmentArray(selectedCertDetails.equipment)[equipmentIndex].image}
+                          alt={getEquipmentArray(selectedCertDetails.equipment)[equipmentIndex].caption}
                           className="max-w-md max-h-48 object-contain rounded border border-gray-300"
                         />
                       </div>
-                      <p className="text-gray-700 text-sm text-center">{selectedCertDetails.equipment.description}</p>
+                      <p className="text-gray-700 text-sm text-center">
+                        {getEquipmentArray(selectedCertDetails.equipment)[equipmentIndex].description}
+                      </p>
+                      <div className="flex justify-center mt-2 space-x-1">
+                        {getEquipmentArray(selectedCertDetails.equipment).map((_, index) => (
+                          <div
+                            key={index}
+                            className={`w-2 h-2 rounded-full ${
+                              index === equipmentIndex ? 'bg-[#e3001b]' : 'bg-gray-300'
+                            }`}
+                          />
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>

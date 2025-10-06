@@ -23,10 +23,10 @@ const Footer = () => {
           <h1 className="text-2xl font-bold">Diesel y Turbos SAS</h1>
           <p className="text-sm">Tecnología Diesel en sus Manos </p>
           <div className="flex space-x-4 text-white text-2xl mt-2">
-            <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+            <a href="https://www.facebook.com/tu_pagina_de_facebook" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
               <FaFacebookF />
             </a>
-            <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+            <a href="https://www.instagram.com/dieselyturbossas/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
               <FaInstagram />
             </a>
           </div>
@@ -46,7 +46,7 @@ const Footer = () => {
           <h2 className="font-bold text-base mb-2">Facebook</h2>
           <iframe
             title="Facebook"
-            src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/facebook&tabs=timeline&width=340&height=300&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false"
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Ffacebook&tabs=timeline&width=340&height=300&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false&appId"
             width="100%"
             height="260"
             style={{ border: "none", overflow: "hidden", borderRadius: "8px" }}
@@ -60,7 +60,7 @@ const Footer = () => {
           <h2 className="font-bold text-base mb-2">Instagram</h2>
           <iframe
             title="Instagram"
-            src="https://snapwidget.com/embed/123456"
+            src="https://snapwidget.com/embed/123456"  // Reemplaza esto con el código que obtengas de SnapWidget
             width="100%"
             height="260"
             frameBorder="0"

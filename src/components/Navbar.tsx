@@ -106,7 +106,7 @@ const Navbar = () => {
                 </svg>
               </a>
               <a
-                href="https://instagram.com    "
+                href="https://www.instagram.com/dieselyturbossas/"
                 aria-label="Instagram"
                 className="text-gray-600 hover:text-red-600 transition-all duration-300 p-2 rounded-full hover:bg-gray-100 transform hover:scale-110"
               >
