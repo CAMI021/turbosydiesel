@@ -42,6 +42,12 @@ const Contact = () => {
     }
   }, [location]);
 
+  // NUEVO: Efecto para desplazar a la parte superior al cargar la página
+  useEffect(() => {
+    // Desplazar a la parte superior de la página al cargar
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
