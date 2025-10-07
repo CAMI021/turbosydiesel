@@ -161,7 +161,7 @@ const Category: React.FC = () => {
           )}
         </motion.div>
 
-        {/* GRID DE PRODUCTOS - AHORA CON MÁS PROTAGONISMO */}
+        {/* GRID DE PRODUCTOS - MISMO TAMAÑO QUE EQUIPMENTCATEGORY */}
         <motion.div
           className="flex flex-wrap justify-center gap-8"
           initial="hidden"
@@ -186,11 +186,12 @@ const Category: React.FC = () => {
               }}
               whileHover={{ y: -8 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => navigate(`/products/${categoryKey}/${product.id}`)}
-              className="w-full sm:w-80 lg:w-96 bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl cursor-pointer border border-gray-100 hover:border-[#e3001b]/30"
+              // Ajuste de tamaño para coincidir con EquipmentCategory
+              className="w-full sm:w-80 lg:w-96 bg-white rounded-2xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl cursor-pointer border border-gray-100 hover:border-[#e3001b]/30 flex flex-col"
               role="button"
               tabIndex={0}
               aria-label={`Ver detalles de ${product.name}`}
+              onClick={() => navigate(`/products/${categoryKey}/${product.id}`)}
             >
               <div className="relative h-56 overflow-hidden bg-white">
                 <img
@@ -203,19 +204,20 @@ const Category: React.FC = () => {
                     e.currentTarget.parentElement?.classList.add('bg-gray-100');
                   }}
                 />
-
               </div>
 
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-1">
                 <h2 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2">
                   {product.name}
                 </h2>
 
-                <p className="text-gray-600 mb-4 line-clamp-3">
-                  {product.description}
-                </p>
+                <div className="flex-1">
+                  <p className="text-gray-600 mb-4 line-clamp-3">
+                    {product.description}
+                  </p>
+                </div>
 
-                <div className="mt-4 pt-4 border-t border-gray-100">
+                <div className="pt-4 border-t border-gray-100 mt-auto">
                   <div className="flex items-center justify-between">
                     <span className="text-[#e3001b] font-semibold">
                       Ver detalles técnicos

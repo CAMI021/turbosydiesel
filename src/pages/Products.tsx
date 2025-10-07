@@ -1,4 +1,3 @@
-//Products.tsx
 import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -57,11 +56,11 @@ const products: Product[] = [
     description: "Inyectores HEUI para motores de alta presión y rendimiento",
   },
   {
-    slug: "turbochargers",
-    categoryKey: "turbochargers",
-    name: "Turboalimentadores",
-    img: "/productos/turbo_holset.jpg",
-    description: "Turbos de alto rendimiento con durabilidad comprobada en condiciones extremas",
+    slug: "vp44-pumps",
+    categoryKey: "vp44-pumps",
+    name: "Bombas VP44",
+    img: "/productos/bombas/vp44.jpg",
+    description: "Venta y reparación de Bombas electrónicas tipo VP44 para aplicaciones Nissan, Isuzu y Cummins",
   },
   {
     slug: "pld-pumps",
@@ -69,6 +68,13 @@ const products: Product[] = [
     name: "Bombas PLD",
     img: "/productos/bombas_pld.jpg",
     description: "Bombas de alta precisión para sistemas PLD de inyección diesel",
+  },
+  {
+    slug: "turbochargers",
+    categoryKey: "turbochargers",
+    name: "Turboalimentadores",
+    img: "/productos/turbo_holset.jpg",
+    description: "Turbos de alto rendimiento con durabilidad comprobada en condiciones extremas",
   },
   {
     slug: "filtros",

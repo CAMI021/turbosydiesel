@@ -295,15 +295,15 @@ export const products = {
     "description": "Sistemas convencionales",
     "products": [
       {
-        "id": "conventional",
-        "name": "Bomba e inyectores",
+        "id": "conventional-pump",
+        "name": "Bombas convencionales",
         "brand": "Delphi",
         "images": [
-          "/productos/inyectores/conventional-main.jpg",
-          "/productos/inyectores/conventional1.jpg"
+          "/productos/bombas/conventional-pump-main.jpg"
+          
         ],
-        "shortDesc": "Bomba e inyectores",
-        "description": "Sistemas tradicionales de inyección diésel",
+        "shortDesc": "Bombas convencionales",
+        "description": "Bombas de inyección diésel tradicionales",
         "technicalSpecs": [
           { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan el uso intensivo" },
           { "label": "Rendimiento", "value": "Diseñado para un funcionamiento constante y estable en diversas condiciones" },
@@ -311,7 +311,52 @@ export const products = {
           { "label": "Seguridad", "value": "Mecanismos de protección integrados contra fluctuaciones y sobrecargas" }
         ],
         "mainFeatures": [
-          "Sistemas de inyección diésel tradicionales, robustos y de fácil mantenimiento. Ideales para equipos antiguos o aplicaciones donde se prioriza la simplicidad y disponibilidad de repuestos."
+          "Bombas de inyección diésel tradicionales, robustas y de fácil mantenimiento. Ideales para equipos antiguos o aplicaciones donde se prioriza la simplicidad y disponibilidad de repuestos."
+        ]
+      },
+      {
+        "id": "conventional-injectors",
+        "name": "Inyectores convencionales",
+        "brand": "Bosch",
+        "images": [
+          "/productos/inyectores/conventional-main.jpg",
+          "/productos/inyectores/conventional1.jpg"
+        ],
+        "shortDesc": "Inyectores convencionales",
+        "description": "Inyectores de inyección diésel tradicionales",
+        "technicalSpecs": [
+          { "label": "Diseño", "value": "Construcción robusta para larga durabilidad en condiciones exigentes" },
+          { "label": "Funcionalidad", "value": "Optimizado para un flujo constante y controlado de combustible" },
+          { "label": "Adaptabilidad", "value": "Compatible con diversos sistemas de inyección y configuraciones" },
+          { "label": "Materiales", "value": "Componentes de alta resistencia al desgaste y la temperatura" }
+        ],
+        "mainFeatures": [
+          "Inyectores de inyección diésel tradicionales, precisos y confiables. Ideales para equipos antiguos o aplicaciones donde se prioriza la simplicidad y disponibilidad de repuestos."
+        ]
+      }
+    ]
+  },
+  "vp44-pumps": {
+    "title": "Bombas VP44",
+    "description": "Bombas electrónicas tipo VP44",
+    "products": [
+      {
+        "id": "vp44",
+        "name": "Bombas VP44",
+        "brand": "Bosch",
+        "images": [
+          "/productos/bombas/vp44-main.jpg"
+        ],
+        "shortDesc": "Bombas electrónicas tipo VP44",
+        "description": "Venta y reparación de Bombas electrónicas tipo VP44 usando el Banco de pruebas EPS815 oficial de fabrica",
+        "technicalSpecs": [
+          { "label": "Aplicaciones", "value": "NISSAN (URVAN, FRONTIER, PATH FINDER, CABSTAR, PATROL), ISUZU (DIMAX), CUMMINS (ISB 5.9 y 6.7L)" },
+          { "label": "Pruebas", "value": "Banco de pruebas EPS815 oficial de fábrica" },
+          { "label": "Servicio", "value": "Venta y reparación especializada" },
+          { "label": "Calidad", "value": "Reparaciones con estándares de fábrica" }
+        ],
+        "mainFeatures": [
+          "Venta y reparación especializada de Bombas electrónicas tipo VP44 utilizando el Banco de pruebas EPS815 oficial de fábrica, garantizando diagnóstico y calibración precisos para aplicaciones Nissan, Isuzu y Cummins."
         ]
       }
     ]

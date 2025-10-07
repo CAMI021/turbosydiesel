@@ -1,22 +1,46 @@
 [
-    {
-      "id": "dpf-50",
-      "name": "DPF 5.0 Cleaning Machine",
-      "images": ["/equipos/dpf-50.jpg"],
-      "description": "Sistema especializado para la limpieza y regeneración de filtros de partículas diesel (DPF). Cumple con normativas Euro 6.",
-      "specifications": [
-        "Capacidad: Hasta 20 DPF por hora",
-        "Tecnología de limpieza: Agua a alta presión y limpiadores químicos",
-        "Sistema de secado por aire caliente",
-        "Control digital con interfaz intuitiva",
-        "Compatibilidad con DPF de todos los fabricantes"
-      ],
-      "applications": [
-        "Limpieza de DPF",
-        "Regeneración de filtros bloqueados",
-        "Pruebas de presión y flujo",
-        "Verificación de eficiencia post-limpieza"
-      ],
-      "technicalSheetPdf": "/pdfs/dpf-50.pdf"
-    }
-  ]
+  {
+    "id": "dpf-50",
+    "name": "DPF 5.0 Cleaning Machine",
+    "images": ["/equipos/dpf-50.jpg"],
+    "description": "Sistema especializado para la limpieza y regeneración de filtros de partículas diesel (DPF). Cumple con normativas Euro 6.",
+    "specifications": [
+      "Capacidad: Hasta 20 DPF por hora",
+      "Tecnología de limpieza: Agua a alta presión y limpiadores químicos",
+      "Sistema de secado por aire caliente",
+      "Control digital con interfaz intuitiva",
+      "Compatibilidad con DPF de todos los fabricantes"
+    ],
+    "applications": [
+      "Limpieza de DPF",
+      "Regeneración de filtros bloqueados",
+      "Pruebas de presión y flujo",
+      "Verificación de eficiencia post-limpieza"
+    ],
+    "technicalSheetPdf": "/pdfs/dpf-50.pdf"
+  },
+  {
+    "id": "dpf-60",
+    "name": "DPF 6.0 Cleaning Machine",
+    "images": ["/equipos/dpf-60.jpg"],
+    "description": "Sistema avanzado de limpieza con tecnología patentada para DPF, FAP, SCR y otros componentes. Alcanza casi el 100% de eficiencia eliminando hollín, ceniza y aceite mediante proceso combinado de agua caliente y aire comprimido.",
+    "specifications": [
+      "Tecnología de limpieza: Agua caliente + agente químico patentado + purga de aire de alta presión",
+      "Proceso de oleaje automático (180 ciclos cada 20 segundos)",
+      "Sistema de secado independiente hasta 300°C (30-60 minutos)",
+      "Depósito de agua: 350L con sistema de filtración integrado (10 micras)",
+      "Control: Pantalla táctil PLC de 10 pulgadas con pruebas pre/post limpieza",
+      "Pruebas: Presión (Mpa) y flujo de agua con generación automática de informes",
+      "Capacidad: Compatible con DPF cilíndricos (bandeja 42cm) y formas especiales (7 bolas de sellado)",
+      "Material: Cámara de acero inoxidable 304",
+      "Dimensiones: 1900x1140x2000mm (externas)"
+    ],
+    "applications": [
+      "Limpieza de DPF/FAP/SCR/DOC/GPF",
+      "Regeneración para camiones pesados",
+      "Mantenimiento de catalizadores e intercoolers",
+      "Pruebas de eficiencia con informe impreso"
+    ],
+    "technicalSheetPdf": "/pdfs/dpf-60.pdf"
+  }
+]

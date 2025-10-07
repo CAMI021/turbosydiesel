@@ -31,6 +31,7 @@ const Home = () => {
   const images = [
     '/asd.mp4',
     '/image2.jpg',
+    '/image4.jpg', // NUEVA IMAGEN AGREGADA AQUÍ
     '/image1.jpg',
     '/image3.png'
   ];
@@ -49,7 +50,7 @@ const Home = () => {
 
   // Obtener el número de imágenes visibles según el dispositivo
   const getVisibleImageCount = () => {
-    return isMobile ? 3 : images.length;
+    return isMobile ? 4 : images.length; // AHORA SON 4 IMÁGENES EN MÓVIL
   };
 
   // Este efecto se encarga de inicializar el tiempo restante cuando cambia el índice
@@ -106,7 +107,7 @@ const Home = () => {
   const handleImageClick = (index: number) => {
     if (index === currentIndex && !isImageFixed) {
       if (index === 1) {
-        window.open('https://wa.me/573185141579      ', '_blank');
+        window.open('https://wa.me/573185141579        ', '_blank');
       } else {
         setTimeRemaining(prev => prev + 5000);
         setIsImageFixed(true);
@@ -278,8 +279,8 @@ const Home = () => {
         <div className="container-wide flex-1 flex items-center justify-center">
           <div className="absolute inset-0 z-0">
             {images.map((src, index) => {
-              // En móviles, no mostrar la cuarta imagen (índice 3)
-              if (isMobile && index === 3) return null;
+              // En móviles, no mostrar más allá de la cuarta imagen (índice 3)
+              if (isMobile && index > 3) return null;
               
               return (
                 <motion.div
@@ -346,6 +347,25 @@ const Home = () => {
                         </div>
                         <div className="bg-gray-800 p-3 md:p-4 rounded-lg flex items-center justify-center text-xl md:text-2xl font-medium">
                           AFS
+                        </div>
+                      </div>
+                    </div>
+                  ) : isMobile && index === 3 ? (
+                    // NUEVO CONTENIDO PARA LA CUARTA IMAGEN EN MÓVILES
+                    <div className="w-full h-full bg-black flex flex-col justify-center items-center p-6 text-white">
+                      <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">Importación de repuestos urgentes</h2>
+                      <div className="grid grid-cols-2 gap-4 md:gap-6 w-full max-w-2xl">
+                        <div className="bg-gray-800 p-3 md:p-4 rounded-lg flex items-center justify-center text-xl md:text-2xl font-medium">
+                          Courier
+                        </div>
+                        <div className="bg-gray-800 p-3 md:p-4 rounded-lg flex items-center justify-center text-xl md:text-2xl font-medium">
+                          DHL
+                        </div>
+                        <div className="bg-gray-800 p-3 md:p-4 rounded-lg flex items-center justify-center text-xl md:text-2xl font-medium">
+                          FedEx
+                        </div>
+                        <div className="bg-gray-800 p-3 md:p-4 rounded-lg flex items-center justify-center text-xl md:text-2xl font-medium">
+                          UPS
                         </div>
                       </div>
                     </div>
@@ -720,7 +740,7 @@ const Home = () => {
                   <Button
                     className="bg-[#e3001b] text-white hover:bg-[#b00000] w-full text-sm md:text-base py-2 md:py-3"
                     onClick={() => {
-                      window.open('https://wa.me/573185141579      ', '_blank');
+                      window.open('https://wa.me/573185141579        ', '_blank');
                       setSelectedCertification(null);
                     }}
                   >
@@ -767,7 +787,7 @@ const Home = () => {
               className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center"
             >
               <a
-                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA      "
+                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA        "
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-base md:text-lg px-6 py-4 md:px-8 md:py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 min-w-[200px] md:min-w-[250px] font-semibold text-center"
@@ -776,7 +796,7 @@ const Home = () => {
               </a>
               
               <a
-                href="https://wa.me/573185141579      "
+                href="https://wa.me/573185141579        "
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-base md:text-lg px-6 py-4 md:px-8 md:py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 min-w-[200px] md:min-w-[250px] font-semibold text-center"
