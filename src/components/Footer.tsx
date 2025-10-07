@@ -33,7 +33,7 @@ const Footer = () => {
           <div className="space-y-2 text-white/90">
             <p className="flex items-start">
               <FaMapMarkerAlt className="mt-1 mr-2 flex-shrink-0" /> 
-              Cl. 12a #39-21, Bogotá, Bogotá
+              Cl. 12a #39-21, Bogotá
             </p>
             <p className="flex items-center">
               <FaWhatsapp className="mr-2" /> 
