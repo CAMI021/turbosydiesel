@@ -3,13 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 
-// 🔑 Configuración con Gmail en EmailJS (copiado de tu ContactSimple que funciona)
-const EMAILJS_PUBLIC_KEY = '_glOK3OQFHUeXoSxA'; // tu public key
+// 🔑 Configuración con Gmail en EmailJS
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const EMAILJS_SERVICE_ID = 'service_hbj5k6a';   // tu service ID
 const EMAILJS_TEMPLATE_ID = 'template_571hqtm'; // tu template ID
 
-// Inicializar EmailJS una sola vez al cargar el módulo (CORRECCIÓN PRINCIPAL)
-emailjs.init(EMAILJS_PUBLIC_KEY);
+// Inicializar EmailJS solo si tenemos la clave (evita errores en desarrollo)
+if (EMAILJS_PUBLIC_KEY) {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+} else {
+  console.warn('EmailJS no se inicializó porque falta la clave pública. Asegúrate de configurar VITE_EMAILJS_PUBLIC_KEY en tu archivo .env');
+}
 
 // Define el tipo para tu formData
 interface FormData {
@@ -57,6 +61,14 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
+
+    // Verificar si tenemos la clave pública configurada
+    if (!EMAILJS_PUBLIC_KEY) {
+      console.error('EMAILJS_PUBLIC_KEY no está definida. No se puede enviar el correo.');
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       // Prepara los parámetros para enviar al template
