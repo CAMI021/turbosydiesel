@@ -8,11 +8,22 @@ const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 const EMAILJS_SERVICE_ID = 'service_hbj5k6a';   // tu service ID
 const EMAILJS_TEMPLATE_ID = 'template_571hqtm'; // tu template ID
 
-// Inicializar EmailJS solo si tenemos la clave (evita errores en desarrollo)
+// Mostrar estado de variables de entorno para diagnóstico
+console.log('Estado de variables de entorno:');
+console.log('DEV:', import.meta.env.DEV);
+console.log('MODE:', import.meta.env.MODE);
+console.log('EMAILJS_PUBLIC_KEY está definida:', !!EMAILJS_PUBLIC_KEY);
 if (EMAILJS_PUBLIC_KEY) {
+  console.log('Longitud de la clave:', EMAILJS_PUBLIC_KEY.length);
+  console.log('Primeros 5 caracteres:', EMAILJS_PUBLIC_KEY.substring(0, 5) + '...');
+}
+
+// Inicializar EmailJS una sola vez al cargar el módulo
+if (EMAILJS_PUBLIC_KEY) {
+  console.log('Inicializando EmailJS con clave pública');
   emailjs.init(EMAILJS_PUBLIC_KEY);
 } else {
-  console.warn('EmailJS no se inicializó porque falta la clave pública. Asegúrate de configurar VITE_EMAILJS_PUBLIC_KEY en tu archivo .env');
+  console.error('❌ FATAL ERROR: EMAILJS_PUBLIC_KEY no está definida. El formulario de contacto NO FUNCIONARÁ.');
 }
 
 // Define el tipo para tu formData
@@ -59,16 +70,16 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    // Verificar si tenemos la clave pública configurada
+    
+    // Verificación adicional antes de enviar
     if (!EMAILJS_PUBLIC_KEY) {
-      console.error('EMAILJS_PUBLIC_KEY no está definida. No se puede enviar el correo.');
+      console.error('No se puede enviar el formulario: EMAILJS_PUBLIC_KEY no está definida');
       setSubmitStatus('error');
-      setIsSubmitting(false);
       return;
     }
+    
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
 
     try {
       // Prepara los parámetros para enviar al template
@@ -81,6 +92,8 @@ const Contact = () => {
         message: formData.message,
       };
 
+      console.log('Enviando correo con parámetros:', templateParams);
+      
       // Envia el correo usando tu Service ID y Template ID
       await emailjs.send(
         EMAILJS_SERVICE_ID,
@@ -88,6 +101,7 @@ const Contact = () => {
         templateParams
       );
 
+      console.log('Correo enviado exitosamente');
       setSubmitStatus('success');
       // Reiniciar el formulario excepto el email si vino por URL
       setFormData(prev => ({ name: '', email: prev.email, phone: '', subject: '', message: '' }));
@@ -288,7 +302,7 @@ const Contact = () => {
                           </div>
                           <div className="ml-3">
                             <p className="text-sm text-red-700">
-                              Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.
+                              Hubo un error al enviar tu mensaje. Por favor, verifica tu conexión e inténtalo de nuevo.
                             </p>
                           </div>
                         </div>
@@ -298,9 +312,9 @@ const Contact = () => {
                     <div className="pt-2">
                       <button
                         type="submit"
-                        disabled={isSubmitting}
+                        disabled={isSubmitting || !EMAILJS_PUBLIC_KEY}
                         className={`w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-xl transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 shadow-md flex items-center justify-center ${
-                          isSubmitting ? 'opacity-75 cursor-not-allowed' : ''
+                          isSubmitting || !EMAILJS_PUBLIC_KEY ? 'opacity-75 cursor-not-allowed' : ''
                         }`}
                       >
                         {isSubmitting ? (
@@ -310,6 +324,13 @@ const Contact = () => {
                               <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
                             Enviando...
+                          </>
+                        ) : !EMAILJS_PUBLIC_KEY ? (
+                          <>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            Configuración incompleta
                           </>
                         ) : (
                           <>
@@ -324,6 +345,13 @@ const Contact = () => {
                       <p className="mt-3 text-xs text-gray-500 text-center sm:text-left">
                         Los campos marcados con <span className="text-red-500">*</span> son obligatorios
                       </p>
+                      
+                      {!EMAILJS_PUBLIC_KEY && (
+                        <p className="mt-2 text-xs text-red-600 text-center sm:text-left">
+                          ⚠️ Error de configuración: La clave de EmailJS no está definida. 
+                          Contacta al administrador del sitio.
+                        </p>
+                      )}
                     </div>
                   </form>
                 )}
