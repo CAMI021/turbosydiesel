@@ -136,19 +136,30 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Footer inferior con gris */}
+      {/* Footer inferior con gris - MODIFICADO */}
       <div className="container mx-auto px-3">
         <div className="border-t border-white/15 pt-2 pb-1.5 bg-gray-900/10">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white/70 text-sm mb-1 md:mb-0">
-              ©2025 Diesel y Turbos SAS. Todos los derechos reservados.
-            </p>
-            <div className="flex flex-wrap justify-center gap-x-3 gap-y-1">
-              <a href="/privacy" className="text-white/70 hover:text-white text-sm transition-colors px-1 py-0.5 hover:bg-white/10 rounded">Política de Privacidad</a>
-              <a href="/terms" className="text-white/70 hover:text-white text-sm transition-colors px-1 py-0.5 hover:bg-white/10 rounded">Términos y Condiciones</a>
-              <a href="/sitemap" className="text-white/70 hover:text-white text-sm transition-colors px-1 py-0.5 hover:bg-white/10 rounded">Mapa del Sitio</a>
-            </div>
-          </div>
+          <p className="text-white/70 text-sm text-center">
+            Código fuente disponible bajo la{" "}
+            <a 
+              href="https://www.gnu.org/licenses/gpl-3.0.html" 
+              className="underline hover:text-white transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Licencia GPL v3
+            </a>
+            . Puedes ver y usar el código fuente en{" "}
+            <a 
+              href="https://github.com/CAMI021/turbosydiesel" 
+              className="underline hover:text-white transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            .
+          </p>
         </div>
       </div>
     </footer>
