@@ -36,18 +36,17 @@ export const products = {
         "name": "Filtro 500FG",
         "brand": "Racor",
         "images": [
-          
           "/productos/filtros/500FG.png"
-
         ],
         "technicalSheetPdf": "/pdfs/Filtros500-900-1000.pdf",
         "shortDesc": "",
         "description": "Filtro de alta eficiencia para sistemas de combustible diésel",
         "technicalSpecs": [
-          { "label": "Separación de agua", "value": "Elimina hasta el 99% del agua presente en el combustible" },
-          { "label": "Grados de filtración", "value": "Disponible en 2, 10 y 30 micrones según elemento filtrante" },
-          { "label": "Aplicación", "value": "Diseñado para distintos tamaños de motores según caballaje" },
-          { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan condiciones exigentes" }
+          { "label": "Separa 99.5% del agua del combustible", "value": "" },
+          { "label": "Alarga la vida del sistema de inyección", "value": "" },
+          { "label": "Filtración de 2, 10 o 30 micrones", "value": "" },
+          { "label": "Fácil instalación y mantenimiento", "value": "" },
+          { "label": "Disponible en varios tamaños", "value": "" }
         ],
         "mainFeatures": [
           "Filtro 500FG de alta eficiencia para alargar la vida de los motores Diesel usando los filtros separadores de agua tipo RACOR que separan 99% del agua del combustible y ofrecen una filtración de 2, 10 y 30 micrones según el elemento filtrante que se use. Ideal para aplicaciones de motores diesel según su caballaje."
@@ -64,10 +63,11 @@ export const products = {
         "shortDesc": "",
         "description": "Filtro de alta eficiencia para sistemas de combustible diésel",
         "technicalSpecs": [
-          { "label": "Separación de agua", "value": "Elimina hasta el 99% del agua presente en el combustible" },
-          { "label": "Grados de filtración", "value": "Disponible en 2, 10 y 30 micrones según elemento filtrante" },
-          { "label": "Aplicación", "value": "Diseñado para distintos tamaños de motores según caballaje" },
-          { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan condiciones exigentes" }
+          { "label": "Separa 99.5% del agua del combustible", "value": "" },
+          { "label": "Alarga la vida del sistema de inyección", "value": "" },
+          { "label": "Filtración de 2, 10 o 30 micrones", "value": "" },
+          { "label": "Fácil instalación y mantenimiento", "value": "" },
+          { "label": "Disponible en varios tamaños", "value": "" }
         ],
         "mainFeatures": [
           "Filtro 900FG de alta eficiencia para alargar la vida de los motores Diesel usando los filtros separadores de agua tipo RACOR que separan 99% del agua del combustible y ofrecen una filtración de 2, 10 y 30 micrones según el elemento filtrante que se use. Ideal para aplicaciones de motores diesel según su caballaje."
@@ -85,10 +85,11 @@ export const products = {
         "shortDesc": "",
         "description": "Filtro de alta eficiencia para sistemas de combustible diésel",
         "technicalSpecs": [
-          { "label": "Separación de agua", "value": "Elimina hasta el 99% del agua presente en el combustible" },
-          { "label": "Grados de filtración", "value": "Disponible en 2, 10 y 30 micrones según elemento filtrante" },
-          { "label": "Aplicación", "value": "Diseñado para distintos tamaños de motores según caballaje" },
-          { "label": "Construcción", "value": "Materiales resistentes y duraderos que soportan condiciones exigentes" }
+          { "label": "Separa 99.5% del agua del combustible", "value": "" },
+          { "label": "Alarga la vida del sistema de inyección", "value": "" },
+          { "label": "Filtración de 2, 10 o 30 micrones", "value": "" },
+          { "label": "Fácil instalación y mantenimiento", "value": "" },
+          { "label": "Disponible en varios tamaños", "value": "" }
         ],
         "mainFeatures": [
           "Filtro 1000FG de alta eficiencia para alargar la vida de los motores Diesel usando los filtros separadores de agua tipo RACOR que separan 99% del agua del combustible y ofrecen una filtración de 2, 10 y 30 micrones según el elemento filtrante que se use. Ideal para aplicaciones de motores diesel según su caballaje."
@@ -300,7 +301,6 @@ export const products = {
         "brand": "Delphi",
         "images": [
           "/productos/bombas/conventional-pump-main.jpg"
-          
         ],
         "shortDesc": "Bombas convencionales",
         "description": "Bombas de inyección diésel tradicionales",

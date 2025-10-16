@@ -97,17 +97,21 @@ const Footer = () => {
             </a>
           </div>
           
-          {/* Números Directos */}
+          {/* Números Directos - MODIFICADOS PARA ABRIR WHATSAPP */}
           <div className="mt-3 p-2 rounded-lg bg-white/5">
             <p className="font-semibold mb-1 text-sm opacity-90">Números Directos</p>
             <div className="space-y-1">
               <div className="flex justify-between text-sm">
                 <span>Ventas:</span>
-                <a href="tel:+573185141582" className="hover:text-[#25D366] transition-colors">318 514 1582</a>
+                <a href="https://wa.me/573185141582" className="hover:text-[#25D366] transition-colors">318 514 1582</a>
               </div>
               <div className="flex justify-between text-sm">
                 <span>Taller:</span>
-                <a href="tel:+573185141580" className="hover:text-[#25D366] transition-colors">318 514 1580</a>
+                <a href="https://wa.me/573185141580" className="hover:text-[#25D366] transition-colors">318 514 1580</a>
+              </div>
+              <div className="flex justify-between text-sm">
+                <span>Cali:</span>
+                <a href="https://wa.me/573185141585" className="hover:text-[#25D366] transition-colors">318 514 1585</a>
               </div>
             </div>
           </div>

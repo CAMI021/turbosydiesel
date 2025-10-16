@@ -1,4 +1,3 @@
-
 {
   "categoryDescription": "En Hartridge Empresa fundada en 1930 fabricante de Equipos de prueba para sistemas de inyección Diesel para las fábricas y los Servicios autorizados de los fabricantes DELPHI, STANADYNE, DENSO, CONTIENENTAL, CATERPILLAR, YANMAR, CUMMINS y otros.\n\nNosotros somos Distribuidores y servicio autorizado para Colombia, Brindamos soporte técnico en instalación de los equipos, asesoría en la compra y capacitación. Garantía según condiciones de fábrica, tenemos en stock Inventario de repuestos de consumo.",
   "equipments": [
@@ -161,6 +160,23 @@
         "Diagnóstico básico en talleres"
       ],
       "technicalSheetPdf": "/pdfs/testmaster-2-hh700.pdf"
+    },
+    {
+      "id": "hartridge-smokemeter-4",
+      "name": "Opacímetro Smokemeter-4",
+      "images": ["/equipos/hartridge-smokemeter-4.png"],
+      "description": "Opacímetro diseñado para pruebas de humo de escape en vehículos, operando con alta precisión y facilidad de uso.",
+      "specifications": [
+        "Funciona con batería de 12/24 voltios",
+        "Pantalla LCD digital",
+        "Salida digital en 'K' o porcentaje (HSU)"
+      ],
+      "applications": [
+        "Pruebas de humo de escape en talleres",
+        "Control de emisiones en centros de prueba",
+        "Medición de humo en la carretera"
+      ],
+      "technicalSheetPdf": "/pdfs/hartridge-smokemeter-4.pdf"
     }
   ]
 }

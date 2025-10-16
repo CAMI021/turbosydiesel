@@ -50,7 +50,7 @@ const Navbar = () => {
     { name: "Balanceadoras", path: "/equipos/balanceadoras" },
     { name: "DPF", path: "/equipos/dpf" },
     { name: "Luxómetros", path: "/equipos/luxometro" },
-    { name: "Millennium", path: "/equipos/millennium" },
+    //{ name: "Millennium", path: "/equipos/millennium" },
     { name: "Sand Blasters", path: "/equipos/sand-blasters" }
   ];
 

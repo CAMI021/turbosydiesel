@@ -170,7 +170,7 @@ const EquipmentCategory: React.FC = () => {
                     Hartridge, Empresa fundada en 1930 fabricante de Equipos de prueba para sistemas de inyección Diesel para las fábricas y los Servicios autorizados de los fabricantes DELPHI, STANADYNE, DENSO, CONTINENTAL, CATERPILLAR, YANMAR, CUMMINS y otros.
                   </p>
                   <p className="text-gray-600 leading-relaxed">
-                    Nosotros somos Distribuidores para Colombia, Brindamos soporte técnico en instalación de los equipos, asesoría en la compra y capacitación. Garantía según condiciones de fábrica, tenemos en stock Inventario de repuestos de consumo.
+                    Nosotros somos Distribuidores y Servicio Autorizado para Colombia, Brindamos soporte técnico en instalación de los equipos, asesoría en la compra y capacitación. Garantía según condiciones de fábrica, tenemos en stock Inventario de repuestos de consumo.
                   </p>
                 </div>
               </div>

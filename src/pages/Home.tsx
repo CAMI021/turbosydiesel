@@ -22,16 +22,17 @@ const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedCertification, setSelectedCertification] = useState<string | null>(null);
   const [showAllBrands, setShowAllBrands] = useState(false);
+  const [brandsPage, setBrandsPage] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(9000);
   const [isImageFixed, setIsImageFixed] = useState(false);
   const [equipmentIndex, setEquipmentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  
+
   const images = [
     '/asd.mp4',
     '/image2.jpg',
-    '/image4.jpg', // NUEVA IMAGEN AGREGADA AQUÍ
+    '/image4.jpg',
     '/image1.jpg',
     '/image3.png'
   ];
@@ -41,16 +42,14 @@ const Home = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   // Obtener el número de imágenes visibles según el dispositivo
   const getVisibleImageCount = () => {
-    return isMobile ? 4 : images.length; // AHORA SON 4 IMÁGENES EN MÓVIL
+    return isMobile ? 4 : images.length;
   };
 
   // Este efecto se encarga de inicializar el tiempo restante cuando cambia el índice
@@ -62,14 +61,12 @@ const Home = () => {
   // Este efecto maneja el temporizador para cambiar de imagen
   useEffect(() => {
     if (isImageFixed) return;
-    
     const timer = setTimeout(() => {
       if (!isImageFixed) {
         const visibleCount = getVisibleImageCount();
         setCurrentIndex(prevIndex => (prevIndex + 1) % visibleCount);
       }
     }, timeRemaining);
-
     return () => clearTimeout(timer);
   }, [currentIndex, timeRemaining, isImageFixed, isMobile]);
 
@@ -80,16 +77,13 @@ const Home = () => {
     }
   }, [currentIndex]);
 
-  // Efecto para auto-avanzar el carrusel de equipos - CORREGIDO
+  // Efecto para auto-avanzar el carrusel de equipos
   useEffect(() => {
     if (!selectedCertification) return;
-    
     const details = getCertificationDetails(selectedCertification);
     const equipmentArray = getEquipmentArray(details?.equipment);
-    
-    // Si no hay equipos o solo hay uno, no necesitamos el carrusel automático
     if (equipmentArray.length <= 1) return;
-    
+
     const timer = setInterval(() => {
       setEquipmentIndex(prev => (prev + 1) % equipmentArray.length);
     }, 5000);
@@ -107,15 +101,13 @@ const Home = () => {
   const handleImageClick = (index: number) => {
     if (index === currentIndex && !isImageFixed) {
       if (index === 1) {
-        window.open('https://wa.me/573185141579        ', '_blank');
+        window.open('https://wa.me/573185141579', '_blank');
       } else {
         setTimeRemaining(prev => prev + 5000);
         setIsImageFixed(true);
-        
         const timer = setTimeout(() => {
           setIsImageFixed(false);
         }, 5000);
-        
         return () => clearTimeout(timer);
       }
     }
@@ -241,11 +233,29 @@ const Home = () => {
     }
   ];
 
-  // Actualizado para mostrar 23 imágenes en el carrusel
-  const allBrands = Array.from({ length: 23 }, (_, i) => ({
+  // Actualizado para mostrar 34 imágenes en el carrusel
+  const allBrands = Array.from({ length: 34 }, (_, i) => ({
     id: i + 1,
-    image: `/product-${(i % 23) + 1}.jpg`
+    image: `/product-${(i % 34) + 1}.jpg`
   }));
+
+  // Configuración de paginación para las marcas
+  const BRANDS_PER_PAGE = 12;
+  const totalPages = Math.ceil(allBrands.length / BRANDS_PER_PAGE);
+
+  const getCurrentPageBrands = () => {
+    const start = brandsPage * BRANDS_PER_PAGE;
+    const end = start + BRANDS_PER_PAGE;
+    return allBrands.slice(start, end);
+  };
+
+  const handlePrevBrandsPage = () => {
+    setBrandsPage(prev => (prev - 1 + totalPages) % totalPages);
+  };
+
+  const handleNextBrandsPage = () => {
+    setBrandsPage(prev => (prev + 1) % totalPages);
+  };
 
   const getCertificationDetails = (certId: string | null): CertificationDetails | null => {
     if (!certId) return null;
@@ -274,14 +284,12 @@ const Home = () => {
 
   return (
     <div className="no-horizontal-scroll bg-[#f4f4f4]">
-      {/* Hero Section - CORREGIDO: Añadido padding-top más grande para evitar que la navbar tape el contenido */}
+      {/* Hero Section */}
       <section className="full-width relative bg-black text-white min-h-screen flex flex-col overflow-hidden pt-24 md:pt-0">
         <div className="container-wide flex-1 flex items-center justify-center">
           <div className="absolute inset-0 z-0">
             {images.map((src, index) => {
-              // En móviles, no mostrar más allá de la cuarta imagen (índice 3)
               if (isMobile && index > 3) return null;
-              
               return (
                 <motion.div
                   key={index}
@@ -293,7 +301,6 @@ const Home = () => {
                 >
                   {index === 0 ? (
                     <div className="relative w-full h-full">
-                      {/* Capa de fondo difuminada */}
                       <div className="absolute inset-0 overflow-hidden">
                         <div className="absolute inset-[-50%] w-[200%] h-[200%]">
                           <video
@@ -306,7 +313,6 @@ const Home = () => {
                           />
                         </div>
                       </div>
-                      {/* Video principal */}
                       <video
                         ref={videoRef}
                         src={src}
@@ -318,7 +324,6 @@ const Home = () => {
                       />
                     </div>
                   ) : isMobile && index === 1 ? (
-                    // Contenido de texto para la segunda imagen en móviles
                     <div className="w-full h-full bg-black flex flex-col justify-center items-center p-6 text-white">
                       <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">Capacitación Técnicos Diesel</h2>
                       <p className="text-xl md:text-2xl text-center max-w-3xl">
@@ -326,7 +331,6 @@ const Home = () => {
                       </p>
                     </div>
                   ) : isMobile && index === 2 ? (
-                    // Contenido de texto para la tercera imagen en móviles
                     <div className="w-full h-full bg-black flex flex-col justify-center items-center p-6 text-white">
                       <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">Eficiencia en Cada Componente:</h2>
                       <div className="grid grid-cols-2 gap-4 md:gap-6 w-full max-w-2xl">
@@ -351,7 +355,6 @@ const Home = () => {
                       </div>
                     </div>
                   ) : isMobile && index === 3 ? (
-                    // NUEVO CONTENIDO PARA LA CUARTA IMAGEN EN MÓVILES
                     <div className="w-full h-full bg-black flex flex-col justify-center items-center p-6 text-white">
                       <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">Importación de repuestos urgentes</h2>
                       <div className="grid grid-cols-2 gap-4 md:gap-6 w-full max-w-2xl">
@@ -394,7 +397,6 @@ const Home = () => {
           </div>
           {currentIndex === 0 && (
             <motion.div initial="hidden" animate="visible" className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-              {/* CORREGIDO: Reducido el tamaño de la fuente en móviles */}
               <motion.h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight hero-text-shadow font-space-grotesk" variants={{ visible: { transition: { staggerChildren: 0.03 } } }}>
                 {Array.from("VENTAS Y SERVICIO").map((char, index) => (
                   <motion.span
@@ -424,7 +426,7 @@ const Home = () => {
               >
                 {[
                   { icon: "🔧", text: "Venta de Repuestos" },
-                  { icon: "🛠️", text: "Mantenimiento" },
+                  { icon: "🛠️", text: "Reparación y Mantenimiento" },
                   { icon: "🚗", text: "Medición de gases" },
                   { icon: "🧼", text: "Limpieza y diálisis de tanques" }
                 ].map((item, index) => (
@@ -444,7 +446,6 @@ const Home = () => {
           )}
         </div>
       </section>
-
       {/* SECCIÓN 1: CERTIFICACIONES OFICIALES */}
       <section className="full-width py-16 bg-gray-50">
         <div className="container-wide">
@@ -467,7 +468,6 @@ const Home = () => {
               Autorizados por las principales marcas del mercado
             </motion.p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {certifications.map((cert, index) => (
               <motion.div
@@ -484,7 +484,6 @@ const Home = () => {
                     {cert.icon}
                   </div>
                 </div>
-
                 <div className="mb-3 md:mb-4 h-24 md:h-32 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
                   <img
                     src={cert.image}
@@ -503,7 +502,6 @@ const Home = () => {
                     Imagen de certificación
                   </div>
                 </div>
-
                 <h3 className="text-base md:text-lg font-bold text-gray-900 mb-1 md:mb-2">{cert.title}</h3>
                 <p className="text-gray-600 text-xs md:text-sm">{cert.description}</p>
               </motion.div>
@@ -511,7 +509,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
       {/* SECCIÓN 2: VENTAS Y SERVICIO */}
       <section className="full-width py-16 bg-white overflow-hidden relative">
         <div className="absolute inset-0 pointer-events-none z-0">
@@ -544,32 +541,31 @@ const Home = () => {
           >
             Componentes premium y reparaciones de alta precisión para sistemas diesel
           </motion.p>
-
           {!showAllBrands ? (
             <>
               <motion.div
                 className="flex gap-1 pb-6"
                 animate={{ 
-                  x: [0, -2200, 0], 
-                  transition: { x: { repeat: Infinity, duration: 60, ease: "linear" } } 
+                  x: [0, -2720, 0], 
+                  transition: { x: { repeat: Infinity, duration: 80, ease: "linear" } } 
                 }}
               >
-                {Array.from({ length: 23 }, (_, i) => (
+                {Array.from({ length: 34 }, (_, i) => (
                   <motion.div
                     key={i}
                     className="flex-shrink-0 w-40 h-20 md:w-48 md:h-24 rounded-lg overflow-hidden bg-white flex items-center justify-center p-1 border border-gray-100"
                     whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    transition={{ type: "spring",
+                      stiffness: 300, damping: 15 }}
                   >
                     <img
-                      src={`/product-${(i % 12) + 1}.jpg`}
+                      src={`/product-${(i % 34) + 1}.jpg`}
                       alt={`Producto diesel ${i + 1}`}
-                      className="w-full h-full object-contain" // Cambié object-cover por object-contain aquí también
+                      className="w-full h-full object-contain"
                     />
                   </motion.div>
                 ))}
               </motion.div>
-
               <div className="flex justify-center mt-2">
                 <button
                   onClick={() => setShowAllBrands(true)}
@@ -585,15 +581,58 @@ const Home = () => {
                 <h2 className="text-xl md:text-2xl font-bold mb-2 text-black">Nuestras marcas</h2>
                 <p className="text-gray-600 text-sm md:text-base">Trabajamos con las mejores marcas del mercado</p>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                {allBrands.map((brand) => (
+              {/* Navegación del carrusel de marcas */}
+              <div className="flex items-center justify-center gap-4 mb-6">
+                <button
+                  onClick={handlePrevBrandsPage}
+                  className="bg-gray-100 text-gray-700 hover:bg-[#e3001b] hover:text-white p-3 rounded-full transition-colors duration-300"
+                  aria-label="Página anterior"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <div className="flex items-center gap-2">
+                  {Array.from({ length: totalPages }).map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setBrandsPage(index)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        index === brandsPage 
+                          ? 'bg-[#e3001b] w-8' 
+                          : 'bg-gray-300 hover:bg-gray-400'
+                      }`}
+                      aria-label={`Ir a página ${index + 1}`}
+                    />
+                  ))}
+                </div>
+                <button
+                  onClick={handleNextBrandsPage}
+                  className="bg-gray-100 text-gray-700 hover:bg-[#e3001b] hover:text-white p-3 rounded-full transition-colors duration-300"
+                  aria-label="Página siguiente"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </div>
+              {/* Indicador de página */}
+              <div className="text-center mb-4">
+                <span className="text-sm text-gray-600">
+                  Página {brandsPage + 1} de {totalPages}
+                </span>
+              </div>
+              {/* Grid de marcas con animación */}
+              <motion.div
+                key={brandsPage}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6"
+              >
+                {getCurrentPageBrands().map((brand, index) => (
                   <motion.div
                     key={brand.id}
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.05 }}
                     className="bg-white p-4 rounded-xl border border-gray-200 hover:border-[#e3001b] transition-all duration-300 transform hover:scale-[1.02] shadow-sm text-center"
                   >
                     <div className="mb-3 md:mb-4 h-24 md:h-32 bg-white rounded-lg border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden">
@@ -616,11 +655,13 @@ const Home = () => {
                     </div>
                   </motion.div>
                 ))}
-              </div>
-
+              </motion.div>
               <div className="flex justify-center mt-6">
                 <button
-                  onClick={() => setShowAllBrands(false)}
+                  onClick={() => {
+                    setShowAllBrands(false);
+                    setBrandsPage(0);
+                  }}
                   className="bg-gray-100 text-gray-700 text-xs md:text-sm px-3 py-1 rounded-lg hover:bg-[#e3001b] hover:text-white transition-colors duration-300 font-medium"
                 >
                   Ver menos marcas
@@ -628,7 +669,6 @@ const Home = () => {
               </div>
             </div>
           )}
-
           <div className="mt-12 md:mt-16">
             <h3 className="text-xl md:text-2xl font-bold text-center text-black mb-6 md:mb-8">Empresas del grupo:</h3>
             <div className="flex justify-center gap-2">
@@ -642,7 +682,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
       {/* Modal de Detalles de Certificación */}
       {selectedCertification && selectedCertDetails && selectedCert && (
         <motion.div
@@ -664,7 +703,6 @@ const Home = () => {
             >
               <X className="h-6 w-6" />
             </button>
-
             <div className="p-4 md:p-6">
               <div className="flex items-center mb-4 md:mb-6">
                 <div className="bg-[#e3001b]/10 p-2 md:p-3 rounded-lg mr-3 md:mr-4">
@@ -672,12 +710,10 @@ const Home = () => {
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-[#e3001b]">{selectedCertDetails.title}</h3>
               </div>
-
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 <div className="md:col-span-2">
                   <p className="text-gray-700 mb-3 md:mb-4 text-sm md:text-base">{selectedCertDetails.description}</p>
                   <p className="text-gray-600 italic mb-4 md:mb-6 text-xs md:text-sm">{selectedCertDetails.details}</p>
-
                   <h4 className="font-bold text-gray-900 mb-2 md:mb-3 text-sm md:text-base">Principales beneficios:</h4>
                   <ul className="space-y-1 md:space-y-2">
                     {selectedCertDetails.highlights.map((highlight, idx) => (
@@ -687,7 +723,6 @@ const Home = () => {
                       </li>
                     ))}
                   </ul>
-
                   {selectedCertDetails.equipment && (
                     <div className="mt-6 md:mt-8 p-3 md:p-4 bg-gray-50 rounded-lg border border-gray-200">
                       <div className="flex justify-between items-center mb-2">
@@ -730,7 +765,6 @@ const Home = () => {
                     </div>
                   )}
                 </div>
-
                 <div className="bg-gray-50 rounded-xl p-3 md:p-5 border border-gray-200">
                   <div className="h-28 md:h-40 mb-3 md:mb-4 bg-gray-100 rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center overflow-hidden">
                     <img src={selectedCert.image} alt={`Certificación ${selectedCert.title}`} className="w-full h-full object-contain" />
@@ -740,7 +774,7 @@ const Home = () => {
                   <Button
                     className="bg-[#e3001b] text-white hover:bg-[#b00000] w-full text-sm md:text-base py-2 md:py-3"
                     onClick={() => {
-                      window.open('https://wa.me/573185141579        ', '_blank');
+                      window.open('https://wa.me/573185141579', '_blank');
                       setSelectedCertification(null);
                     }}
                   >
@@ -752,7 +786,6 @@ const Home = () => {
           </motion.div>
         </motion.div>
       )}
-
       {/* CTA Final */}
       <section className="full-width py-12 md:py-20 bg-gradient-to-r from-[#e3001b] to-[#b00000] text-white text-center relative overflow-hidden">
         <div className="container-wide">
@@ -787,16 +820,15 @@ const Home = () => {
               className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center"
             >
               <a
-                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA        "
+                href="https://maps.app.goo.gl/QiaGzeCGtQh3RKKbA"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-base md:text-lg px-6 py-4 md:px-8 md:py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 min-w-[200px] md:min-w-[250px] font-semibold text-center"
               >
                 <MapPin className="inline mr-1 md:mr-2 h-4 md:h-5 w-4 md:w-5" /> Ver ubicación
               </a>
-              
               <a
-                href="https://wa.me/573185141579        "
+                href="https://wa.me/573185141579"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-[#e3001b] hover:bg-gray-100 hover:text-[#b00000] text-base md:text-lg px-6 py-4 md:px-8 md:py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 min-w-[200px] md:min-w-[250px] font-semibold text-center"
@@ -804,7 +836,6 @@ const Home = () => {
                 <MessageCircle className="inline mr-1 md:mr-2 h-4 md:h-5 w-4 md:w-5" /> Escribir al WhatsApp
               </a>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
