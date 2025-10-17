@@ -79,7 +79,7 @@ const products: Product[] = [
   {
     slug: "filtros",
     categoryKey: "filters",
-    name: "Filtros Separadores de agua tipo “Racor”",
+    name: "Filtros Separadores",
     img: "/productos/filtros_racor.jpg",
     description: "Filtros de combustible y aceite con tecnología de separación de agua avanzada.",
   },
